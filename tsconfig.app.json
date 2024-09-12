@@ -19,6 +19,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
+    "incremental": true,
     "tsBuildInfoFile": "./.build_cache/tsconfig.app.tsbuildinfo"
   },
   "include": ["src"]

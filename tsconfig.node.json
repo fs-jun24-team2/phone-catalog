@@ -17,6 +17,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
+    "incremental": true,
     "tsBuildInfoFile": "./.build_cache/tsconfig.node.tsbuildinfo"
   },
   "include": ["vite.config.ts"]
