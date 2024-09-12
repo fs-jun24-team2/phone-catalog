@@ -41,8 +41,13 @@ export default tseslint.config(
       "@typescript-eslint": tseslint,
       prettier,
     },
+    parserOptions: {
+      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      tsconfigRootDir: import.meta.dirname,
+    },
     rules: {
       ...reactHooks.configs.recommended.rules,
+      ...react.configs.recommended.rules,
       "react-refresh/only-export-components": [
         "warn",
         { allowConstantExport: true },
