@@ -1,9 +1,11 @@
 import type { Action, ThunkAction } from '@reduxjs/toolkit';
 import { configureStore, createSelector } from '@reduxjs/toolkit';
+import phonesReduser from '../features/phonesSlice';
 import exampleReduser from '../features/exampleSlice';
 
 export const store = configureStore({
   reducer: {
+    phones: phonesReduser,
     example: exampleReduser,
   },
 });
