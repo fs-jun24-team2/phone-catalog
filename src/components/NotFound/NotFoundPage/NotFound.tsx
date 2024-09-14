@@ -1,5 +1,5 @@
 import React from 'react';
-import './NotFound.scss';
+import './NotFound.module.scss';
 import { NotFoundSVG } from '../NotFoundSVG/NotFoundSVG.js';
 
 export const NotFound: React.FC = () => {
