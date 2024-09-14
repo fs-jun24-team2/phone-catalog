@@ -1,19 +1,19 @@
+import { Outlet } from 'react-router-dom';
 import './style.scss';
+import { Footer } from './modules/shared/components/Footer';
+import { Header } from './modules/shared/components/Header';
 
 function App() {
   return (
     <div className="wrapper">
-      <header className="header">
-        <div className="header__container">HEADER</div>
-      </header>
-
+      <Header />
       <main className="main">
-        <div className="main__container">MAIN</div>
+        <div className="main__container">
+          <Outlet />
+        </div>
       </main>
 
-      <footer className="footer">
-        <div className="footer__container">FOOTER</div>
-      </footer>
+      <Footer />
     </div>
   );
 }
