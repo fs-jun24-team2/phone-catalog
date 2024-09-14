@@ -1,7 +1,21 @@
-import './App.css';
-import { NotFound } from './components/NotFound/NotFoundPage/NotFound';
+import './style.scss';
+
 function App() {
-  return <NotFound />;
+  return (
+    <div className="wrapper">
+      <header className="header">
+        <div className="header__container">HEADER</div>
+      </header>
+
+      <main className="main">
+        <div className="main__container">MAIN</div>
+      </main>
+
+      <footer className="footer">
+        <div className="footer__container">FOOTER</div>
+      </footer>
+    </div>
+  );
 }
 
 export default App;

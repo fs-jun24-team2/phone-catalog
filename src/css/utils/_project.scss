@@ -1,0 +1,28 @@
+// ========================= Project Styles =========================//
+
+body {
+    background-color: $original_hover_and_bg;
+    font-family: $mont, sans-serif;
+    font-weight: $regular;
+    font-size: toRem(14);
+    color: $original_primary;
+    line-height: 1.5;
+    height: 100%;
+}
+
+.wrapper {
+    min-height: 100vh;
+    overflow: clip;
+    display: flex;
+    flex-direction: column;
+
+    > main {
+        flex: 1 1 auto;
+    }
+    > * {
+        min-width: 0;
+    }
+}
+
+//========================= Responsive =========================//
+$responsiveType: 1; // 1 - responsive, 2 - breakpoints
