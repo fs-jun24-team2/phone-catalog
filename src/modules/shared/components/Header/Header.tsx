@@ -40,7 +40,7 @@ export const Header = () => {
           </div>
 
           <div className={styles.icons__burger}>
-          <img src={original_burger_close} alt="Burger logo" />
+            <img src={original_burger_close} alt="Burger logo" />
           </div>
         </div>
       </div>
