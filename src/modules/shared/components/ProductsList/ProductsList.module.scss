@@ -1,0 +1,23 @@
+@import "../../../../style.scss";
+
+.products-list {
+  display: grid;
+  row-gap: toRem(40);
+
+  &__product {
+    grid-column: 1 / -1;
+    grid-column: span 4;
+  
+    @media (min-width: 640px) {
+      grid-column: span 6;
+    }
+  
+    @media (min-width: 768px) {
+      grid-column: span 4;
+    }
+  
+    @media (min-width: 1200px) {
+      grid-column: span 6;
+    }
+  }
+}

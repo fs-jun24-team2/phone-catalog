@@ -3,12 +3,27 @@ import './style.scss';
 import { Footer } from './modules/shared/components/Footer';
 import { Header } from './modules/shared/components/Header';
 
+import { useAppDispatch, useAppSelector } from './app/hooks';
+import { loadPhonesAsync, selectPhones } from './features/phonesSlice';
+import { useEffect } from 'react';
+import { ProductsList } from './modules/shared/components/ProductsList';
+
 function App() {
+  const dispatch = useAppDispatch();
+  const { phones } = useAppSelector(selectPhones);
+
+  useEffect(() => {
+    dispatch(loadPhonesAsync());
+  }, [dispatch]);
+
   return (
     <div className="wrapper">
       <Header />
       <main className="main">
         <div className="main__container">
+          <div style={{ paddingTop: '100px' }}>
+            <ProductsList products={phones.slice(16)} />
+          </div>
           <div style={{ paddingTop: '100px' }}>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa saepe
             quod sequi soluta dolorum perspiciatis natus aut iure quis minus
