@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from './app/hooks';
 import { loadPhonesAsync, selectPhones } from './features/phonesSlice';
 import { useEffect } from 'react';
 import { ProductsList } from './modules/shared/components/ProductsList';
+import { Breadcrumbs } from './modules/shared/components/Breadcrumbs';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -19,6 +20,7 @@ function App() {
   return (
     <div className="wrapper">
       <Header />
+      <Breadcrumbs />
       <main className="main">
         <div className="main__container">
           <div style={{ paddingTop: '100px' }}>

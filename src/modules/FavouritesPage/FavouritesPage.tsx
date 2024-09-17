@@ -10,7 +10,7 @@ export const FavouritesPage = () => {
       <Breadcrumbs />
       <h1>Favourites</h1>
       <p>5 items</p>
-      <ProductsList products={[]}/>
+      <ProductsList products={[]} />
 
       {/* Pagination is questionable */}
       <Pagination />
