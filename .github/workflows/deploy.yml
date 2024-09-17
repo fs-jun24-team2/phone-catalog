@@ -33,9 +33,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
+          cache: 'none' 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --no-optional || npm install
       - name: Build
         run: npm run build
       - name: Setup Pages
