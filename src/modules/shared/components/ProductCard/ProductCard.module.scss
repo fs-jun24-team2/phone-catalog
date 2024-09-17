@@ -118,7 +118,7 @@
     height: toRem(40);
     width: toRem(40);
     border: toRem(1) solid $original_icons;
-    background-image: url("images/original/icons/original_favorites.svg");
+    background-image: url("/images/original/icons/original_favorites.svg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: auto;
@@ -129,7 +129,7 @@
   }
 
   &__btn-favourites--added {
-    background-image: url("images/original/icons/original_favourites_filled.svg");
+    background-image: url("/images/original/icons/original_favourites_filled.svg");
     border-color: $original_elements;
   }
 }
