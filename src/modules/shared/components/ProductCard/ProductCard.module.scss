@@ -1,0 +1,135 @@
+@import "../../../../style.scss";
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  gap: toRem(8); 
+  padding: toRem(32);
+
+  border: toRem(1) solid $original_elements;
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(8);
+
+    height: toRem(196);
+    width: 100%; 
+
+    @media (min-width: 640px) {
+      height: toRem(262);
+    }
+  }
+
+  &__photo-container {
+    display: flex;
+    justify-content: center;
+    width: 100%; 
+    overflow: hidden;
+  }
+
+  &__photo {
+    max-height: 100%; 
+    width: auto;
+  }
+
+  &__title {
+    padding-top: toRem(16);
+    font-weight: $semiBold;
+    line-height: toRem(21);
+    color: $original_primary;
+  }
+  
+  &__prices-container {
+    display: flex;
+    gap: toRem(8);
+  }
+  
+  &__price-discount {
+    font-weight: $bold;
+    line-height: toRem(31);
+    size: toRem(22);
+    color: $original_primary;
+  }
+
+  &__price-regular {
+    font-weight: $medium;
+    line-height: toRem(28);
+    size: toRem(22);
+    color: $original_secondary;
+    text-decoration: line-through;
+  }
+
+  &__devider {
+    width: 100%;
+    height: toRem(1);
+    background-color: $original_elements;
+  }
+
+  &__specs-container {
+    display: flex;
+    flex-direction: column;
+    padding: toRem(8) 0;
+    gap: toRem(8);
+  }
+
+  &__spec-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__spec-name {
+    font-weight: $semiBold;
+    line-height: toRem(15);
+    size: toRem(12);
+    color: $original_secondary;
+  }
+
+  &__spec-value {
+    font-weight: $semiBold;
+    size: toRem(15);
+    line-height: toRem(12);
+    color: $original_primary;
+  }
+
+  &__button-container {
+    display: flex;
+    align-items: center;
+    gap: toRem(8);
+  }
+
+  &__btn-cart {
+    flex: 1;
+    height: toRem(40);
+    background-color: $original_primary;
+    font-weight: $bold;
+    line-height: toRem(21);
+    color: $original_white;
+  }
+
+  &__btn-cart--added {
+    color: $original_green;
+    background-color: $original_white;
+    border: toRem(1) solid $original_elements;
+  }
+
+  &__btn-favourites {
+    height: toRem(40);
+    width: toRem(40);
+    border: toRem(1) solid $original_icons;
+    background-image: url("/images/original/icons/original_favorites.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto;
+
+    &:hover {
+      border-color: $original_primary;
+    }
+  }
+
+  &__btn-favourites--added {
+    background-image: url("/images/original/icons/original_favourites_filled.svg");
+    border-color: $original_elements;
+  }
+}

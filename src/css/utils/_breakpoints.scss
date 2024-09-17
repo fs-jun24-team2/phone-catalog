@@ -1,0 +1,71 @@
+@use "sass:math";
+
+//========================= Container =========================//
+$maxWidth: 1920; // Max Layout Width
+$minWidth: 320; // Min Layout Width
+$maxWidthContainer: 1200; // Max Container Width (without padding)
+$containerPadding: 30; // Container paddings
+$containerWidth: $maxWidthContainer + $containerPadding; // Container Width (with paddings)
+
+// ========================= Breakpoints =========================//
+
+$pc: toEm($containerWidth); // PC
+$tablet: toEm(991.98); // Tablet
+$mobileLarge: toEm(767.98); // Mobile Large
+$mobileSmall: toEm(479.98); // Mobile Small
+$mobileMini: toEm(320);
+
+// ========================= Adaptive =========================//
+
+// Adaptive (1)
+@if ($responsiveType == 1) {
+	[class*="__container"] {
+		@if ($maxWidthContainer>0) {
+			max-width: toRem($containerWidth);
+			margin: 0 auto;
+		}
+		@if ($containerPadding>0) {
+			@if ($maxWidthContainer>0) {
+				padding: 0 toRem(math.div($containerPadding, 2));
+			} @else {
+				@include adaptiveValue("padding-left", math.div($containerPadding, 2), 15);
+				@include adaptiveValue("padding-right", math.div($containerPadding, 2), 15);
+			}
+		}
+	}
+}
+
+// Breakpoints (2)
+@if ($responsiveType == 2) {
+	[class*="__container"] {
+		margin: 0 auto;
+		@if ($maxWidthContainer>0) {
+			max-width: toRem($containerWidth);
+			@if ($containerPadding>0 and $maxWidthContainer>0) {
+				padding: 0 toRem(math.div($containerPadding, 2));
+			}
+		} @else {
+			@if ($containerPadding>0) {
+				padding: 0 toRem(math.div($containerPadding, 2));
+			}
+		}
+		@media (max-width: $pc) {
+			max-width: toRem(970);
+			@if ($containerPadding>0 and $maxWidthContainer>0) {
+				padding: 0 toRem(math.div($containerPadding, 2));
+			}
+		}
+		@media (max-width: $tablet) {
+			max-width: toRem(750);
+			@if ($containerPadding>0 and $maxWidthContainer>0) {
+				padding: 0 toRem(math.div($containerPadding, 2));
+			}
+		}
+		@media (max-width: $mobileLarge) {
+			max-width: none;
+			@if ($containerPadding>0 and $maxWidthContainer>0) {
+				padding: 0 toRem(math.div($containerPadding, 2));
+			}
+		}
+	}
+}

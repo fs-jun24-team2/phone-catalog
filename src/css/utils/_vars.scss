@@ -1,0 +1,59 @@
+// ========================= Colors =========================//
+
+// Original
+$original_primary: #313237;
+$original_secondary: #89939A;
+$original_icons: #B4BDC3;
+$original_elements: #E2E6E9;
+$original_hover_and_bg: #FAFBFC;
+$original_white: #ffffff;
+$original_green: #27AE60;
+$original_red: #EB5757;
+
+$original_hover_and_bg_transperency: rgb(250, 251, 252, 0.9);
+
+// Dark
+$dark_secondary: #75767F;
+$dark_icons: #4A4D58;
+$dark_elements: #3B3E4A;
+$dark_surface_2: #323542;
+$dark_surface_1: #161827;
+$dark_black: #0F1121;
+$dark_white: #F1F2F9;
+$dark_accent: #905bff;
+$dark_green: #27AE60;
+$dark_red: #EB5757;
+
+// Orange
+$orange_accent: #F86800;
+$orange_secondary_accent: #476DF4;
+$orange_primary: #0F0F11;
+$orange_secondary: #89939A;
+$orange_icons: #B4BDC3;
+$orange_elements: #E2E6E9;
+$orange_hover_and_bg: #FAFBFC;
+$orange_white: #ffffff;
+$orange_green: #27AE60;
+$orange_red: #EB5757;
+
+// ========================= Fonts =========================//
+
+$mont: 'Mont';
+
+// ========================= Weight =========================//
+
+$regular: 400;
+$medium: 500;
+$semiBold: 600;
+$bold: 700;
+
+//========================= Hover =========================//
+
+$mouseDevice: '(hover: hover) and (pointer: fine)'; // Mouse devices
+$touchDevice: '(hover: none) and (pointer: coarse)'; // Touch devices
+
+
+//========================= Animation =========================//
+
+$transitionDuration: 0.3s;
+$transformScale: scale(1.05);
