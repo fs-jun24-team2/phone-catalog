@@ -11,7 +11,7 @@ export const ProductsPage = () => {
       <h1>Phones/Tablets/Accessories page</h1>
       <p>95 models</p>
       <FiltersPanel />
-      <ProductsList products={[]}/>
+      <ProductsList products={[]} />
       <Pagination />
     </>
   );
