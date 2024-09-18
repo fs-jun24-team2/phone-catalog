@@ -2,7 +2,7 @@
 
 import { Breadcrumbs } from '../shared/components/Breadcrumbs';
 import { Pagination } from '../shared/components/Pagination';
-import { ProductsList } from '../shared/components/ProductsList';
+import { ProductsList } from '../ProductsPage/ProductsList';
 
 export const FavouritesPage = () => {
   return (
@@ -10,7 +10,7 @@ export const FavouritesPage = () => {
       <Breadcrumbs />
       <h1>Favourites</h1>
       <p>5 items</p>
-      <ProductsList products={[]} />
+      <ProductsList products={{}} />
 
       {/* Pagination is questionable */}
       <Pagination />

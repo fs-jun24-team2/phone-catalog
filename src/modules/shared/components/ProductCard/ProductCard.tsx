@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import styles from './ProductCard.module.scss';
-import { Phone } from '../../../../types/Phone';
-import { Specs } from '../../../../types/Specs';
-import { formatValueWithUnit } from '../../../../utils/formatValueWithUnit';
+import { Product } from '@/types/Product';
+import { Specs } from '@/types/Specs';
+import { formatValueWithUnit } from '@/utils/formatValueWithUnit';
 import cn from 'classnames';
 
 type Props = {
-  product: Phone;
+  product: Product;
 };
 
 export const ProductCard: React.FC<Props> = ({ product }) => {
@@ -55,7 +55,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
 
       <div className={styles['product-card__specs-container']}>
         {specs.map(({ name, value }) => (
-          <div className={styles['product-card__spec-container']}>
+          <div key={name} className={styles['product-card__spec-container']}>
             <p className={styles['product-card__spec-name']}>{name}</p>
             <p className={styles['product-card__spec-value']}>
               {formatValueWithUnit(value)}
