@@ -7,6 +7,7 @@ import { ShopByCategory } from './components/ShopByCategory';
 export const HomePage = () => {
   return (
     <>
+      <div style={{ paddingTop: '100px' }}></div>
       {/* hidden */}
       <h1>Product Catalog</h1>
 
@@ -14,13 +15,13 @@ export const HomePage = () => {
       <PictureSlider />
 
       {/* Section brand new models */}
-      <ProductsSlider />
+      <ProductsSlider title="Brand new models" />
 
       {/* Shop by category block with links to /phones, /tablets, and /accessories. */}
       <ShopByCategory />
 
       {/* Section hot prices */}
-      <ProductsSlider />
+      {/* <ProductsSlider /> */}
       <div style={{ paddingTop: '100px' }}>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa saepe quod
         sequi soluta dolorum perspiciatis natus aut iure quis minus deleniti,
