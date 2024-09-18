@@ -11,4 +11,11 @@ export default defineConfig({
       '@root': path.resolve(__dirname, './'),
     },
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        silenceDeprecations: ["legacy-js-api"],
+      },
+    },
+  },
 });
