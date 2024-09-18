@@ -1,0 +1,73 @@
+//@import '@/css/utils/functions';
+
+.style-h1{
+  font-weight: $bold;
+  font-size: toRem(48);
+  line-height: toRem(56);
+  letter-spacing: -0.01em;
+
+  @media (max-width: 640px) {
+    font-size: toRem(32);
+    line-height: toRem(41);
+  }
+}
+
+.style-h2{
+  font-weight: $bold;
+  font-size: toRem(32);
+  line-height: toRem(41);
+  letter-spacing: -0.01em;
+
+  @media (max-width: 640px) {
+    font-size: toRem(22);
+    line-height: toRem(31);
+  }
+}
+
+.style-h3{
+  font-weight: $bold;
+  font-size: toRem(22);
+  line-height: toRem(31);
+
+  @media (max-width: 640px) {
+    font-weight: $semiBold;
+    font-size: toRem(20);
+    line-height: toRem(26);
+  }
+}
+
+.style-h4{
+  font-weight: $semiBold;
+  font-size: toRem(20);
+  line-height: toRem(26);
+
+  @media (max-width: 640px) {
+    font-size: toRem(16);
+    line-height: toRem(0);
+  }
+}
+
+.style-uppercase-text{
+  font-weight: $bold;
+  font-size: toRem(12);
+  line-height: toRem(11);
+  letter-spacing: 0.04em;
+}
+
+.style-buttons-text{
+  font-weight: $semiBold;
+  font-size: toRem(14);
+  line-height: toRem(21);
+}
+
+.style-body-text {
+  font-weight: $regular;
+  font-size: toRem(14);
+  line-height: toRem(21);
+}
+
+.style-small-text{
+  font-weight: $semiBold;
+  font-size: toRem(12);
+  line-height: toRem(15);
+}

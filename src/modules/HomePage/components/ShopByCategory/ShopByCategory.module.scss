@@ -1,0 +1,59 @@
+@import "../../../../style.scss";
+
+.category{
+  display: flex;
+  gap: toRem(16);
+
+  margin: toRem(24);
+
+  @media (max-width: 640px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__picture{
+    width: toRem(368);
+    height: toRem(368);
+    position: relative;
+
+    @media (max-width: 1200px) and (min-width: 641px) {
+      width: toRem(187);
+      height: toRem(187);
+    }
+
+    @media (max-width: 640px) {
+      width: toRem(288);
+      height: toRem(288);
+
+      margin: toRem(32);
+    }
+
+    & img {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+    }
+  }
+
+  &__title{
+    margin-top: toRem(24);
+  }
+
+  &__amount{
+    margin-top: toRem(4);
+    color: $original_secondary;
+  }
+}
+
+.mobiles {
+   background-color: #6D6474;
+  }
+
+.tablets {
+  background-color: #8D8D92;
+}
+  
+.accessories {
+  background-color: #973D5F;
+}
