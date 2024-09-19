@@ -11,37 +11,50 @@ export const ShopByCategory = () => {
   const categories = [
     {
       img: 'img/category-phones.png',
-      title: "Mobile phones",
+      title: 'Mobile phones',
       amount: phoneAmount,
       styleBg: 'mobiles',
     },
     {
       img: 'img/category-tablets.png',
-      title: "Tablets",
+      title: 'Tablets',
       amount: tabletsAmount,
       styleBg: 'tablets',
-
     },
     {
       img: 'img/category-accessories.png',
-      title: "Accessories",
+      title: 'Accessories',
       amount: accessoriesAmount,
       styleBg: 'accessories',
-
-    }
-  ]
+    },
+  ];
 
   return (
     <>
       <h2 className={styles['style-h2']}>Shop by category</h2>
       <section className={styles['category']}>
-        {categories.map(category =>  
-        <div>
-          <div className={classNames(styles['category__picture'], styles[category.styleBg])}><img src={category.img}/></div>
-          <div className={`${styles['style-h4']} ${styles['category__title']} `}>{category.title}</div>
-          <div className={`${styles['body-text']} ${styles['category__amount']} `}>{category.amount}</div>
-          </div>)
-        }
+        {categories.map(category => (
+          <div>
+            <div
+              className={classNames(
+                styles['category__picture'],
+                styles[category.styleBg],
+              )}
+            >
+              <img src={category.img} />
+            </div>
+            <div
+              className={`${styles['style-h4']} ${styles['category__title']} `}
+            >
+              {category.title}
+            </div>
+            <div
+              className={`${styles['body-text']} ${styles['category__amount']} `}
+            >
+              {category.amount}
+            </div>
+          </div>
+        ))}
       </section>
     </>
   );
