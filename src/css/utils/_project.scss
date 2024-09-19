@@ -1,5 +1,9 @@
 // ========================= Project Styles =========================//
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background-color: $original_hover_and_bg;
     font-family: $mont, sans-serif;
