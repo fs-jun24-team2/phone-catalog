@@ -6,8 +6,10 @@
   "scripts": {
     "start": "npm run lint -- --fix && vite",
     "build": "tsc -b && vite build",
+    "fix": "npm run lint -- --fix",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepare": "husky"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.7",

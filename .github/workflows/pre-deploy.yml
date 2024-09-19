@@ -2,7 +2,7 @@ name: Deploy static content to Pages
 
 on:
  pull_request:
-   branches: ['develop']
+   branches: ['main']
 
 jobs:
   predeploy:

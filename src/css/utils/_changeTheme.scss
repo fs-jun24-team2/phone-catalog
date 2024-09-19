@@ -1,0 +1,41 @@
+body.dark_theme {
+    background-color: $dark_black;
+
+    .header {
+        background-color: $dark_hover_and_bg_transperency;
+
+        .menu__link {
+
+            @media (hover: hover) and (pointer: fine) {
+                &:hover {
+                    color: $dark_white;
+                }
+            }
+        }
+
+        .theme_toggle {
+            border-color: $dark_secondary;
+            color: $dark_white;
+            box-shadow: 1px 1px 5px $dark_secondary;
+
+            @media (hover: hover) and (pointer: fine) {
+                &:hover {
+                    background-color: $dark_white;
+                    color: $dark_black;
+                }
+            }
+        }
+    }
+
+
+    .is_active {
+        color: $dark_white;
+        font-weight: $bold;
+        
+        &::after {
+            background-color: $dark_white;
+        }
+    }
+
+    
+}

@@ -77,6 +77,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: toRem(30);
   }
 
   &__spec-name {
@@ -91,27 +92,14 @@
     size: toRem(15);
     line-height: toRem(12);
     color: $original_primary;
+    text-align: end;
   }
 
   &__button-container {
     display: flex;
     align-items: center;
     gap: toRem(8);
-  }
-
-  &__btn-cart {
-    flex: 1;
     height: toRem(40);
-    background-color: $original_primary;
-    font-weight: $bold;
-    line-height: toRem(21);
-    color: $original_white;
-  }
-
-  &__btn-cart--added {
-    color: $original_green;
-    background-color: $original_white;
-    border: toRem(1) solid $original_elements;
   }
 
   &__btn-favourites {

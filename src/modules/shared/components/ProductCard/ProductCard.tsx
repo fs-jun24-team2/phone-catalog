@@ -4,13 +4,15 @@ import { Product } from '@/types/Product';
 import { Specs } from '@/types/Specs';
 import { formatValueWithUnit } from '@/utils/formatValueWithUnit';
 import cn from 'classnames';
+import { MainButton } from '../MainButton';
 
 type Props = {
   product: Product;
 };
 
 export const ProductCard: React.FC<Props> = ({ product }) => {
-  const { name, priceRegular, priceDiscount, capacity, screen, ram } = product;
+  const { id, name, priceRegular, priceDiscount, capacity, screen, ram } =
+    product;
   const image = product.images?.[0];
   const specs = [
     {
@@ -27,11 +29,20 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
     },
   ];
 
+  /// placeholders
   const [isAddedToCart, setIsAddedToCart] = useState(false);
   const [isAddedToFavourites, setIsAddedToFavourites] = useState(false);
+  const buttonAddText = !isAddedToCart ? 'Add to cart' : 'Added';
+
+  const handleAddOnClick = (event: React.MouseEvent<HTMLElement>) => {
+    event.preventDefault();
+
+    setIsAddedToCart(prev => !prev);
+  };
+  /// placeholders end
 
   return (
-    <article className={styles['product-card']}>
+    <article key={id} className={styles['product-card']}>
       <div className={styles['product-card__header']}>
         <a href="#" className={styles['product-card__photo-container']}>
           <img
@@ -65,14 +76,11 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
       </div>
 
       <div className={styles['product-card__button-container']}>
-        <button
-          className={cn(styles['product-card__btn-cart'], {
-            [styles['product-card__btn-cart--added']]: isAddedToCart,
-          })}
-          onClick={() => setIsAddedToCart(prev => !prev)}
-        >
-          {!isAddedToCart ? 'Add to cart' : 'Added'}
-        </button>
+        <MainButton
+          isAdded={isAddedToCart}
+          handleOnClick={handleAddOnClick}
+          buttonText={buttonAddText}
+        />
 
         <button
           className={cn(styles['product-card__btn-favourites'], {

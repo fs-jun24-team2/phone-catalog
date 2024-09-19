@@ -11,7 +11,7 @@ export const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer__container foo">
-        <img src="images/footer/logo.svg" alt="Logo" />
+        <img src="images/original/footer/logo.svg" alt="Logo" />
         <div className={styles['foo__link']}>
           <a
             href="https://github.com/fs-jun24-team2/phone-catalog"
