@@ -13,7 +13,10 @@ export const Logo: React.FC<LogoProps> = ({ isDarkTheme }) => {
   return (
     <div className={styles.header__logo}>
       <Link to={Path.main}>
-        <img src={isDarkTheme ? dark_logo : original_logo} alt="Nice Gadgets logo" />
+        <img
+          src={isDarkTheme ? dark_logo : original_logo}
+          alt="Nice Gadgets logo"
+        />
       </Link>
     </div>
   );

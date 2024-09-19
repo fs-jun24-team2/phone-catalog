@@ -12,14 +12,27 @@ type ThemeLanguageToggleProps = {
   toggleTheme: () => void;
 };
 
-export const ThemeLanguageToggle: React.FC<ThemeLanguageToggleProps> = ({ language, isDarkTheme, changeLanguage, toggleTheme }) => {
+export const ThemeLanguageToggle: React.FC<ThemeLanguageToggleProps> = ({
+  language,
+  isDarkTheme,
+  changeLanguage,
+  toggleTheme,
+}) => {
   return (
     <div className={styles.theme_language_toggle}>
       <button className={styles.theme_toggle} onClick={changeLanguage}>
-        <img className={styles.flags} src={language === 'en' ? original_ua : original_gb} alt="Switch Language" />
+        <img
+          className={styles.flags}
+          src={language === 'en' ? original_ua : original_gb}
+          alt="Switch Language"
+        />
       </button>
       <button className={styles.theme_toggle} onClick={toggleTheme}>
-        <img className={styles.sunMoon} src={isDarkTheme ? dark_sun : original_moon} alt="Switch Theme" />
+        <img
+          className={styles.sunMoon}
+          src={isDarkTheme ? dark_sun : original_moon}
+          alt="Switch Theme"
+        />
       </button>
     </div>
   );
