@@ -14,6 +14,7 @@ export const HomePage = () => {
       <div style={{ paddingTop: '100px' }}></div>
       {/* hidden */}
       <h1 style={{ paddingTop: '100px' }}>Product Catalog</h1>
+      <h1 style={{ paddingTop: '100px' }}>Product Catalog</h1>
 
       {/* Banner */}
       <PictureSlider />
