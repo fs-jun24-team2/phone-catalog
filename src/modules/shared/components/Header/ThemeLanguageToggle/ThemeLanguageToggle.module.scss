@@ -1,0 +1,40 @@
+@import "../../../../../style.scss";
+
+.theme_language_toggle {
+  display: flex;
+}
+.theme_toggle {
+  cursor: pointer;
+  display: flex;
+  margin-right: toRem(10);
+  border: 1px solid $original_primary;
+  border-radius: 50%;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 1px 1px 5px $original_primary;
+  width: toRem(20);
+  height: toRem(20);
+  transition: all $transitionDuration ease;
+
+  .sunMoon {
+    width: toRem(12);
+    height: toRem(12);
+  }
+
+  .flags {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      transform: $transformScale;
+    }
+  }
+
+  @media (max-width: 640px) {
+    display: none;
+  }
+}
