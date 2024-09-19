@@ -34,7 +34,7 @@ export const NavMenu: React.FC<NavMenuProps> = ({
         <li className={styles.menu__item}>
           <NavLink
             to={Path.phones}
-            className={({ isActive }) => 
+            className={({ isActive }) =>
               isActive
                 ? `${styles.menu__link} ${styles.is_active}`
                 : styles.menu__link
