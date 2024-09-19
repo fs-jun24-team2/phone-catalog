@@ -15,15 +15,7 @@ body.dark_theme {
 
         .theme_toggle {
             border-color: $dark_secondary;
-            color: $dark_white;
             box-shadow: 1px 1px 5px $dark_secondary;
-
-            @media (hover: hover) and (pointer: fine) {
-                &:hover {
-                    background-color: $dark_white;
-                    color: $dark_black;
-                }
-            }
         }
     }
 

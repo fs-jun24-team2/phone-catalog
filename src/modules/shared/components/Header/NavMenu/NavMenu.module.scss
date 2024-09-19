@@ -1,0 +1,108 @@
+@import "../../../../../style.scss";
+
+.menu {
+  @media (max-width: 1200px) {
+
+    .menu {
+        &__list {
+            column-gap: toRem(32);
+        }
+    }
+
+}
+}
+
+.menu__list {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: toRem(48);
+  align-items: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.menu__item {
+  transition: transform $transitionDuration ease 0s;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      transform: $transformScale;
+    }
+  }
+}
+
+.menu__link {
+  text-transform: uppercase;
+  font-weight: $bold;
+  color: $original_secondary;
+  transition: all $transitionDuration ease 0s;
+  cursor: pointer;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      color: $original_primary;
+    }
+  }
+}
+
+.menu__open {
+  display: block;
+}
+
+.is_active {
+  position: relative;
+  color: $original_primary;
+  font-weight: $bold;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: toRem(-23);
+    left: 0;
+    height: toRem(4);
+    width: 100%;
+    background-color: $original_primary;
+    border-radius: toRem(8);
+  }
+
+  @media (max-width: 1200px) {
+    &::after {
+      bottom: toRem(-15);
+    }
+  }
+
+  @media (max-width: 640px) {
+    &::after {
+      bottom: toRem(-10);
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .menu__list {
+    column-gap: toRem(14);
+  }
+}
+
+@media (max-width: 640px) {
+  .menu__list {
+    display: none;
+  }
+
+  .menu__open .menu__list {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    background-color: $original_hover_and_bg_transperency;
+    z-index: 100;
+    top: toRem(48);
+    height: 100vh;
+  }
+
+  .menu__item {
+    &:not(:last-child) {
+      margin-bottom: toRem(24);
+    }
+  }
+}
