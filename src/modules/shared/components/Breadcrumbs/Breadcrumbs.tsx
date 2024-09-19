@@ -35,7 +35,10 @@ export const Breadcrumbs = () => {
   return (
     <div className={styles.breadcrumbs}>
       <Link className={styles.breadcrumbs__crumb} to="/">
-        <img className={styles.icon} src="images/original/breadcrumbs/home.svg" />
+        <img
+          className={styles.icon}
+          src="images/original/breadcrumbs/home.svg"
+        />
       </Link>
       <span className={styles.separator}></span>
       {crumbs}
