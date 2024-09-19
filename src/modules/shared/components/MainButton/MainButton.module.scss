@@ -1,0 +1,24 @@
+@import "../../../../style.scss";
+
+.main-button {
+  flex: 1;
+  height: 100%;
+  width: 100%;
+  background-color: $original_primary;
+  font-weight: $bold;
+  line-height: toRem(21);
+  color: $original_white;
+
+  &:active {
+    color: $original_green;
+    background-color: $original_white;
+    border: toRem(1) solid $original_elements;
+  }
+
+  &__added {
+    color: $original_green;
+    background-color: $original_white;
+    border: toRem(1) solid $original_elements;
+  }
+}
+
