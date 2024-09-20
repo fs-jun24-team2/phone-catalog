@@ -1,5 +1,5 @@
 import { useAppSelector } from '@/app/hooks';
-import classNames from 'classnames';
+//import classNames from 'classnames';
 import styles from './ShopByCategory.module.scss';
 
 export const ShopByCategory = () => {
@@ -31,18 +31,13 @@ export const ShopByCategory = () => {
 
   return (
     <>
-      <h2 className={styles['style-h2']}>Shop by category</h2>
+      <h2 className={`${styles['style-h2']} ${styles['category-high-title']} `}>
+        Shop by category
+      </h2>
       <section className={styles['category']}>
         {categories.map(category => (
           <div>
-            <div
-              className={classNames(
-                styles['category__picture'],
-                styles[category.styleBg],
-              )}
-            >
-              <img src={category.img} />
-            </div>
+            <img src={category.img} className={styles['category__picture']} />
             <div
               className={`${styles['style-h4']} ${styles['category__title']} `}
             >
@@ -51,7 +46,7 @@ export const ShopByCategory = () => {
             <div
               className={`${styles['body-text']} ${styles['category__amount']} `}
             >
-              {category.amount}
+              {category.amount} models
             </div>
           </div>
         ))}
