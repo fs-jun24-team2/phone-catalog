@@ -1,6 +1,8 @@
+import { useTranslation } from 'react-i18next';
 import styles from './Footer.module.scss';
 
 export const Footer = () => {
+  const { t } = useTranslation();
   const scrollToSection = () => {
     window.scrollTo({
       top: 0,
@@ -25,18 +27,18 @@ export const Footer = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Contacts
+            {t('contacts')}
           </a>
           <a
             href="https://github.com/fs-jun24-team2/phone-catalog"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Rights
+            {t('rights')}
           </a>
         </div>
         <div className={styles['foo__go-back-btn']} onClick={scrollToSection}>
-          <div>Back to top</div>
+          <div>{t('back_to_top')}</div>
           <div className={styles['foo__go-back-btn__icon']}></div>
         </div>
       </div>

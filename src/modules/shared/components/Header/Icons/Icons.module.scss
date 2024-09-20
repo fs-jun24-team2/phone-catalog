@@ -1,0 +1,44 @@
+@import "../../../../../style.scss";
+
+.icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  cursor: pointer;
+
+
+  &__favorites, &__cart {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: toRem(64);
+    height: toRem(64);
+    border-left: 1px solid $original_icons;
+
+    .badge {
+      position: absolute;
+      top: toRem(5);
+      right: toRem(5);
+      background-color: $original_red;
+      color: $original_white;
+      border-radius: 50%;
+      padding: toRem(2) toRem(6);
+      font-size: 12px;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    &__favorites, &__cart {
+      width: toRem(48);
+      height: toRem(48);
+    }
+  }
+
+  @media (max-width: 640px) {
+    &__favorites, &__cart {
+      display: none;
+    }
+  }
+}

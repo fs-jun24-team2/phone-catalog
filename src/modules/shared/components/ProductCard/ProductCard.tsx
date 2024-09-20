@@ -1,3 +1,4 @@
+// src/modules/ProductCard/ProductCard.tsx
 import React, { useState } from 'react';
 import cn from 'classnames';
 import styles from './ProductCard.module.scss';
@@ -5,6 +6,7 @@ import { Product } from '@/types/Product';
 import { Specs } from '@/types/Specs';
 import { formatValueWithUnit } from '@/utils/formatValueWithUnit';
 import { MainButton } from '../MainButton';
+import { useTranslation } from 'react-i18next';
 import { useAppDispatch } from '@/app/hooks';
 import { toggleAddToCart } from '@/features/cartSlice';
 import { hasCartProduct } from './helpers/hasCartProduct';
@@ -20,25 +22,27 @@ export const ProductCard: React.FC<Props> = ({ product, category }) => {
   const { id, name, priceRegular, priceDiscount, capacity, screen, ram } =
     product;
   const image = product.images?.[0];
+  const { t } = useTranslation();
   const specs = [
     {
-      name: Specs.Screen,
+      name: t(Specs.Screen),
       value: screen,
     },
     {
-      name: Specs.Capacity,
+      name: t(Specs.Capacity),
       value: capacity,
     },
     {
-      name: Specs.RAM,
+      name: t(Specs.RAM),
       value: ram,
     },
   ];
 
   const [isAddedToCart, setIsAddedToCart] = useState(hasCartProduct(id));
   const [isAddedToFavourites, setIsAddedToFavourites] = useState(false);
+
   const dispatch = useAppDispatch();
-  const buttonAddText = !isAddedToCart ? 'Add to cart' : 'Added';
+  const buttonAddText = !isAddedToCart ? t('add_to_cart') : t('added');
 
   const handleAddOnClick = (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();
@@ -58,7 +62,7 @@ export const ProductCard: React.FC<Props> = ({ product, category }) => {
         >
           <img
             src={image}
-            alt="Product image"
+            alt={t('product_image')}
             className={styles['product-card__photo']}
           />
         </Link>
@@ -90,7 +94,7 @@ export const ProductCard: React.FC<Props> = ({ product, category }) => {
         <MainButton
           isAdded={isAddedToCart}
           handleOnClick={handleAddOnClick}
-          buttonText={buttonAddText}
+          buttonText={buttonAddText} // Use translation for button text
         />
 
         <button
