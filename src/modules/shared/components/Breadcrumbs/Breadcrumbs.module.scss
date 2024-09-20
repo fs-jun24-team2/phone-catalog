@@ -1,0 +1,32 @@
+@import '../../../../css/utils/vars';
+@import '../../../../css/utils/functions';
+
+.breadcrumbs{
+  display: flex;
+  align-items: center;
+  color: $original_primary;
+
+  font-size: toRem(12);
+  font-weight: $semiBold;
+
+  &crumb{
+    display: contents;
+  }
+
+  &crumbActive{
+    color: $original_secondary;
+  }
+}
+
+.separator{
+  display: inline-block;
+
+  width: toRem(16);
+  height: toRem(16);
+  margin: 0 toRem(13);
+
+  background-image: url(images/original/breadcrumbs/left.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+
+}
