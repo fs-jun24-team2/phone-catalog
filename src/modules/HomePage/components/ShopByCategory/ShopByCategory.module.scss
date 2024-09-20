@@ -1,5 +1,13 @@
 @import "../../../../style.scss";
 
+.category-high-title{
+  margin-top: toRem(80);
+
+  @media (max-width: 1199px) {
+    margin-top: toRem(64);
+  }
+}
+
 .category{
   display: flex;
   justify-content: space-between;
@@ -19,7 +27,7 @@
       width: toRem(288);
       height: toRem(288);
 
-      margin: toRem(32);
+      margin: toRem(32) 0 0;
     }
   }
 
@@ -28,7 +36,7 @@
   }
 
   &__amount{
-    margin-top: toRem(4);
+    margin-top: toRem(10);
     color: $original_secondary;
   }
 }

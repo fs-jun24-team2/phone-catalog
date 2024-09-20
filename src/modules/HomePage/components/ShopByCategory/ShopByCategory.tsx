@@ -31,7 +31,7 @@ export const ShopByCategory = () => {
 
   return (
     <>
-      <h2 className={styles['style-h2']}>Shop by category</h2>
+      <h2 className={`${styles['style-h2']} ${styles['category-high-title']} `}>Shop by category</h2>
       <section className={styles['category']}>
         {categories.map(category => (
           <div>
@@ -44,7 +44,7 @@ export const ShopByCategory = () => {
             <div
               className={`${styles['body-text']} ${styles['category__amount']} `}
             >
-              {category.amount}
+              {category.amount} models
             </div>
           </div>
         ))}
