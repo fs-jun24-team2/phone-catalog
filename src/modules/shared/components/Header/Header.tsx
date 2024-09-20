@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import styles from './Header.module.scss';
 import { Logo } from './Logo';
 import { NavMenu } from './NavMenu';
@@ -12,7 +13,8 @@ export const Header = () => {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const [cartCount, setCartCount] = useState(0);
   const [favouritesCount, setFavouritesCount] = useState(0);
-  const [language, setLanguage] = useState('en');
+
+  const { i18n } = useTranslation();
 
   const setTheme = (darkMode: boolean) => {
     setIsDarkTheme(darkMode);
@@ -24,18 +26,15 @@ export const Header = () => {
     const savedTheme = localStorage.getItem('theme');
     const savedCartCount = localStorage.getItem('cartCount');
     const savedFavouritesCount = localStorage.getItem('favouritesCount');
-    const savedLanguage = localStorage.getItem('language');
 
     if (savedTheme) setTheme(savedTheme === 'dark');
     if (savedCartCount) setCartCount(Number(savedCartCount));
     if (savedFavouritesCount) setFavouritesCount(Number(savedFavouritesCount));
-    if (savedLanguage) setLanguage(savedLanguage);
   }, []);
 
   const changeLanguage = () => {
-    const newLanguage = language === 'en' ? 'ua' : 'en';
-    setLanguage(newLanguage);
-    localStorage.setItem('language', newLanguage);
+    const newLanguage = i18n.language === 'en' ? 'ua' : 'en';
+    i18n.changeLanguage(newLanguage);
   };
 
   const toggleTheme = () => setTheme(!isDarkTheme);
@@ -47,14 +46,14 @@ export const Header = () => {
       <div className={styles.header__container}>
         <Logo isDarkTheme={isDarkTheme} />
         <NavMenu
-          language={language}
+          language={i18n.language}
           isMenuOpen={isMenuOpen}
           setIsMenuOpen={setIsMenuOpen}
         />
         <Icons
           cartCount={cartCount}
           favouritesCount={favouritesCount}
-          language={language}
+          language={i18n.language}
           isDarkTheme={isDarkTheme}
           changeLanguage={changeLanguage}
           toggleTheme={toggleTheme}
