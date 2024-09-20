@@ -24,7 +24,7 @@ export const CartItem: React.FC<Props> = ({ cartItem }) => {
 
   useEffect(() => {
     getProduct(id, category).then(data => setProduct(data as Product));
-  }, []);
+  }, [id, category]);
 
   const image = product?.images?.[0];
   const priceToShow = product?.priceDiscount
