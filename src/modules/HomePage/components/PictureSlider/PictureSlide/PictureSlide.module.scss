@@ -1,0 +1,13 @@
+@import "../../../../../style.scss";
+
+.picture-slide {
+  &__image {
+    background-color: $original_primary;
+    height: auto; 
+    width: 100%;
+  }
+
+  &__image-placeholder {
+    transform: scaleX(-1);
+  }
+}

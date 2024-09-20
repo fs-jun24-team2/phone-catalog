@@ -33,12 +33,6 @@ export const ProductsSlider: React.FC<Props> = ({ title, products }) => {
             className={cn(
               styles['products-slider-header__button'],
               styles['products-slider-header__button-prev'],
-              {
-                [styles['products-slider-header__button--active']]:
-                  !isBtnPrevDisabled,
-                [styles['products-slider-header__button--disable']]:
-                  isBtnPrevDisabled,
-              },
             )}
             onClick={() => {
               swiper?.slidePrev();
@@ -50,12 +44,6 @@ export const ProductsSlider: React.FC<Props> = ({ title, products }) => {
             className={cn(
               styles['products-slider-header__button'],
               styles['products-slider-header__button-next'],
-              {
-                [styles['products-slider-header__button--active']]:
-                  !isBtnNextDisabled,
-                [styles['products-slider-header__button--disable']]:
-                  isBtnNextDisabled,
-              },
             )}
             onClick={() => {
               swiper?.slideNext();
