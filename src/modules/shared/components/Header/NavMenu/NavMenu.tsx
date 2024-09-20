@@ -1,5 +1,5 @@
-import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import styles from './NavMenu.module.scss';
 import { Path } from '@/types/Path';
 
@@ -10,11 +10,13 @@ type NavMenuProps = {
   setIsMenuOpen: (value: boolean) => void;
 };
 
+// eslint-disable-next-line no-undef
 export const NavMenu: React.FC<NavMenuProps> = ({
-  language,
   isMenuOpen,
   setIsMenuOpen,
 }) => {
+  const { t } = useTranslation();
+
   return (
     <nav className={`${styles.menu} ${isMenuOpen ? styles.menu__open : ''}`}>
       <ul className={styles.menu__list}>
@@ -28,7 +30,7 @@ export const NavMenu: React.FC<NavMenuProps> = ({
             }
             onClick={() => setIsMenuOpen(false)}
           >
-            {language === 'en' ? 'Home' : 'Головна'}
+            {t('home')}
           </NavLink>
         </li>
         <li className={styles.menu__item}>
@@ -41,7 +43,7 @@ export const NavMenu: React.FC<NavMenuProps> = ({
             }
             onClick={() => setIsMenuOpen(false)}
           >
-            {language === 'en' ? 'Phones' : 'Телефони'}
+            {t('phones')}
           </NavLink>
         </li>
         <li className={styles.menu__item}>
@@ -54,7 +56,7 @@ export const NavMenu: React.FC<NavMenuProps> = ({
             }
             onClick={() => setIsMenuOpen(false)}
           >
-            {language === 'en' ? 'Tablets' : 'Планшети'}
+            {t('tablets')}
           </NavLink>
         </li>
         <li className={styles.menu__item}>
@@ -67,7 +69,7 @@ export const NavMenu: React.FC<NavMenuProps> = ({
             }
             onClick={() => setIsMenuOpen(false)}
           >
-            {language === 'en' ? 'Accessories' : 'Аксесуари'}
+            {t('accessories')}
           </NavLink>
         </li>
       </ul>

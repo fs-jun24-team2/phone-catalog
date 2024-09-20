@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import styles from './Header.module.scss';
 import { Logo } from './Logo';
 import { NavMenu } from './NavMenu';
@@ -6,13 +7,16 @@ import { Icons } from './Icons';
 
 import original_burger_close from '/images/original/icons/original_burger_close.svg';
 import original_burger_open from '/images/original/icons/original_burger_open.svg';
+import { getCartAmount } from '@/features/cartSlice';
+import { useAppSelector } from '@/app/hooks';
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDarkTheme, setIsDarkTheme] = useState(false);
-  const [cartCount, setCartCount] = useState(0);
+  const cartCount = useAppSelector(getCartAmount);
   const [favouritesCount, setFavouritesCount] = useState(0);
-  const [language, setLanguage] = useState('en');
+
+  const { i18n } = useTranslation();
 
   const setTheme = (darkMode: boolean) => {
     setIsDarkTheme(darkMode);
@@ -22,21 +26,31 @@ export const Header = () => {
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
-    const savedCartCount = localStorage.getItem('cartCount');
+    if (savedTheme) {
+      setTheme(savedTheme === 'dark');
+    } else {
+      const prefersDarkScheme = window.matchMedia(
+        '(prefers-color-scheme: dark)',
+      ).matches;
+      setTheme(prefersDarkScheme);
+    }
+
     const savedFavouritesCount = localStorage.getItem('favouritesCount');
-    const savedLanguage = localStorage.getItem('language');
-
     if (savedTheme) setTheme(savedTheme === 'dark');
-    if (savedCartCount) setCartCount(Number(savedCartCount));
-    if (savedFavouritesCount) setFavouritesCount(Number(savedFavouritesCount));
-    if (savedLanguage) setLanguage(savedLanguage);
+    if (savedFavouritesCount) {
+      setFavouritesCount(Number(savedFavouritesCount));
+    }
   }, []);
-
   const changeLanguage = () => {
-    const newLanguage = language === 'en' ? 'ua' : 'en';
-    setLanguage(newLanguage);
-    localStorage.setItem('language', newLanguage);
+    const newLanguage = i18n.language === 'en' ? 'ua' : 'en';
+    i18n.changeLanguage(newLanguage);
   };
+
+  // const addItemToFavourites = () => {
+  //   const newFavouritesCount = favouritesCount + 1;
+  //   setFavouritesCount(newFavouritesCount);
+  //   localStorage.setItem('favouritesCount', String(newFavouritesCount));
+  // };
 
   const toggleTheme = () => setTheme(!isDarkTheme);
 
@@ -47,14 +61,14 @@ export const Header = () => {
       <div className={styles.header__container}>
         <Logo isDarkTheme={isDarkTheme} />
         <NavMenu
-          language={language}
+          language={i18n.language}
           isMenuOpen={isMenuOpen}
           setIsMenuOpen={setIsMenuOpen}
         />
         <Icons
           cartCount={cartCount}
           favouritesCount={favouritesCount}
-          language={language}
+          language={i18n.language}
           isDarkTheme={isDarkTheme}
           changeLanguage={changeLanguage}
           toggleTheme={toggleTheme}

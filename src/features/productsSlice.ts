@@ -29,7 +29,7 @@ export const loadProductsAsync = createAsyncThunk(
   },
 );
 
-const exampleSlice = createSlice({
+const productsSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {},
@@ -62,14 +62,9 @@ const exampleSlice = createSlice({
   },
 });
 
-export default exampleSlice.reducer;
+export default productsSlice.reducer;
 export const selectProducts = (state: RootState) => state.products;
 export const selectPhones = (state: RootState) => state.products.phones;
 export const selectTablets = (state: RootState) => state.products.tablets;
 export const selectAccessories = (state: RootState) =>
   state.products.accessories;
-
-// How to use in component:
-// ==>> const { phones } = useAppSelector(selectPhones);
-// or
-// const {phones, isLoading, isError} = useAppSelector(selectPhones);
