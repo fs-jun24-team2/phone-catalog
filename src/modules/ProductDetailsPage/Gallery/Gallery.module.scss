@@ -1,0 +1,53 @@
+@import '../../../style.scss';
+
+.gallery {
+  display: flex;
+  align-items: center;
+  gap: toRem(16);
+
+  &__miniatures {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(16);
+
+    &__miniature {
+      width: clamp(35px, 6vw, 80px);
+      height: clamp(35px, 6vw, 80px);
+      object-fit: contain;
+      cursor: pointer;
+      border: 1px solid $original_elements;
+      transition: border $transitionDuration;
+
+      &.active {
+        border: 1px solid $original_primary;
+      }
+
+      &:hover {
+        border-color: $original_primary;
+      }
+    }
+
+    @media (max-width: 640px){
+      display: flex;
+      flex-direction: row;      
+    }
+  }
+
+  &__main-image {
+   & img {
+      width: toRem(464);
+      height: toRem(464);
+      object-fit: contain;
+
+      @media (max-width: 1199px){
+        width: toRem(288);
+        height: toRem(288);
+      }
+    }
+  }
+
+  @media (max-width: 640px){
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}
