@@ -2,6 +2,7 @@
 
 .picture-slider {
   margin-bottom: toRem(32);
+  height: fit-content;
 
   &__button {
     display: none;

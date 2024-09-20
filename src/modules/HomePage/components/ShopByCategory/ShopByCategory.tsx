@@ -30,8 +30,10 @@ export const ShopByCategory = () => {
   ];
 
   return (
-    <>
-      <h2 className={styles['style-h2']}>Shop by category</h2>
+    <div>
+      <h2 className={`${styles['style-h2']} ${styles['category-high-title']} `}>
+        Shop by category
+      </h2>
       <section className={styles['category']}>
         {categories.map(category => (
           <div>
@@ -56,6 +58,6 @@ export const ShopByCategory = () => {
           </div>
         ))}
       </section>
-    </>
+    </div>
   );
 };

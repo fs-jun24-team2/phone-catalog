@@ -1,56 +1,74 @@
+// src/modules/ProductCard/ProductCard.tsx
 import React, { useState } from 'react';
+import cn from 'classnames';
 import styles from './ProductCard.module.scss';
 import { Product } from '@/types/Product';
 import { Specs } from '@/types/Specs';
 import { formatValueWithUnit } from '@/utils/formatValueWithUnit';
-import cn from 'classnames';
 import { MainButton } from '../MainButton';
+import { useTranslation } from 'react-i18next';
+import { useAppDispatch } from '@/app/hooks';
+import { toggleAddToCart } from '@/features/cartSlice';
+import { hasCartProduct } from './helpers/hasCartProduct';
+import { ProductsCategory } from '@/types/ProductsCategory';
+import { Link } from 'react-router-dom';
 
 type Props = {
   product: Product;
+  category?: ProductsCategory;
 };
 
-export const ProductCard: React.FC<Props> = ({ product }) => {
+export const ProductCard: React.FC<Props> = ({
+  product,
+  category = ProductsCategory.phones,
+}) => {
   const { id, name, priceRegular, priceDiscount, capacity, screen, ram } =
     product;
   const image = product.images?.[0];
+  const { t } = useTranslation();
   const specs = [
     {
-      name: Specs.Screen,
+      name: t(Specs.Screen),
       value: screen,
     },
     {
-      name: Specs.Capacity,
+      name: t(Specs.Capacity),
       value: capacity,
     },
     {
-      name: Specs.RAM,
+      name: t(Specs.RAM),
       value: ram,
     },
   ];
 
-  /// placeholders
-  const [isAddedToCart, setIsAddedToCart] = useState(false);
+  const [isAddedToCart, setIsAddedToCart] = useState(hasCartProduct(id));
   const [isAddedToFavourites, setIsAddedToFavourites] = useState(false);
-  const buttonAddText = !isAddedToCart ? 'Add to cart' : 'Added';
+
+  const dispatch = useAppDispatch();
+  const buttonAddText = !isAddedToCart ? t('add_to_cart') : t('added');
 
   const handleAddOnClick = (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();
-
+    const price = product?.priceDiscount
+      ? product.priceDiscount
+      : product?.priceRegular;
+    dispatch(toggleAddToCart({ id, category, price }));
     setIsAddedToCart(prev => !prev);
   };
-  /// placeholders end
 
   return (
     <article key={id} className={styles['product-card']}>
       <div className={styles['product-card__header']}>
-        <a href="#" className={styles['product-card__photo-container']}>
+        <Link
+          to={`/${category}/${id}`}
+          className={styles['product-card__photo-container']}
+        >
           <img
             src={image}
-            alt="Product image"
+            alt={t('product_image')}
             className={styles['product-card__photo']}
           />
-        </a>
+        </Link>
 
         <p className={styles['product-card__title']}>{name}</p>
       </div>
@@ -79,7 +97,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
         <MainButton
           isAdded={isAddedToCart}
           handleOnClick={handleAddOnClick}
-          buttonText={buttonAddText}
+          buttonText={buttonAddText} // Use translation for button text
         />
 
         <button
