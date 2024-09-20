@@ -9,11 +9,13 @@ import original_burger_close from '/images/original/icons/original_burger_close.
 import original_burger_open from '/images/original/icons/original_burger_open.svg';
 import { Path } from '@/types/Path';
 import { Link, NavLink } from 'react-router-dom';
+import { getCartAmount } from '@/features/cartSlice';
+import { useAppSelector } from '@/app/hooks';
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDarkTheme, setIsDarkTheme] = useState(false);
-  const [cartCount, setCartCount] = useState(0);
+  const cartCount = useAppSelector(getCartAmount);
   const [favouritesCount, setFavouritesCount] = useState(0);
 
   const setTheme = (darkMode: boolean) => {
@@ -33,23 +35,12 @@ export const Header = () => {
       setTheme(prefersDarkScheme);
     }
 
-    const savedCartCount = localStorage.getItem('cartCount');
     const savedFavouritesCount = localStorage.getItem('favouritesCount');
-
-    if (savedCartCount) {
-      setCartCount(Number(savedCartCount));
-    }
 
     if (savedFavouritesCount) {
       setFavouritesCount(Number(savedFavouritesCount));
     }
   }, []);
-
-  const addItemToCart = () => {
-    const newCartCount = cartCount + 1;
-    setCartCount(newCartCount);
-    localStorage.setItem('cartCount', String(newCartCount));
-  };
 
   const addItemToFavourites = () => {
     const newFavouritesCount = favouritesCount + 1;
@@ -94,6 +85,7 @@ export const Header = () => {
                 Home
               </NavLink>
             </li>
+
             <li className={styles.menu__item}>
               <NavLink
                 to={Path.phones}
@@ -107,6 +99,7 @@ export const Header = () => {
                 Phones
               </NavLink>
             </li>
+
             <li className={styles.menu__item}>
               <NavLink
                 to={Path.tablets}
@@ -120,6 +113,7 @@ export const Header = () => {
                 Tablets
               </NavLink>
             </li>
+
             <li className={styles.menu__item}>
               <NavLink
                 to={Path.accessories}
@@ -141,9 +135,7 @@ export const Header = () => {
           <button className={styles.theme_toggle} onClick={addItemToFavourites}>
             Favo
           </button>
-          <button className={styles.theme_toggle} onClick={addItemToCart}>
-            Cart
-          </button>
+
           <button className={styles.theme_toggle} onClick={toggleTheme}>
             {isDarkTheme ? 'Light' : 'Dark'}
           </button>

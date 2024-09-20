@@ -1,16 +1,22 @@
 import React, { useState } from 'react';
+import cn from 'classnames';
 import styles from './ProductCard.module.scss';
 import { Product } from '@/types/Product';
 import { Specs } from '@/types/Specs';
 import { formatValueWithUnit } from '@/utils/formatValueWithUnit';
-import cn from 'classnames';
 import { MainButton } from '../MainButton';
+import { useAppDispatch } from '@/app/hooks';
+import { toggleAddToCart } from '@/features/cartSlice';
+import { hasCartProduct } from './helpers/hasCartProduct';
+import { ProductsCategory } from '@/types/ProductsCategory';
+import { Link } from 'react-router-dom';
 
 type Props = {
   product: Product;
+  category: ProductsCategory;
 };
 
-export const ProductCard: React.FC<Props> = ({ product }) => {
+export const ProductCard: React.FC<Props> = ({ product, category }) => {
   const { id, name, priceRegular, priceDiscount, capacity, screen, ram } =
     product;
   const image = product.images?.[0];
@@ -29,28 +35,33 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
     },
   ];
 
-  /// placeholders
-  const [isAddedToCart, setIsAddedToCart] = useState(false);
+  const [isAddedToCart, setIsAddedToCart] = useState(hasCartProduct(id));
   const [isAddedToFavourites, setIsAddedToFavourites] = useState(false);
+  const dispatch = useAppDispatch();
   const buttonAddText = !isAddedToCart ? 'Add to cart' : 'Added';
 
   const handleAddOnClick = (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();
-
+    const price = product?.priceDiscount
+      ? product.priceDiscount
+      : product?.priceRegular;
+    dispatch(toggleAddToCart({ id, category, price }));
     setIsAddedToCart(prev => !prev);
   };
-  /// placeholders end
 
   return (
     <article key={id} className={styles['product-card']}>
       <div className={styles['product-card__header']}>
-        <a href="#" className={styles['product-card__photo-container']}>
+        <Link
+          to={`/${category}/${id}`}
+          className={styles['product-card__photo-container']}
+        >
           <img
             src={image}
             alt="Product image"
             className={styles['product-card__photo']}
           />
-        </a>
+        </Link>
 
         <p className={styles['product-card__title']}>{name}</p>
       </div>
