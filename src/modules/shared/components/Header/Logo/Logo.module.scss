@@ -1,0 +1,56 @@
+@import "../../../../../style.scss";
+
+.header__logo {
+  display: flex;
+
+  &:not(:last-child) {
+    margin-right: toRem(24);
+  }
+
+  img {
+    opacity: 1;
+    animation: 1.5s cubic-bezier(0.42, 0, 0.58, 1) 0s down;
+
+    @keyframes down {
+      0% {
+        opacity: 0;
+        transform: translateY(-150%);
+      }
+      50% {
+        transform: translateY(110%);
+      }
+      75% {
+        transform: translateY(-30%);
+      }
+      90% {
+        transform: translateY(10%);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 640px) {
+      animation: 1.5s cubic-bezier(0.42, 0, 0.58, 1) 0s left;
+
+      @keyframes left {
+        0% {
+          opacity: 0;
+          transform: translateX(150%);
+        }
+        50% {
+          transform: translateX(-10%);
+        }
+        75% {
+          transform: translateX(30%);
+        }
+        90% {
+          transform: translateX(-10%);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
+    }
+  }
+}

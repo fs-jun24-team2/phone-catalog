@@ -6,7 +6,7 @@ export const getProducts = (type: ProductsCategory) => {
   return client.get<Product[]>(`api/${type}.json`);
 };
 
-export const getPhone = (type: ProductsCategory, productId: string) => {
+export const getProduct = (productId: string, type: ProductsCategory) => {
   return getProducts(type).then((products: Product[]) =>
     products.find(({ id }) => id === productId),
   );
