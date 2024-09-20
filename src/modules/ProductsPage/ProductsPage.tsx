@@ -10,8 +10,6 @@ import { Pagination } from '../shared/components/Pagination';
 import { ProductsCategory } from '@/types/ProductsCategory';
 import { ProductsList } from './ProductsList';
 
-// import styles from './ProductsPage.module.scss';
-
 export const ProductsPage = () => {
   const [title, setTitle] = useState('');
   const dispatch = useAppDispatch();
@@ -34,7 +32,10 @@ export const ProductsPage = () => {
       <h1>{title}</h1>
       <p>{productAmount} models</p>
       <FiltersPanel />
-      <ProductsList products={products[productsCategory]} />
+      <ProductsList
+        products={products[productsCategory]}
+        category={productsCategory}
+      />
       <Pagination />
     </div>
   );

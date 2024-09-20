@@ -7,11 +7,13 @@ import { Icons } from './Icons';
 
 import original_burger_close from '/images/original/icons/original_burger_close.svg';
 import original_burger_open from '/images/original/icons/original_burger_open.svg';
+import { getCartAmount } from '@/features/cartSlice';
+import { useAppSelector } from '@/app/hooks';
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDarkTheme, setIsDarkTheme] = useState(false);
-  const [cartCount, setCartCount] = useState(0);
+  const cartCount = useAppSelector(getCartAmount);
   const [favouritesCount, setFavouritesCount] = useState(0);
 
   const { i18n } = useTranslation();
@@ -24,18 +26,31 @@ export const Header = () => {
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
-    const savedCartCount = localStorage.getItem('cartCount');
+    if (savedTheme) {
+      setTheme(savedTheme === 'dark');
+    } else {
+      const prefersDarkScheme = window.matchMedia(
+        '(prefers-color-scheme: dark)',
+      ).matches;
+      setTheme(prefersDarkScheme);
+    }
+
     const savedFavouritesCount = localStorage.getItem('favouritesCount');
-
     if (savedTheme) setTheme(savedTheme === 'dark');
-    if (savedCartCount) setCartCount(Number(savedCartCount));
-    if (savedFavouritesCount) setFavouritesCount(Number(savedFavouritesCount));
+    if (savedFavouritesCount) {
+      setFavouritesCount(Number(savedFavouritesCount));
+    }
   }, []);
-
   const changeLanguage = () => {
     const newLanguage = i18n.language === 'en' ? 'ua' : 'en';
     i18n.changeLanguage(newLanguage);
   };
+
+  // const addItemToFavourites = () => {
+  //   const newFavouritesCount = favouritesCount + 1;
+  //   setFavouritesCount(newFavouritesCount);
+  //   localStorage.setItem('favouritesCount', String(newFavouritesCount));
+  // };
 
   const toggleTheme = () => setTheme(!isDarkTheme);
 
