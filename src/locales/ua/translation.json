@@ -1,14 +1,21 @@
 {
-    "home": "Головна",
-    "phones": "Телефони",
-    "tablets": "Планшети",
-    "accessories": "Аксесуари",
-    "brand_new_models": "Нові моделі",
-    "hot_prices": "Гарячі ціни",
-    "back_to_top": "Назад до верху",
-    "cart": "Кошик",
-    "favourites": "Улюблені",
-    "contacts": "Контакти",
-    "rights": "Права"
-  }
-  
+  "home": "Головна",
+  "phones": "Телефони",
+  "tablets": "Планшети",
+  "accessories": "Аксесуари",
+  "brand_new_models": "Нові моделі",
+  "hot_prices": "Гарячі ціни",
+  "back_to_top": "Назад до верху",
+  "cart": "Кошик",
+  "favourites": "Улюблені",
+  "contacts": "Контакти",
+  "rights": "Права",
+  "price": "Ціна",
+  "currency": "USD",
+  "add_to_cart": "Додати до кошика",
+  "added": "Додано",
+  "specs_screen": "Екран",
+  "specs_capacity": "Ємність",
+  "specs_ram": "Оперативна пам'ять",
+  "product_image": "Зображення продукту"
+}

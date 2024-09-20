@@ -1,3 +1,4 @@
+// src/modules/ProductCard/ProductCard.tsx
 import React, { useState } from 'react';
 import styles from './ProductCard.module.scss';
 import { Product } from '@/types/Product';
@@ -5,6 +6,7 @@ import { Specs } from '@/types/Specs';
 import { formatValueWithUnit } from '@/utils/formatValueWithUnit';
 import cn from 'classnames';
 import { MainButton } from '../MainButton';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   product: Product;
@@ -14,17 +16,18 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
   const { id, name, priceRegular, priceDiscount, capacity, screen, ram } =
     product;
   const image = product.images?.[0];
+  const { t } = useTranslation();
   const specs = [
     {
-      name: Specs.Screen,
+      name: t(Specs.Screen),
       value: screen,
     },
     {
-      name: Specs.Capacity,
+      name: t(Specs.Capacity),
       value: capacity,
     },
     {
-      name: Specs.RAM,
+      name: t(Specs.RAM),
       value: ram,
     },
   ];
@@ -32,7 +35,8 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
   /// placeholders
   const [isAddedToCart, setIsAddedToCart] = useState(false);
   const [isAddedToFavourites, setIsAddedToFavourites] = useState(false);
-  const buttonAddText = !isAddedToCart ? 'Add to cart' : 'Added';
+
+  const buttonAddText = !isAddedToCart ? t('add_to_cart') : t('added');
 
   const handleAddOnClick = (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();
@@ -47,7 +51,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
         <a href="#" className={styles['product-card__photo-container']}>
           <img
             src={image}
-            alt="Product image"
+            alt={t('product_image')}
             className={styles['product-card__photo']}
           />
         </a>
@@ -79,7 +83,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
         <MainButton
           isAdded={isAddedToCart}
           handleOnClick={handleAddOnClick}
-          buttonText={buttonAddText}
+          buttonText={buttonAddText} // Use translation for button text
         />
 
         <button
