@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import styles from './Footer.module.scss';
+import footer_logo from '/images/original/footer/logo.svg';
 
 export const Footer = () => {
   const { t } = useTranslation();
@@ -13,7 +14,7 @@ export const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer__container foo">
-        <img src="images/original/footer/logo.svg" alt="Logo" />
+        <img src={footer_logo} alt="Logo" />
         <div className={styles['foo__link']}>
           <a
             href="https://github.com/fs-jun24-team2/phone-catalog"

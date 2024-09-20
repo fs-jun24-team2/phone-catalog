@@ -15,10 +15,13 @@ import { Link } from 'react-router-dom';
 
 type Props = {
   product: Product;
-  category: ProductsCategory;
+  category?: ProductsCategory;
 };
 
-export const ProductCard: React.FC<Props> = ({ product, category }) => {
+export const ProductCard: React.FC<Props> = ({
+  product,
+  category = ProductsCategory.phones,
+}) => {
   const { id, name, priceRegular, priceDiscount, capacity, screen, ram } =
     product;
   const image = product.images?.[0];

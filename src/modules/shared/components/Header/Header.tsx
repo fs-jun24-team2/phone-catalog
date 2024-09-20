@@ -7,8 +7,6 @@ import { Icons } from './Icons';
 
 import original_burger_close from '/images/original/icons/original_burger_close.svg';
 import original_burger_open from '/images/original/icons/original_burger_open.svg';
-import { Path } from '@/types/Path';
-import { Link, NavLink } from 'react-router-dom';
 import { getCartAmount } from '@/features/cartSlice';
 import { useAppSelector } from '@/app/hooks';
 
@@ -39,10 +37,6 @@ export const Header = () => {
 
     const savedFavouritesCount = localStorage.getItem('favouritesCount');
     if (savedTheme) setTheme(savedTheme === 'dark');
-    if (savedCartCount) {
-      setCartCount(Number(savedCartCount));
-    }
-
     if (savedFavouritesCount) {
       setFavouritesCount(Number(savedFavouritesCount));
     }
@@ -51,17 +45,12 @@ export const Header = () => {
     const newLanguage = i18n.language === 'en' ? 'ua' : 'en';
     i18n.changeLanguage(newLanguage);
   };
-  const addItemToFavourites = () => {
-    const newFavouritesCount = favouritesCount + 1;
-    setFavouritesCount(newFavouritesCount);
-    localStorage.setItem('favouritesCount', String(newFavouritesCount));
 
-
-  const addItemToFavourites = () => {
-    const newFavouritesCount = favouritesCount + 1;
-    setFavouritesCount(newFavouritesCount);
-    localStorage.setItem('favouritesCount', String(newFavouritesCount));
-  };
+  // const addItemToFavourites = () => {
+  //   const newFavouritesCount = favouritesCount + 1;
+  //   setFavouritesCount(newFavouritesCount);
+  //   localStorage.setItem('favouritesCount', String(newFavouritesCount));
+  // };
 
   const toggleTheme = () => setTheme(!isDarkTheme);
 
