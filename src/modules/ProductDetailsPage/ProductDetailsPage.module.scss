@@ -1,0 +1,14 @@
+@import "@/style.scss";
+
+.about{
+    margin-bottom: 56px;
+
+    @media (min-width: 640px) {
+      margin-bottom: 64px;
+    }
+
+    @media (min-width: 1200px) {
+      margin-bottom: 80px;
+    }
+
+}
