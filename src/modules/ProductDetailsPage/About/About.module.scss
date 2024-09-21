@@ -12,18 +12,7 @@
             margin-bottom: 48px;
           }
     }
-    &__text_title{
-        margin: 32px 0 16px;
-        font-weight: 700;
-        font-size: 20px;
-        color: $original_primary;
-        
-    }
-    &__text{
-        font-size: 14px;
-        font-weight: 500;
-        color: $original_secondary;
-    }
+
     @media (min-width: 1200px) {
         grid-column: 1 / 12;;
       }
