@@ -1,5 +1,5 @@
 import styles from './Gallery.module.scss';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface ImageGalleryProps {
   images: string[];
@@ -7,6 +7,10 @@ interface ImageGalleryProps {
 
 export const Gallery: React.FC<ImageGalleryProps> = ({ images }) => {
   const [selectedImage, setSelectedImage] = useState(images[0]);
+
+  useEffect(() => {
+    setSelectedImage(images[0]);
+  }, [images]);
 
   const handleImageClick = (image: string) => {
     setSelectedImage(image);
