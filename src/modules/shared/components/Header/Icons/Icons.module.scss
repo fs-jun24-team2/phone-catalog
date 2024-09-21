@@ -7,8 +7,7 @@
   margin-left: auto;
   cursor: pointer;
 
-
-  &__favorites, &__cart {
+  .iconWrapper {
     position: relative;
     display: flex;
     justify-content: center;
@@ -17,28 +16,58 @@
     height: toRem(64);
     border-left: 1px solid $original_icons;
 
+    img {
+      width: toRem(24);
+      height: toRem(24);
+      transition: all $transitionDuration ease;
+
+      @media (hover: hover) and (pointer: fine) {
+        &:hover {
+          transform: $transformScale;
+        }
+      }
+    }
+
     .badge {
       position: absolute;
-      top: toRem(5);
-      right: toRem(5);
+      top: toRem(10);
+      right: toRem(10);
       background-color: $original_red;
       color: $original_white;
       border-radius: 50%;
-      padding: toRem(2) toRem(6);
-      font-size: 12px;
+      width: toRem(20);
+      height: toRem(20);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: toRem(12);
+      font-weight: bold;
     }
   }
 
   @media (max-width: 1200px) {
-    &__favorites, &__cart {
+    .iconWrapper {
       width: toRem(48);
       height: toRem(48);
+
+      img {
+        width: toRem(20);
+        height: toRem(20);
+      }
+
+      .badge {
+        width: toRem(16);
+        height: toRem(16);
+        font-size: toRem(10);
+        top: toRem(5);
+        right: toRem(5);
+      }
     }
   }
 
-  @media (max-width: 640px) {
-    &__favorites, &__cart {
-      display: none;
-    }
-  }
+  // @media (max-width: 640px) {
+  //   .iconWrapper {
+  //     display: none;
+  //   }
+  // }
 }
