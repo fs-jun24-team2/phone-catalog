@@ -2,13 +2,13 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../app/store';
 import { getProducts } from '../api/products';
-import { Product } from '../types/Product';
+import { Product, ProductDictionary } from '../types/Product';
 import { ProductsCategory } from '@/types/ProductsCategory';
 
 type ProductsSlice = {
-  phones: { [id: string]: Product };
-  tablets: { [id: string]: Product };
-  accessories: { [id: string]: Product };
+  phones: ProductDictionary;
+  tablets: ProductDictionary;
+  accessories: ProductDictionary;
   isLoading: boolean;
   isError: boolean;
 };

@@ -2,18 +2,22 @@ import styles from './ProductsSlider.module.scss';
 import 'swiper/css';
 
 import { ProductCard } from '@/modules/shared/components/ProductCard';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Swiper as SwiperType } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import cn from 'classnames';
 import { Product } from '@/types/Product';
+import { AggregateProduct } from '@/types/AggregateProduct';
 
-type Props = {
+type Props<T> = {
   title: string;
-  products: Product[];
+  products: T[];
 };
 
-export const ProductsSlider: React.FC<Props> = ({ title, products }) => {
+export const ProductsSlider = <T extends Product | AggregateProduct>({
+  title,
+  products,
+}: Props<T>) => {
   const [swiper, setSwiper] = useState<SwiperType | null>(null);
   const [isBtnPrevDisabled, setIsBtnPrevDisabled] = useState(false);
   const [isBtnNextDisabled, setIsBtnNextDisabled] = useState(true);
@@ -81,7 +85,7 @@ export const ProductsSlider: React.FC<Props> = ({ title, products }) => {
       >
         {products.map(product => (
           <SwiperSlide key={product.id}>
-            <ProductCard product={product} />
+            <ProductCard<T> product={product} />
           </SwiperSlide>
         ))}
       </Swiper>

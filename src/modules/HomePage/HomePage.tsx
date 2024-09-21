@@ -1,19 +1,31 @@
 import styles from './HomePage.module.scss';
-
-import { useAppSelector } from '@/app/hooks';
+import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import { useTranslation } from 'react-i18next';
 import { PictureSlider } from './components/PictureSlider';
 import { ProductsSlider } from './components/ProductsSlider';
 import { ShopByCategory } from './components/ShopByCategory';
 import cn from 'classnames';
+import { useEffect } from 'react';
+import {
+  getHotPriceProduct,
+  getNewBrandProduct,
+  loadAllProductsAsync,
+} from '@/features/aggregateSlice';
+import { AggregateProduct } from '@/types/AggregateProduct';
 
 export const HomePage = () => {
-  const products = useAppSelector(state => state.products);
-  const phonePlaceholders = Object.values(products.phones).slice(0, 10);
   const { t } = useTranslation();
+  const hotPriceProducts = useAppSelector(getHotPriceProduct);
+  const newBrandProduct = useAppSelector(getNewBrandProduct);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(loadAllProductsAsync());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
-    <div>
+    <>
       {/* </div><div className={cn('grid-container')}> */}
       <div style={{ paddingTop: '100px' }}></div>
       {/* hidden */}
@@ -29,17 +41,20 @@ export const HomePage = () => {
         <PictureSlider />
 
         {/* Section brand new models */}
-        <ProductsSlider
+        <ProductsSlider<AggregateProduct>
           title={t('brand_new_models')}
-          products={phonePlaceholders}
+          products={newBrandProduct}
         />
 
         {/* Shop by category block with links to /phones, /tablets, and /accessories. */}
         <ShopByCategory />
 
         {/* Section hot prices */}
-        <ProductsSlider title={t('hot_prices')} products={phonePlaceholders} />
+        <ProductsSlider<AggregateProduct>
+          title={t('hot_prices')}
+          products={hotPriceProducts}
+        />
       </div>
-    </div>
+    </>
   );
 };
