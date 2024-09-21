@@ -1,7 +1,10 @@
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import cn from 'classnames';
 import { Breadcrumbs } from '../shared/components/Breadcrumbs';
 import { About } from './About';
+import { TechSpecs } from './TechSpecs';
 import { AlsoLike } from './AlsoLike';
+import styles from './ProductDetailsPage.module.scss';
 import { Gallery } from './Gallery';
 import { ProductCharacteristics } from './ProductCharacteristics';
 import { useEffect, useState } from 'react';
@@ -9,6 +12,7 @@ import { getProduct } from '@/api/products';
 import { Product } from '@/types/Product';
 import { ProductsCategory } from '@/types/ProductsCategory';
 import { ProductNotFoundPage } from './ProductNotFoundPage';
+import { scrollToTop } from '../shared/helpers/scrollToTop';
 
 export const ProductDetailsPage = () => {
   const [product, setProduct] = useState<Product | null>(null);
@@ -33,6 +37,8 @@ export const ProductDetailsPage = () => {
         }
       })
       .catch(() => setIsError(true));
+
+    scrollToTop();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname, id]);
 
@@ -43,6 +49,7 @@ export const ProductDetailsPage = () => {
   if (!product) {
     return null;
   }
+
   return (
     <div style={{ paddingTop: '100px' }}>
       <Breadcrumbs />
@@ -50,7 +57,10 @@ export const ProductDetailsPage = () => {
       <h1>{product.name}</h1>
       <Gallery images={product.images} />
       <ProductCharacteristics />
-      <About />
+      <div className={cn('grid-container', [styles.about])}>
+        <About description={product.description} />
+        <TechSpecs specs={product} />
+      </div>
       <AlsoLike category={category} currentId={product.id} />
     </div>
   );
