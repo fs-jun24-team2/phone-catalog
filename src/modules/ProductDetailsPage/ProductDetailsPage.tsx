@@ -2,7 +2,7 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { Breadcrumbs } from '../shared/components/Breadcrumbs';
 import { About } from './About';
 import { AlsoLike } from './AlsoLike';
-//import { Gallery } from './Gallery';
+import { Gallery } from './Gallery';
 import { ProductCharacteristics } from './ProductCharacteristics';
 import { useEffect, useState } from 'react';
 import { getProduct } from '@/api/products';
@@ -34,20 +34,24 @@ export const ProductDetailsPage = () => {
       })
       .catch(() => setIsError(true));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
+  }, [pathname, id]);
 
   if (isError) {
     return <ProductNotFoundPage />;
+  }
+
+  if (!product) {
+    return null;
   }
   return (
     <div style={{ paddingTop: '100px' }}>
       <Breadcrumbs />
       <button onClick={handleBack}>Back</button>
-      <h1>{product?.name}</h1>
-      {/* <Gallery /> */}
+      <h1>{product.name}</h1>
+      <Gallery images={product.images} />
       <ProductCharacteristics />
       <About />
-      <AlsoLike category={category} />
+      <AlsoLike category={category} currentId={product.id} />
     </div>
   );
 };

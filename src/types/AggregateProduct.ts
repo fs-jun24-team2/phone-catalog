@@ -1,6 +1,8 @@
+import { ProductsCategory } from './ProductsCategory';
+
 export interface AggregateProduct {
   id: number;
-  category: string;
+  category: ProductsCategory;
   itemId: string;
   name: string;
   fullPrice: number;

@@ -8,15 +8,18 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import cn from 'classnames';
 import { Product } from '@/types/Product';
 import { AggregateProduct } from '@/types/AggregateProduct';
+import { ProductsCategory } from '@/types/ProductsCategory';
 
 type Props<T> = {
   title: string;
   products: T[];
+  category?: ProductsCategory;
 };
 
 export const ProductsSlider = <T extends Product | AggregateProduct>({
   title,
   products,
+  category,
 }: Props<T>) => {
   const [swiper, setSwiper] = useState<SwiperType | null>(null);
   const [isBtnPrevDisabled, setIsBtnPrevDisabled] = useState(false);
@@ -85,7 +88,10 @@ export const ProductsSlider = <T extends Product | AggregateProduct>({
       >
         {products.map(product => (
           <SwiperSlide key={product.id}>
-            <ProductCard<T> product={product} />
+            <ProductCard<T>
+              product={product}
+              category={category || (product.category as ProductsCategory)}
+            />
           </SwiperSlide>
         ))}
       </Swiper>

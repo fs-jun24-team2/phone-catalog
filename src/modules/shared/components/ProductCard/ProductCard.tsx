@@ -17,12 +17,12 @@ import { hasCartProduct } from './helpers/hasCartProduct';
 
 type Props<T> = {
   product: T;
-  category?: ProductsCategory;
+  category: ProductsCategory;
 };
 
 export const ProductCard = <T extends Product | AggregateProduct>({
   product,
-  category = ProductsCategory.phones,
+  category,
 }: Props<T>) => {
   const { t } = useTranslation();
 
