@@ -47,7 +47,7 @@ export const ProductDetailsPage = () => {
       <Gallery />
       <ProductCharacteristics />
       <About />
-      <AlsoLike />
+      <AlsoLike category={category} />
     </div>
   );
 };

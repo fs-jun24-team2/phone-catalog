@@ -26,3 +26,5 @@ export interface PhoneDescription {
 }
 
 export type PhoneCapacity = '64GB' | '128GB' | '256GB';
+
+export type ProductDictionary = { [id: string]: Product };
