@@ -1,7 +1,10 @@
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import cn from 'classnames';
 import { Breadcrumbs } from '../shared/components/Breadcrumbs';
 import { About } from './About';
+import { TechSpecs } from './TechSpecs';
 import { AlsoLike } from './AlsoLike';
+import styles from './ProductDetailsPage.module.scss';
 //import { Gallery } from './Gallery';
 import { ProductCharacteristics } from './ProductCharacteristics';
 import { useEffect, useState } from 'react';
@@ -39,14 +42,22 @@ export const ProductDetailsPage = () => {
   if (isError) {
     return <ProductNotFoundPage />;
   }
+
+  if (!product) {
+    return null;
+  }
+
   return (
     <div style={{ paddingTop: '100px' }}>
       <Breadcrumbs />
       <button onClick={handleBack}>Back</button>
-      <h1>{product?.name}</h1>
+      <h1>{product.name}</h1>
       {/* <Gallery /> */}
       <ProductCharacteristics />
-      <About />
+      <div className={cn('grid-container', [styles.about])}>
+        <About description={product.description} />
+        <TechSpecs specs={product} />
+      </div>
       <AlsoLike category={category} />
     </div>
   );
