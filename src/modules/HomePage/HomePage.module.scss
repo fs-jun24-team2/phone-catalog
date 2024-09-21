@@ -1,0 +1,29 @@
+@import '../../style.scss';
+
+.home-page {
+  &__title {
+    margin-bottom: toRem(24);
+
+    @media (min-width: 640px) {
+      margin-bottom: toRem(32);
+    }
+
+    @media (min-width: 1200px) {
+      margin-bottom: toRem(56);
+    }
+  }
+
+  &__content-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: toRem(56);
+
+    @media (min-width: 640px) {
+      row-gap: toRem(64);
+    }
+
+    @media (min-width: 1200px) {
+      row-gap: toRem(80);
+    }
+  }
+}

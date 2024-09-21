@@ -58,7 +58,7 @@ export const ProductDetailsPage = () => {
         <About description={product.description} />
         <TechSpecs specs={product} />
       </div>
-      <AlsoLike />
+      <AlsoLike category={category} />
     </div>
   );
 };

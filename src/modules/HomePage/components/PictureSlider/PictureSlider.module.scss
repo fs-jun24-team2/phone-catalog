@@ -1,0 +1,64 @@
+@import "../../../../style.scss";
+
+.picture-slider {
+  margin-bottom: toRem(32);
+  height: fit-content;
+
+  &__button {
+    display: none;
+    height: auto;
+    width: toRem(32);
+    background-repeat: no-repeat;
+    background-position: center;
+    border: toRem(1) solid $original_icons;
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        border-color: $original_primary;
+      }
+    }
+
+    &:disabled {
+      border-color: $original_elements;
+    }
+  }
+
+  &__button-prev {
+    background-image: url("/images/original/icons/original_less.svg");
+
+    @media (min-width: 640px) {
+      grid-column: 1 / 2;
+      display: block;
+    }
+  }
+
+  &__button-next {
+    background-image: url("/images/original/icons/original_more.svg");
+    justify-self: end;
+
+    @media (min-width: 640px) {
+      grid-column: -2 / -1;
+      display: block;
+    }
+  }
+
+  &__swiper {
+    overflow: visible !important;
+    grid-column: 1 / -1;
+    width: 100%;
+    max-height: toRem(600);
+
+    @media (min-width: 640px) {
+      grid-column: 2 / -2;
+      max-height: toRem(400);
+    }
+  }
+
+  &__swiper-pagination {
+    position: relative;
+    top: toRem(40);
+
+    border-radius: 0 !important;
+    padding: 0 toRem(14);
+  }
+}

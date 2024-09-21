@@ -33,19 +33,16 @@
     background-position: center;
     border: toRem(1) solid $original_icons;
 
-    &--active {
-      @media (hover: hover) and (pointer: fine) {
-        &:hover {
-          border-color: $original_primary;
-        }
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        border-color: $original_primary;
       }
     }
 
-    &--disable {
-      border: toRem(1) solid $original_elements;
+    &:disabled {
+      border-color: $original_elements;
     }
   }
-
   
   &__button-prev {
     background-image: url("/images/original/icons/original_less.svg");   

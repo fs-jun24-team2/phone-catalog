@@ -1,36 +1,60 @@
-// import styles from './HomePage.module.scss';
-
-import { useAppSelector } from '@/app/hooks';
+import styles from './HomePage.module.scss';
+import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import { useTranslation } from 'react-i18next';
 import { PictureSlider } from './components/PictureSlider';
 import { ProductsSlider } from './components/ProductsSlider';
 import { ShopByCategory } from './components/ShopByCategory';
+import cn from 'classnames';
+import { useEffect } from 'react';
+import {
+  getHotPriceProduct,
+  getNewBrandProduct,
+  loadAllProductsAsync,
+} from '@/features/aggregateSlice';
+import { AggregateProduct } from '@/types/AggregateProduct';
 
 export const HomePage = () => {
-  const products = useAppSelector(state => state.products);
-  const phonePlaceholders = Object.values(products.phones).slice(0, 10);
   const { t } = useTranslation();
+  const hotPriceProducts = useAppSelector(getHotPriceProduct);
+  const newBrandProduct = useAppSelector(getNewBrandProduct);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(loadAllProductsAsync());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
+      {/* </div><div className={cn('grid-container')}> */}
       <div style={{ paddingTop: '100px' }}></div>
       {/* hidden */}
-      <h1 style={{ paddingTop: '100px' }}>{t('home')}</h1>
+      <h1
+        style={{ paddingTop: '100px' }}
+        className={cn('style-h1', styles['home-page__title'])}
+      >
+        {t('home__title')}
+      </h1>
 
-      {/* Banner */}
-      <PictureSlider />
+      <div className={styles['home-page__content-container']}>
+        {/* Banner */}
+        <PictureSlider />
 
-      {/* Section brand new models */}
-      <ProductsSlider
-        title={t('brand_new_models')}
-        products={phonePlaceholders}
-      />
+        {/* Section brand new models */}
+        <ProductsSlider<AggregateProduct>
+          title={t('brand_new_models')}
+          products={newBrandProduct}
+        />
 
-      {/* Shop by category block with links to /phones, /tablets, and /accessories. */}
-      <ShopByCategory />
+        {/* Shop by category block with links to /phones, /tablets, and /accessories. */}
+        <ShopByCategory />
 
-      {/* Section hot prices */}
-      <ProductsSlider title={t('hot_prices')} products={phonePlaceholders} />
-      <div></div>
+        {/* Section hot prices */}
+        <ProductsSlider<AggregateProduct>
+          title={t('hot_prices')}
+          products={hotPriceProducts}
+        />
+      </div>
     </>
   );
 };
