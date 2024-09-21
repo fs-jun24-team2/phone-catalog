@@ -19,5 +19,11 @@
   "specs_ram": "RAM",
   "product_image": "Product image",
   "home__title": "Welcome to Nice Gadgets store!",
-  "also_like": "You may also like"
+  "also_like": "You may also like",
+  "popup": {
+    "title": "Subscribe to our newsletter",
+    "message": "Enter your email to stay updated with our latest news and offers.",
+    "emailPlaceholder": "Enter your email",
+    "submitButton": "Subscribe"
+  }
 }
