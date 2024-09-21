@@ -1,8 +1,10 @@
+import styles from './HomePage.module.scss';
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import { useTranslation } from 'react-i18next';
 import { PictureSlider } from './components/PictureSlider';
 import { ProductsSlider } from './components/ProductsSlider';
 import { ShopByCategory } from './components/ShopByCategory';
+import cn from 'classnames';
 import { useEffect } from 'react';
 import {
   getHotPriceProduct,
@@ -24,28 +26,35 @@ export const HomePage = () => {
 
   return (
     <>
+      {/* </div><div className={cn('grid-container')}> */}
       <div style={{ paddingTop: '100px' }}></div>
       {/* hidden */}
-      <h1 style={{ paddingTop: '100px' }}>{t('home')}</h1>
+      <h1
+        style={{ paddingTop: '100px' }}
+        className={cn('style-h1', styles['home-page__title'])}
+      >
+        {t('home__title')}
+      </h1>
 
-      {/* Banner */}
-      <PictureSlider />
+      <div className={styles['home-page__content-container']}>
+        {/* Banner */}
+        <PictureSlider />
 
-      {/* Section brand new models */}
-      <ProductsSlider<AggregateProduct>
-        title={t('brand_new_models')}
-        products={newBrandProduct}
-      />
+        {/* Section brand new models */}
+        <ProductsSlider<AggregateProduct>
+          title={t('brand_new_models')}
+          products={newBrandProduct}
+        />
 
-      {/* Shop by category block with links to /phones, /tablets, and /accessories. */}
-      <ShopByCategory />
+        {/* Shop by category block with links to /phones, /tablets, and /accessories. */}
+        <ShopByCategory />
 
-      {/* Section hot prices */}
-      <ProductsSlider<AggregateProduct>
-        title={t('hot_prices')}
-        products={hotPriceProducts}
-      />
-      <div></div>
+        {/* Section hot prices */}
+        <ProductsSlider<AggregateProduct>
+          title={t('hot_prices')}
+          products={hotPriceProducts}
+        />
+      </div>
     </>
   );
 };
