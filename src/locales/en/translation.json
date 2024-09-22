@@ -20,10 +20,13 @@
   "product_image": "Product image",
   "home__title": "Welcome to Nice Gadgets store!",
   "also_like": "You may also like",
-  "popup": {
-    "title": "Subscribe to our newsletter",
-    "message": "Enter your email to stay updated with our latest news and offers.",
+  "popup_subscribe": {
+    "title": "Subscribe to our Newsletter",
+    "message": "Stay updated with our latest news and offers.",
     "emailPlaceholder": "Enter your email",
-    "submitButton": "Subscribe"
+    "submitButton": "Subscribe",
+    "emptyEmailError": "Email cannot be empty",
+    "invalidEmailError": "Please enter a valid email address",
+    "emailHint": "Example: {{example}}"
   }
 }
