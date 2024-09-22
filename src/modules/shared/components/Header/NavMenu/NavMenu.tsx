@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import styles from './NavMenu.module.scss';
 import { Path } from '@/types/Path';
+import React from 'react';
 
 type NavMenuProps = {
   language: string;
@@ -11,13 +12,12 @@ type NavMenuProps = {
   isDarkTheme: boolean;
 };
 
-// eslint-disable-next-line no-undef
 export const NavMenu: React.FC<NavMenuProps> = ({
   isMenuOpen,
   setIsMenuOpen,
   isDarkTheme,
 }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('translation', { keyPrefix: 'header' });
 
   const handleLinkClick = () => {
     setIsMenuOpen(false);
