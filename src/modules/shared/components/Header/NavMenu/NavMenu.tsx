@@ -1,8 +1,8 @@
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import styles from './NavMenu.module.scss';
 import { Path } from '@/types/Path';
-import React from 'react';
 
 type NavMenuProps = {
   language: string;
@@ -44,6 +44,7 @@ export const NavMenu: React.FC<NavMenuProps> = ({
             {t('home')}
           </NavLink>
         </li>
+
         <li className={styles.menu__item}>
           <NavLink
             to={Path.phones}
@@ -57,6 +58,7 @@ export const NavMenu: React.FC<NavMenuProps> = ({
             {t('phones')}
           </NavLink>
         </li>
+
         <li className={styles.menu__item}>
           <NavLink
             to={Path.tablets}
@@ -70,6 +72,7 @@ export const NavMenu: React.FC<NavMenuProps> = ({
             {t('tablets')}
           </NavLink>
         </li>
+
         <li className={styles.menu__item}>
           <NavLink
             to={Path.accessories}

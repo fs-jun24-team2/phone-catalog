@@ -38,11 +38,7 @@ export const Header = () => {
       setTheme(prefersDarkScheme);
     }
 
-    // const savedFavouritesCount = localStorage.getItem('favouritesCount');
     if (savedTheme) setTheme(savedTheme === 'dark');
-    // if (savedFavouritesCount) {
-    //   setFavouritesCount(Number(savedFavouritesCount));
-    // }
   }, []);
 
   const changeLanguage = () => {

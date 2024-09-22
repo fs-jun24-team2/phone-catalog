@@ -1,24 +1,22 @@
 import React from 'react';
-import { Product } from '@/types/Product';
-import { isAggregateProduct } from '@/modules/shared/helpers/isAggregateProduct';
-import { AggregateProduct } from '@/types/AggregateProduct';
+import cn from 'classnames';
+import styles from '../../ProductsPage/ProductsList/ProductsList.module.scss';
+
+import { FavouriteCard } from './FavouriteCard';
 import { FavouriteProduct } from '@/types/FavouriteProduct';
-import { ProductCard } from '@/modules/shared/components/ProductCard';
 
 type Props = {
-  item: FavouriteProduct;
+  items: FavouriteProduct[];
 };
 
-export const FavouriteCard: React.FC<Props> = ({ item }) => {
-  if (isAggregateProduct(item.product)) {
-    return (
-      <ProductCard<AggregateProduct>
-        product={item.product}
-        category={item.category}
-      />
-    );
-  }
+export const FavouritesList: React.FC<Props> = ({ items }) => {
   return (
-    <ProductCard<Product> product={item.product} category={item.category} />
+    <div className={cn('grid-container', [styles['products-list']])}>
+      {items.map(item => (
+        <div key={item.id} className={styles['products-list__product']}>
+          <FavouriteCard item={item} />
+        </div>
+      ))}
+    </div>
   );
 };
