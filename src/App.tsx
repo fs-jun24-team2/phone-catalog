@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import './style.scss';
 import { Footer } from './modules/shared/components/Footer';
 import { Header } from './modules/shared/components/Header';
+import { PopupSubscribe } from './modules/shared/components/PopupSubscribe';
 
 function App() {
   const { i18n } = useTranslation();
@@ -14,6 +15,7 @@ function App() {
 
   return (
     <div className="wrapper">
+      <PopupSubscribe />
       <Header />
       <main className="main">
         <div className="main__container">
