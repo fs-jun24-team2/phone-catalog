@@ -1,0 +1,85 @@
+@import '@/style.scss';
+
+
+.popupOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $dark_hover_and_bg_popup;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.popupContent {
+  background-color: $original_hover_and_bg;
+  padding: toRem(20);
+  border-radius: toRem(10);
+  max-width: toRem(400);
+  width: 100%;
+  text-align: center;
+  position: relative;
+}
+
+.title {
+  font-size: toRem(18);
+  font-weight: $bold;
+}
+
+.closeButton {
+  position: absolute;
+  top: toRem(10);
+  right: toRem(10);
+  background: none;
+  border: none;
+  font-size: toRem(24);
+  cursor: pointer;
+}
+
+.emailInput {
+  width: 100%;
+  padding: toRem(10);
+  margin: toRem(10) 0;
+  border: toRem(1) solid $original_primary;
+  border-radius: toRem(5);
+  
+  &.error {
+    border-color: $original_red;
+    background-color: $original_red_transperency;
+  }
+
+  &:not(.error) {
+    border-color: $original_green;
+    background-color: $original_green_transperency;
+  }
+}
+
+.errorMessage {
+  color: $original_red;
+  font-size: toRem(14);
+  margin-bottom: toRem(10);
+}
+
+.hintMessage {
+  font-size: toRem(12);
+  color: $original_secondary;
+  margin-bottom: toRem(20);
+}
+
+button[type="submit"] {
+  padding: toRem(10) toRem(20);
+  background-color: $original_primary;
+  color: $original_white;
+  border: none;
+  border-radius: toRem(5);
+  cursor: pointer;
+  font-weight: $bold;
+  transition: transform $transitionDuration ease;
+
+  &:hover {
+    transform: $transformScale;
+  }
+}
