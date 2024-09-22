@@ -1,4 +1,4 @@
-import { Path } from "@/types/Path";
+import { Path } from '@/types/Path';
 
 export const getCategoriesData = (
   phoneAmount: number,

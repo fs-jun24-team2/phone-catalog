@@ -37,7 +37,6 @@ export const ProductDetailsPage = () => {
         }
       })
       .catch(() => setIsError(true));
-
     scrollToTop();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname, id]);

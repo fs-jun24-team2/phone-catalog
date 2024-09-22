@@ -9,6 +9,7 @@ import { Pagination } from '../shared/components/Pagination';
 
 import { ProductsCategory } from '@/types/ProductsCategory';
 import { ProductsList } from './ProductsList';
+import { scrollToTop } from '../shared/helpers/scrollToTop';
 
 export const ProductsPage = () => {
   const [title, setTitle] = useState('');
@@ -23,6 +24,7 @@ export const ProductsPage = () => {
     if (!Object.keys(products[productsCategory]).length) {
       dispatch(loadProductsAsync(ProductsCategory[productsCategory]));
     }
+    scrollToTop();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
 
