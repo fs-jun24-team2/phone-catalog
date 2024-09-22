@@ -18,7 +18,6 @@ type IconsProps = {
   toggleTheme: () => void;
   // eslint-disable-next-line no-unused-vars
   setIsMenuOpen: (value: boolean) => void;
-
 };
 
 export const Icons: React.FC<IconsProps> = ({

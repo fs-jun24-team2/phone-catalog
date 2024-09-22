@@ -54,10 +54,9 @@ export const Header = () => {
   };
 
   const toggleMenu = () => {
-    const newIsMenuOpen = !isMenuOpen;
-    setIsMenuOpen(newIsMenuOpen);
+    setIsMenuOpen(!isMenuOpen);
 
-    if (newIsMenuOpen) {
+    if (!isMenuOpen) {
       document.body.classList.add('menu_open');
     } else {
       document.body.classList.remove('menu_open');
@@ -76,8 +75,9 @@ export const Header = () => {
 
   return (
     <header
-      className={`${styles.header} ${isDarkTheme ? styles.header_dark : ''} ${isMenuOpen ? styles.menu_open : ''
-        }`}
+      className={`${styles.header} ${isDarkTheme ? styles.header_dark : ''} ${
+        isMenuOpen ? styles.menu_open : ''
+      }`}
     >
       <div className={styles.header__container}>
         <Logo isDarkTheme={isDarkTheme} />
