@@ -1,4 +1,4 @@
-@import "../../../../style.scss";
+@import "@/style.scss";
 
 .header {
     position: fixed;
@@ -9,12 +9,22 @@
     background-color: $original_hover_and_bg_transperency;
     z-index: 50;
 
+    &.menu_open {
+        background-color: $original_hover_and_bg;
+    }
+
     &__container {
         max-width: toRem(1440);
         display: flex;
         align-items: center;
         height: toRem(64);
     }
+
+    &.menu_open.header_dark {
+        background-color: $dark_black;
+        border-bottom: none;
+    }
+
 }
 
 .burger_icon {
@@ -28,10 +38,15 @@
             height: toRem(48);
         }
     }
-
 }
 
 @media (max-width: 640px) {
+    .header {
+        border-bottom: none;
+        &__container {
+            border-bottom: toRem(1) solid $original_icons;
+        }
+    }
 
     .burger_icon {
         display: flex;
@@ -40,6 +55,9 @@
         width: toRem(48);
         height: toRem(48);
         border-left: 1px solid $original_icons;
-    }
 
+        img {
+            width: toRem(24);
+        }
+    }
 }

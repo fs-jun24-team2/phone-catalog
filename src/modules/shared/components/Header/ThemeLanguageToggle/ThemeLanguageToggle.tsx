@@ -19,7 +19,11 @@ export const ThemeLanguageToggle: React.FC<ThemeLanguageToggleProps> = ({
   toggleTheme,
 }) => {
   return (
-    <div className={styles.theme_language_toggle}>
+    <div
+      className={`${styles.theme_language_toggle} ${
+        isDarkTheme ? styles.dark : ''
+      }`}
+    >
       <button className={styles.theme_toggle} onClick={changeLanguage}>
         <img
           className={styles.flags}
