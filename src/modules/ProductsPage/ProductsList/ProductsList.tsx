@@ -8,7 +8,7 @@ import { ProductsCategory } from '@/types/ProductsCategory';
 import { ProductCard } from '@/modules/shared/components/ProductCard';
 
 type Props = {
-  products: { [id: string]: Product };
+  products: Product[];
   category: ProductsCategory;
 };
 
