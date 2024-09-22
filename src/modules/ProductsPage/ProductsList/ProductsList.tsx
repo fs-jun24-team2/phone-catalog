@@ -15,7 +15,7 @@ type Props = {
 export const ProductsList: React.FC<Props> = ({ products, category }) => {
   return (
     <div className={cn('grid-container', [styles['products-list']])}>
-      {Object.values(products).map(product => (
+      {products.map(product => (
         <div key={product.id} className={styles['products-list__product']}>
           <ProductCard<Product> product={product} category={category} />
         </div>
