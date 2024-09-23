@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styles from './VirtualAssistan.module.scss';
 import original_assistant from '/images/original/icons/original_assistant.svg';
+import { useTranslation } from 'react-i18next';
 
 type VirtualAssistantProps = {
   // eslint-disable-next-line no-unused-vars
@@ -11,6 +12,7 @@ type VirtualAssistantProps = {
 export const VirtualAssistant: React.FC<VirtualAssistantProps> = ({
   onSearch,
 }) => {
+  const { t } = useTranslation();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   const toggleSearch = () => {
@@ -34,7 +36,7 @@ export const VirtualAssistant: React.FC<VirtualAssistantProps> = ({
           <input
             className={styles.virtual_assistant_input}
             type="text"
-            placeholder="Search products..."
+            placeholder={t('searchPlaceholder')}
             onChange={handleSearchInputChange}
           />
         </div>
