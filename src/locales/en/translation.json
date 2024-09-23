@@ -36,6 +36,7 @@
     "invalidEmailError": "Please enter a valid email address",
     "emailHint": "Example: {{example}}"
   },
+  "searchPlaceholder":"Looking for something?",
   "specs_resolution": "Resolution",
   "specs_processor": "Processor",
   "available_colors": "Available colors",
