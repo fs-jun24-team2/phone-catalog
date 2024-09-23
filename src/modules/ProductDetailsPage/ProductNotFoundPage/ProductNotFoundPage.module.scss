@@ -1,0 +1,44 @@
+@import "@/style.scss";
+
+.not_found_product {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: $original_hover_and_bg;
+    background-image: url('/public/img/product-not-found.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    
+    &__button_container {
+      cursor: default;
+      text-align: center;
+      background-color: $original_hover_and_bg_transperency;
+      padding: toRem(20);
+      border-radius: toRem(20);
+      font-size: toRem(22);
+      font-weight: $semiBold;
+    }
+  
+    &__button {
+      margin-top: toRem(20);
+      padding: toRem(15) toRem(30);
+      background-color: $original_icons;
+      color: $original_primary;
+      border: none;
+      border-radius: toRem(5);
+      cursor: pointer;
+      font-size: toRem(16);
+      transition: background-color $transitionDuration ease;
+  
+      &:hover {
+        background-color: $original_secondary;
+      }
+    }
+  }

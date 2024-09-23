@@ -32,6 +32,7 @@ const customStyles = {
     borderRadius: '0px',
     borderColor: state.isFocused ? '#313237' : '#89939A',
     boxShadow: 'none',
+    cursor: 'pointer',
     '&:hover': {
       borderColor: '#313237',
     },
@@ -41,12 +42,14 @@ const customStyles = {
     backgroundColor: state.isFocused ? '#FAFBFC' : '#FAFBFC',
     color: '#89939A',
     borderRadius: '0px',
+    cursor: 'pointer',
     '&:hover': {
       color: '#313237',
     },
   }),
   menu: (provided: any) => ({
     ...provided,
+    cursor: 'pointer',
     borderRadius: '0px',
     backgroundColor: 'FAFBFC',
   }),

@@ -36,5 +36,19 @@
     "invalidEmailError": "Будь ласка, введіть правильну електронну адресу",
     "emailHint": "Приклад: {{example}}"
   },
-  "searchPlaceholder":"Щось шукаєте?"
+  "searchPlaceholder":"Щось шукаєте?",
+  "productNotFound":"Продукт не знайдено",
+  "back":"Повернутись",
+  "pageNotFound":"Сторінку не знайдено",
+  "pageDontExist":"Сторінка яку Ви шукаєте не існує",
+  "goToHomepage":"Повернутись на головну",
+  "about":"Детальніше",
+  "techSpecs":"Технічні характеристики",
+  "sortBy":"Сортувати за:",
+  "itemsPerPage":"Елементів на сторінці:",
+  "cheapest":"Найдешевші",
+  "alphabetically":"Алфавітом",
+  "newest":"Новизною",
+  "all":"Всі"
 }
+
