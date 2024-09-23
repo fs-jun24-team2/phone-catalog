@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 
 import { loadProductsAsync } from '@/features/productsSlice';
 import { Breadcrumbs } from '../shared/components/Breadcrumbs';
-import { FiltersPanel } from '../shared/components/FiltersPanel';
+import { SortAndPaginationPanel } from './SortAndPagination/SortAndPagination';
 import { Pagination } from '../shared/components/Pagination';
 import { ProductsCategory } from '@/types/ProductsCategory';
 import { ProductsList } from './ProductsList';
@@ -66,6 +66,9 @@ export const ProductsPage = () => {
       <Breadcrumbs />
       <h1>{title}</h1>
       <p>{totalItems} models</p>
+      <SortAndPaginationPanel
+        products={Object.values(products[productsCategory])}
+      />
       <div style={{ marginTop: '25px', marginBottom: '25px' }}>
         <label>Items per page:</label>
         <select
@@ -77,11 +80,14 @@ export const ProductsPage = () => {
           <option value={16}>16</option>
         </select>
       </div>
-      <FiltersPanel />
 
+      <FiltersPanel />
       {filteredProducts.length > 0 ? (
         <>
-          <ProductsList products={paginatedProducts} category={productsCategory} />
+          <ProductsList
+            products={paginatedProducts}
+            category={productsCategory}
+           />
           <Pagination
             totalItems={filteredProducts.length}
             itemsPerPage={itemsPerPage}
