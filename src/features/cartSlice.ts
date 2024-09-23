@@ -69,7 +69,7 @@ export const getCartAmount = createSelector(
   (state: RootState) => state.cart.items,
   items => {
     let cartAmount = 0;
-    for (let id in items) {
+    for (const id in items) {
       cartAmount += items[id].amount;
     }
     return cartAmount;
@@ -80,7 +80,7 @@ export const getTotalPrice = createSelector(
   (state: RootState) => state.cart.items,
   items => {
     let totalPrice = 0;
-    for (let id in items) {
+    for (const id in items) {
       totalPrice += items[id].amount * items[id].price;
     }
     return totalPrice;

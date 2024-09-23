@@ -1,8 +1,15 @@
 {
-  "home": "Головна",
-  "phones": "Телефони",
-  "tablets": "Планшети",
-  "accessories": "Аксесуари",
+  "header": {
+    "home": "Головна",
+    "phones": "Телефони",
+    "tablets": "Планшети",
+    "accessories": "Аксесуари"
+  },
+  "category": {
+    "phones": "Телефони",
+    "tablets": "Планшети",
+    "accessories": "Аксесуари"
+  },
   "brand_new_models": "Нові моделі",
   "hot_prices": "Гарячі ціни",
   "back_to_top": "Назад до верху",
@@ -18,5 +25,15 @@
   "specs_capacity": "Ємність",
   "specs_ram": "Оперативна пам'ять",
   "product_image": "Зображення продукту",
-  "home__title": "Ласкаво просимо до магазину Nice Gadgets!"
+  "home__title": "Ласкаво просимо до магазину Nice Gadgets!",
+  "also_like": "Подивіться ще",
+  "popup_subscribe": {
+    "title": "Підпишіться на нашу розсилку",
+    "message": "Залишайтеся в курсі наших останніх новин та пропозицій.",
+    "emailPlaceholder": "Введіть свою електронну пошту",
+    "submitButton": "Підписатися",
+    "emptyEmailError": "Електронна пошта не може бути порожньою",
+    "invalidEmailError": "Будь ласка, введіть правильну електронну адресу",
+    "emailHint": "Приклад: {{example}}"
+  }
 }

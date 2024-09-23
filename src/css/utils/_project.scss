@@ -28,5 +28,9 @@ body {
     }
 }
 
+body.menu_open {
+    overflow: hidden;
+  }
+
 //========================= Responsive =========================//
 $responsiveType: 1; // 1 - responsive, 2 - breakpoints

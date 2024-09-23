@@ -2,11 +2,15 @@ import type { Action, ThunkAction } from '@reduxjs/toolkit';
 import { configureStore, createSelector } from '@reduxjs/toolkit';
 import productsReducer from '../features/productsSlice';
 import cartReducer from '../features/cartSlice';
+import aggregateReducer from '../features/aggregateSlice';
+import favouritesReducer from '../features/favouritesSlice';
 
 export const store = configureStore({
   reducer: {
+    aggregate: aggregateReducer,
     products: productsReducer,
     cart: cartReducer,
+    favourites: favouritesReducer,
   },
 });
 

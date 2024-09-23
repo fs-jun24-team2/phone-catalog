@@ -1,0 +1,41 @@
+@import '@/style.scss';
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: toRem(16);
+
+  button {
+    padding: toRem(8) toRem(16);
+    margin: 0 toRem(4);
+    background-color: $original_hover_and_bg;
+    color: $original_primary;
+    border: 1px solid $original_icons;
+    border-radius: toRem(4);
+    cursor: pointer;
+    transition: border $transitionDuration ease;
+
+    @media (hover: hover) and (pointer: fine) {
+        &:hover {
+            border: toRem(1) solid $original_primary;
+        }
+      }
+
+    &:disabled {
+      background-color: $original_disabled;
+      cursor: not-allowed;
+      border: none;
+    }
+
+    &.activePage {
+      background-color: $original_primary;
+      font-weight: bold;
+      color: $original_white;
+    }
+  }
+
+  .arrow {
+    padding: toRem(8) toRem(12);
+  }
+}

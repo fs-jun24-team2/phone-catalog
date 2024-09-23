@@ -3,31 +3,6 @@ body.dark_theme {
 
     .header {
         background-color: $dark_hover_and_bg_transperency;
-
-        .menu__link {
-
-            @media (hover: hover) and (pointer: fine) {
-                &:hover {
-                    color: $dark_white;
-                }
-            }
-        }
-
-        .theme_toggle {
-            border-color: $dark_secondary;
-            box-shadow: 1px 1px 5px $dark_secondary;
-        }
     }
-
-
-    .is_active {
-        color: $dark_white;
-        font-weight: $bold;
-        
-        &::after {
-            background-color: $dark_white;
-        }
-    }
-
     
 }
