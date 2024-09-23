@@ -10,6 +10,9 @@ import { ProductsCategory } from '@/types/ProductsCategory';
 import { ProductsList } from './ProductsList';
 import { VirtualAssistant } from '../VirtualAssistant';
 
+import original_notFound from '../../../public/images/original/notFound/original-notFound.png';
+import styles from './ProductsPage.module.scss';
+
 export const ProductsPage = () => {
   const [title, setTitle] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
@@ -53,7 +56,6 @@ export const ProductsPage = () => {
     product.name.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
-  // Then, paginate the filtered products
   const paginatedProducts = filteredProducts.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage,
@@ -76,13 +78,22 @@ export const ProductsPage = () => {
         </select>
       </div>
       <FiltersPanel />
-      <ProductsList products={paginatedProducts} category={productsCategory} />
-      <Pagination
-        totalItems={filteredProducts.length}
-        itemsPerPage={itemsPerPage}
-        currentPage={currentPage}
-        onPageChange={handlePageChange}
-      />
+
+      {filteredProducts.length > 0 ? (
+        <>
+          <ProductsList products={paginatedProducts} category={productsCategory} />
+          <Pagination
+            totalItems={filteredProducts.length}
+            itemsPerPage={itemsPerPage}
+            currentPage={currentPage}
+            onPageChange={handlePageChange}
+          />
+        </>
+      ) : (
+        <div className={styles.notfound}>
+          <img src={original_notFound} alt="Product not found" />
+        </div>
+      )}
       <VirtualAssistant onSearch={setSearchTerm} />
     </div>
   );
