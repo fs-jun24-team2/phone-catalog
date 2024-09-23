@@ -19,28 +19,28 @@ export const Breadcrumbs = () => {
         <div
           className={
             index === array.length - 1
-              ? styles.breadcrumbs__crumbActive
-              : styles.breadcrumbs__crumb
+              ? styles['breadcrumbs__crumb-active']
+              : styles['breadcrumbs__crumb']
           }
           key={crumb}
         >
           <Link to={currentLink}>{upFirstLetterOfTheWord(crumb)}</Link>
           {index < array.length - 1 && (
-            <span className={styles.separator}></span>
+            <span className={styles['separator']}></span>
           )}
         </div>
       );
     });
 
   return (
-    <div className={styles.breadcrumbs}>
-      <Link className={styles.breadcrumbs__crumb} to="/">
+    <div className={styles['breadcrumbs']}>
+      <Link className={styles['breadcrumbs__crumb']} to="/">
         <img
           className={styles.icon}
           src="images/original/breadcrumbs/home.svg"
         />
       </Link>
-      <span className={styles.separator}></span>
+      <span className={styles['separator']}></span>
       {crumbs}
     </div>
   );
