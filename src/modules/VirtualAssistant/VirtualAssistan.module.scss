@@ -1,0 +1,48 @@
+@import '@/style.scss';
+
+.virtual_assistant_icon {
+    position: fixed;
+    bottom: toRem(80);
+    right: toRem(20);
+    width: toRem(80);
+    height: toRem(80);
+    cursor: pointer;
+    z-index: 9999;
+  
+    animation: scale-animation 1.5s ease-in-out infinite;
+  
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  
+  @keyframes scale-animation {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+  }
+  
+  .virtual_assistant_search {
+    position: fixed;
+    bottom: toRem(170);
+    right: toRem(20);
+    width: toRem(300);
+    padding: toRem(10);
+    background-color: $original_hover_and_bg;
+    border: 1px solid $original_icons;
+    border-radius: toRem(8);
+    z-index: 9999;
+  }
+
+  .virtual_assistant_input {
+    width: 100%;
+    padding: toRem(10);
+    border-radius: toRem(5);
+    background-color: $original_hover_and_bg;
+    color: $original_primary;
+  }
+  

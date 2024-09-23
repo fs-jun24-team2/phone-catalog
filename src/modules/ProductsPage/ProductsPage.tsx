@@ -6,13 +6,13 @@ import { loadProductsAsync } from '@/features/productsSlice';
 import { Breadcrumbs } from '../shared/components/Breadcrumbs';
 import { FiltersPanel } from '../shared/components/FiltersPanel';
 import { Pagination } from '../shared/components/Pagination';
-
 import { ProductsCategory } from '@/types/ProductsCategory';
 import { ProductsList } from './ProductsList';
-import { scrollToTop } from '../shared/helpers/scrollToTop';
+import { VirtualAssistant } from '../VirtualAssistant';
 
 export const ProductsPage = () => {
   const [title, setTitle] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(8);
   const dispatch = useAppDispatch();
@@ -20,7 +20,7 @@ export const ProductsPage = () => {
   const location = useLocation();
   const productsCategory = location.pathname.slice(1) as ProductsCategory;
 
-  const productList = Object.values(products[productsCategory]);
+  const productList = Object.values(products[productsCategory] || {});
   const totalItems = productList.length;
 
   useEffect(() => {
@@ -35,9 +35,8 @@ export const ProductsPage = () => {
     if (!Object.keys(products[productsCategory]).length) {
       dispatch(loadProductsAsync(ProductsCategory[productsCategory]));
     }
-    scrollToTop();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location]);
+  }, [location, productsCategory, dispatch]);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -50,7 +49,12 @@ export const ProductsPage = () => {
     localStorage.setItem('currentPage', '1');
   };
 
-  const paginatedProducts = productList.slice(
+  const filteredProducts = productList.filter(product =>
+    product.name.toLowerCase().includes(searchTerm.toLowerCase()),
+  );
+
+  // Then, paginate the filtered products
+  const paginatedProducts = filteredProducts.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage,
   );
@@ -74,11 +78,12 @@ export const ProductsPage = () => {
       <FiltersPanel />
       <ProductsList products={paginatedProducts} category={productsCategory} />
       <Pagination
-        totalItems={totalItems}
+        totalItems={filteredProducts.length}
         itemsPerPage={itemsPerPage}
         currentPage={currentPage}
         onPageChange={handlePageChange}
       />
+      <VirtualAssistant onSearch={setSearchTerm} />
     </div>
   );
 };
