@@ -4,9 +4,7 @@ import { useLocation } from 'react-router-dom';
 
 import { loadProductsAsync } from '@/features/productsSlice';
 import { Breadcrumbs } from '../shared/components/Breadcrumbs';
-import { FiltersPanel } from '../shared/components/FiltersPanel';
-import { Pagination } from '../shared/components/Pagination';
-
+import { SortAndPaginationPanel } from './SortAndPagination/SortAndPagination';
 import { ProductsCategory } from '@/types/ProductsCategory';
 import { ProductsList } from './ProductsList';
 
@@ -23,20 +21,20 @@ export const ProductsPage = () => {
     if (!Object.keys(products[productsCategory]).length) {
       dispatch(loadProductsAsync(ProductsCategory[productsCategory]));
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location]);
+  }, [location, productsCategory, dispatch, products]);
 
   return (
     <div style={{ paddingTop: '100px' }}>
       <Breadcrumbs />
       <h1>{title}</h1>
       <p>{productAmount} models</p>
-      <FiltersPanel />
+      <SortAndPaginationPanel
+        products={Object.values(products[productsCategory])}
+      />
       <ProductsList
         products={products[productsCategory]}
         category={productsCategory}
       />
-      <Pagination />
     </div>
   );
 };
