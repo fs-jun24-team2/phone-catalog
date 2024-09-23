@@ -28,5 +28,7 @@
     "emptyEmailError": "Email cannot be empty",
     "invalidEmailError": "Please enter a valid email address",
     "emailHint": "Example: {{example}}"
-  }
+  },
+  "specs_resolution": "Resolution",
+  "specs_processor": "Processor"
 }

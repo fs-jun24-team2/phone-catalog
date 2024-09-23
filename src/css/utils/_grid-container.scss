@@ -2,17 +2,23 @@
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(4, 1fr);
-  padding: 0 toRem(16);
   column-gap: toRem(16);
   
   @media (min-width: 640px) {
     grid-template-columns: repeat(12, 1fr);
-    padding: 0 toRem(24);
+    
   }
 
   @media (min-width: 1200px) {
     grid-template-columns: repeat(24, toRem(32));
-    padding: 0;
+  }
+
+  &--main {
+    padding: 0 toRem(16);
+
+    @media (min-width: 640px) {
+      padding: 0 toRem(24);
+    }
   }
 
   > * {

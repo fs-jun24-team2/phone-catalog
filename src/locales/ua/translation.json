@@ -28,5 +28,7 @@
     "emptyEmailError": "Електронна пошта не може бути порожньою",
     "invalidEmailError": "Будь ласка, введіть правильну електронну адресу",
     "emailHint": "Приклад: {{example}}"
-  }
+  },
+  "specs_resolution": "Роздільна здатність",
+  "specs_processor": "Процесор"
 }

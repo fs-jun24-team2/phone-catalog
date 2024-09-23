@@ -1,7 +1,7 @@
 //@import '@/css/utils/functions';
 
 .style-h1{
-  font-weight: $bold;
+  font-weight: $extraBold;
   font-size: toRem(48);
   line-height: toRem(56);
   letter-spacing: -0.01em;
@@ -13,7 +13,7 @@
 }
 
 .style-h2{
-  font-weight: $bold;
+  font-weight: $extraBold;
   font-size: toRem(32);
   line-height: toRem(41);
   letter-spacing: -0.01em;
@@ -25,25 +25,25 @@
 }
 
 .style-h3{
-  font-weight: $bold;
+  font-weight: $extraBold;
   font-size: toRem(22);
   line-height: toRem(31);
 
   @media (max-width: 640px) {
-    font-weight: $semiBold;
+    font-weight: $bold;
     font-size: toRem(20);
     line-height: toRem(26);
   }
 }
 
 .style-h4{
-  font-weight: $semiBold;
+  font-weight: $bold;
   font-size: toRem(20);
   line-height: toRem(26);
 
   @media (max-width: 640px) {
     font-size: toRem(16);
-    line-height: toRem(0);
+    line-height: toRem(20);
   }
 }
 
@@ -61,7 +61,7 @@
 }
 
 .style-body-text {
-  font-weight: $regular;
+  font-weight: $medium;
   font-size: toRem(14);
   line-height: toRem(21);
 }

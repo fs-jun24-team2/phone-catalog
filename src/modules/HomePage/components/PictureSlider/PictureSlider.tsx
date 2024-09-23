@@ -7,28 +7,21 @@ import 'swiper/css';
 import 'swiper/css/effect-fade';
 import 'swiper/css/pagination';
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import cn from 'classnames';
 import { getBanners } from '@/utils/getBanners';
 import { PaginationOptions } from '../../../../../node_modules/swiper/types/modules/pagination';
-import { Banner } from '@/types/Banner';
 import { PictureSlide } from './PictureSlide/PictureSlide';
 
 export const PictureSlider: React.FC = () => {
   const [swiper, setSwiper] = useState<SwiperType | null>(null);
-  const [banners, setBanners] = useState<Banner[] | null>(null);
+  const banners = getBanners();
   const pagination: PaginationOptions = {
     clickable: true,
     renderBullet: function (_index: number, className: string) {
       return `<span class="${className} ${styles['picture-slider__swiper-pagination']}"></span>`;
     },
   };
-
-  useEffect(() => {
-    const fetchedBanners = getBanners();
-
-    setBanners(fetchedBanners);
-  }, []);
 
   return (
     <section className={cn('grid-container', styles['picture-slider'])}>
@@ -50,7 +43,7 @@ export const PictureSlider: React.FC = () => {
         autoHeight
         pagination={pagination}
         autoplay={{
-          delay: 2500,
+          delay: 5000,
           disableOnInteraction: false,
         }}
         loop

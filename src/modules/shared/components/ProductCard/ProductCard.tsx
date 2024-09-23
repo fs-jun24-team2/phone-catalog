@@ -1,19 +1,14 @@
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
-import cn from 'classnames';
-
 import styles from './ProductCard.module.scss';
 
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import { Product } from '@/types/Product';
 import { Specs } from '@/types/Specs';
 import { ProductsCategory } from '@/types/ProductsCategory';
 import { AggregateProduct } from '@/types/AggregateProduct';
-import { useAppDispatch } from '@/app/hooks';
-import { toggleAddToCart } from '@/features/cartSlice';
 import { formatValueWithUnit } from '@/utils/formatValueWithUnit';
-import { MainButton } from '../MainButton';
-import { hasCartProduct } from './helpers/hasCartProduct';
+import { AddToCard } from '../AddToCard/AddToCard';
+import { AddToFavourites } from '../AddToFavourites';
 
 type Props<T> = {
   product: T;
@@ -25,7 +20,6 @@ export const ProductCard = <T extends Product | AggregateProduct>({
   category,
 }: Props<T>) => {
   const { t } = useTranslation();
-
   const isAggregateProduct = (
     product: Product | AggregateProduct,
   ): product is AggregateProduct => {
@@ -64,18 +58,7 @@ export const ProductCard = <T extends Product | AggregateProduct>({
     },
   ];
 
-  const [isAddedToCart, setIsAddedToCart] = useState(hasCartProduct(id));
-  const [isAddedToFavourites, setIsAddedToFavourites] = useState(false);
-  const dispatch = useAppDispatch();
-
-  const buttonAddText = !isAddedToCart ? t('add_to_cart') : t('added');
-
-  const handleAddOnClick = (event: React.MouseEvent<HTMLElement>) => {
-    event.preventDefault();
-    const price = priceDiscount ? priceDiscount : priceRegular;
-    dispatch(toggleAddToCart({ id, category, price }));
-    setIsAddedToCart(prev => !prev);
-  };
+  const price = priceDiscount ? priceDiscount : priceRegular;
 
   return (
     <article key={id} className={styles['product-card']}>
@@ -116,19 +99,8 @@ export const ProductCard = <T extends Product | AggregateProduct>({
       </div>
 
       <div className={styles['product-card__button-container']}>
-        <MainButton
-          isAdded={isAddedToCart}
-          handleOnClick={handleAddOnClick}
-          buttonText={buttonAddText} // Use translation for button text
-        />
-
-        <button
-          className={cn(styles['product-card__btn-favourites'], {
-            [styles['product-card__btn-favourites--added']]:
-              isAddedToFavourites,
-          })}
-          onClick={() => setIsAddedToFavourites(prev => !prev)}
-        ></button>
+        <AddToCard id={id} price={price} category={category} />
+        <AddToFavourites />
       </div>
     </article>
   );
