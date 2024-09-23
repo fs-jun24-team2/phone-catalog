@@ -20,7 +20,7 @@ export const ProductsPage = () => {
   const location = useLocation();
   const productsCategory = location.pathname.slice(1) as ProductsCategory;
 
-  const productList = Object.values(products[productsCategory] || {});
+  const productList = Object.values(products[productsCategory]);
   const totalItems = productList.length;
 
   useEffect(() => {
@@ -36,7 +36,7 @@ export const ProductsPage = () => {
       dispatch(loadProductsAsync(ProductsCategory[productsCategory]));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location, productsCategory, dispatch]);
+  }, [location]);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
