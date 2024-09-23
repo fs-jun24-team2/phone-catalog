@@ -11,12 +11,13 @@ import dark_burger_close from '/images/dark/icons/dark_burger_close.svg';
 import dark_burger_open from '/images/dark/icons/dark_burger_open.svg';
 import { getCartAmount } from '@/features/cartSlice';
 import { useAppSelector } from '@/app/hooks';
+import { getFavouritesAmount } from '@/features/favouritesSlice';
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const cartCount = useAppSelector(getCartAmount);
-  const [favouritesCount, setFavouritesCount] = useState(0);
+  const favouritesCount = useAppSelector(getFavouritesAmount);
 
   const { i18n } = useTranslation();
 
@@ -37,11 +38,7 @@ export const Header = () => {
       setTheme(prefersDarkScheme);
     }
 
-    const savedFavouritesCount = localStorage.getItem('favouritesCount');
     if (savedTheme) setTheme(savedTheme === 'dark');
-    if (savedFavouritesCount) {
-      setFavouritesCount(Number(savedFavouritesCount));
-    }
   }, []);
 
   const changeLanguage = () => {

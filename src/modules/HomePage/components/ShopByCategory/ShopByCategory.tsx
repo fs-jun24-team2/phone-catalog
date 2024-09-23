@@ -1,7 +1,7 @@
 import { useAppSelector } from '@/app/hooks';
 import styles from './ShopByCategory.module.scss';
 import { selectProducts } from '@/features/productsSlice';
-import { getCategoriesData } from '../../helpers/getCategoriesData';
+import { useCategoriesData } from '../../hooks/useCategoriesData';
 import { Link } from 'react-router-dom';
 
 export const ShopByCategory = () => {
@@ -10,11 +10,11 @@ export const ShopByCategory = () => {
   const tabletsAmount = Object.values(products.tablets).length;
   const accessoriesAmount = Object.values(products.accessories).length;
 
-  const categories = getCategoriesData(
+  const categories = useCategoriesData({
     phoneAmount,
     tabletsAmount,
     accessoriesAmount,
-  );
+  });
 
   return (
     <>

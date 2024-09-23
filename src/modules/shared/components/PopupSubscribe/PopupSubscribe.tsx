@@ -4,17 +4,19 @@ import styles from './PopupSubscribe.module.scss';
 import { SUBSCRIBE_DELAY } from '@/constants';
 
 export const PopupSubscribe: React.FC = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('translation', { keyPrefix: 'popup_subscribe' });
   const [isVisible, setIsVisible] = useState(false);
   const [email, setEmail] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [isValid, setIsValid] = useState(true); // Track email validity
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, SUBSCRIBE_DELAY);
-
+    let timer: number | undefined;
+    if (!localStorage.getItem('subscribedEmail')) {
+      timer = window.setTimeout(() => {
+        setIsVisible(true);
+      }, SUBSCRIBE_DELAY);
+    }
     return () => clearTimeout(timer);
   }, []);
 
@@ -31,13 +33,13 @@ export const PopupSubscribe: React.FC = () => {
     e.preventDefault();
 
     if (!email) {
-      setErrorMessage(t('popup_subscribe.emptyEmailError'));
+      setErrorMessage(t('emptyEmailError'));
       setIsValid(false);
       return;
     }
 
     if (!validateEmail(email)) {
-      setErrorMessage(t('popup_subscribe.invalidEmailError'));
+      setErrorMessage(t('invalidEmailError'));
       setIsValid(false);
       return;
     }
@@ -62,12 +64,12 @@ export const PopupSubscribe: React.FC = () => {
         <button className={styles.closeButton} onClick={handleClose}>
           &times;
         </button>
-        <h2 className={styles.title}>{t('popup_subscribe.title')}</h2>
-        <p>{t('popup_subscribe.message')}</p>
+        <h2 className={styles.title}>{t('title')}</h2>
+        <p>{t('message')}</p>
         <form onSubmit={handleEmailSubmit}>
           <input
             type="text"
-            placeholder={t('popup_subscribe.emailPlaceholder')}
+            placeholder={t('emailPlaceholder')}
             value={email}
             onChange={handleEmailChange}
             className={`${styles.emailInput} ${!isValid ? styles.error : ''}`}
@@ -76,9 +78,9 @@ export const PopupSubscribe: React.FC = () => {
             <p className={styles.errorMessage}>{errorMessage}</p>
           )}
           <p className={styles.hintMessage}>
-            {t('popup_subscribe.emailHint', { example: 'user@example.com' })}
+            {t('emailHint', { example: 'user@example.com' })}
           </p>
-          <button type="submit">{t('popup_subscribe.submitButton')}</button>
+          <button type="submit">{t('submitButton')}</button>
         </form>
       </div>
     </div>

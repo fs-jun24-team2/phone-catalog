@@ -34,35 +34,35 @@ export const HomePage = () => {
 
   return (
     <>
-      {/* </div><div className={cn('grid-container')}> */}
-      <div style={{ paddingTop: '100px' }}></div>
-      {/* hidden */}
-      <h1
-        style={{ paddingTop: '100px' }}
-        className={cn('style-h1', styles['home-page__title'])}
-      >
-        {t('home__title')}
-      </h1>
+      <div className={cn('grid-container')}>
+        <div style={{ paddingTop: '100px' }}></div>
+        {/* hidden */}
+        <h1
+          style={{ paddingTop: '100px' }}
+          className={cn('style-h1', styles['home-page__title'])}
+        >
+          {t('home__title')}
+        </h1>
 
-      {/* <div className={styles['home-page__content-container']}> */}
-      {/* Banner */}
-      <PictureSlider />
+        {/* <div className={styles['home-page__content-container']}> */}
+        {/* Banner */}
+        <PictureSlider />
 
-      {/* Section brand new models */}
-      <ProductsSlider<AggregateProduct>
-        title={t('brand_new_models')}
-        products={newBrandProduct}
-      />
+        {/* Section brand new models */}
+        <ProductsSlider<AggregateProduct>
+          title={t('brand_new_models')}
+          products={newBrandProduct}
+        />
 
-      {/* Shop by category block with links to /phones, /tablets, and /accessories. */}
-      <ShopByCategory />
+        {/* Shop by category block with links to /phones, /tablets, and /accessories. */}
+        <ShopByCategory />
 
-      {/* Section hot prices */}
-      <ProductsSlider<AggregateProduct>
-        title={t('hot_prices')}
-        products={hotPriceProducts}
-      />
-      {/* </div> */}
+        {/* Section hot prices */}
+        <ProductsSlider<AggregateProduct>
+          title={t('hot_prices')}
+          products={hotPriceProducts}
+        />
+      </div>
     </>
   );
 };

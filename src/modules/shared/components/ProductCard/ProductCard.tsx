@@ -6,7 +6,7 @@ import cn from 'classnames';
 import styles from './ProductCard.module.scss';
 
 import { Product } from '@/types/Product';
-import { Specs } from '@/types/Specs';
+
 import { ProductsCategory } from '@/types/ProductsCategory';
 import { AggregateProduct } from '@/types/AggregateProduct';
 import { useAppDispatch } from '@/app/hooks';
@@ -14,6 +14,11 @@ import { toggleAddToCart } from '@/features/cartSlice';
 import { formatValueWithUnit } from '@/utils/formatValueWithUnit';
 import { MainButton } from '../MainButton';
 import { hasCartProduct } from './helpers/hasCartProduct';
+
+import { isAggregateProduct } from '../../helpers/isAggregateProduct';
+import { useSpecs } from './hooks/useSpecs';
+import { toggleFavourite } from '@/features/favouritesSlice';
+import { hasFavouritesProduct } from './helpers/hasFavouritesProduct';
 
 type Props<T> = {
   product: T;
@@ -25,12 +30,6 @@ export const ProductCard = <T extends Product | AggregateProduct>({
   category,
 }: Props<T>) => {
   const { t } = useTranslation();
-
-  const isAggregateProduct = (
-    product: Product | AggregateProduct,
-  ): product is AggregateProduct => {
-    return 'itemId' in product && typeof product.itemId === 'string';
-  };
 
   const { id, name, priceRegular, priceDiscount, capacity, screen, ram } =
     isAggregateProduct(product)
@@ -49,23 +48,12 @@ export const ProductCard = <T extends Product | AggregateProduct>({
     ? product.image
     : product.images?.[0];
 
-  const specs = [
-    {
-      name: t(Specs.Screen),
-      value: screen,
-    },
-    {
-      name: t(Specs.Capacity),
-      value: capacity,
-    },
-    {
-      name: t(Specs.RAM),
-      value: ram,
-    },
-  ];
+  const specs = useSpecs({ screen, capacity, ram });
 
   const [isAddedToCart, setIsAddedToCart] = useState(hasCartProduct(id));
-  const [isAddedToFavourites, setIsAddedToFavourites] = useState(false);
+  const [isAddedToFavourites, setIsAddedToFavourites] = useState(
+    hasFavouritesProduct(id),
+  );
   const dispatch = useAppDispatch();
 
   const buttonAddText = !isAddedToCart ? t('add_to_cart') : t('added');
@@ -75,6 +63,11 @@ export const ProductCard = <T extends Product | AggregateProduct>({
     const price = priceDiscount ? priceDiscount : priceRegular;
     dispatch(toggleAddToCart({ id, category, price }));
     setIsAddedToCart(prev => !prev);
+  };
+
+  const handleAddFavourites = () => {
+    dispatch(toggleFavourite({ product, category }));
+    setIsAddedToFavourites(prev => !prev);
   };
 
   return (
@@ -119,7 +112,7 @@ export const ProductCard = <T extends Product | AggregateProduct>({
         <MainButton
           isAdded={isAddedToCart}
           handleOnClick={handleAddOnClick}
-          buttonText={buttonAddText} // Use translation for button text
+          buttonText={buttonAddText}
         />
 
         <button
@@ -127,7 +120,7 @@ export const ProductCard = <T extends Product | AggregateProduct>({
             [styles['product-card__btn-favourites--added']]:
               isAddedToFavourites,
           })}
-          onClick={() => setIsAddedToFavourites(prev => !prev)}
+          onClick={handleAddFavourites}
         ></button>
       </div>
     </article>
