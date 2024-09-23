@@ -45,7 +45,7 @@ export const ProductDetailsPage = () => {
       <button onClick={handleBack}>Back</button>
       <h1>{product?.name}</h1>
       {/* <Gallery /> */}
-      {/* <ProductCharacteristics /> */}
+      {/* <ProductCharacteristics colors={colors} capacities={capacities} id={id} /> */}
       <About />
       <AlsoLike />
     </div>
