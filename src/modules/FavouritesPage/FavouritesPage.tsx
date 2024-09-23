@@ -1,7 +1,7 @@
 // import styles from './FavouritesPage.module.scss';
 
 import { Breadcrumbs } from '../shared/components/Breadcrumbs';
-import { Pagination } from '../shared/components/Pagination';
+// import { Pagination } from '../shared/components/Pagination';
 // import { ProductsList } from '../ProductsPage/ProductsList';
 
 export const FavouritesPage = () => {
@@ -13,7 +13,7 @@ export const FavouritesPage = () => {
       {/* <ProductsList products={{}} /> */}
 
       {/* Pagination is questionable */}
-      <Pagination />
+      {/* <Pagination /> */}
     </>
   );
 };
