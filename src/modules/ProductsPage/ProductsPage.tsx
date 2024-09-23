@@ -4,13 +4,13 @@ import { useLocation } from 'react-router-dom';
 
 import { loadProductsAsync } from '@/features/productsSlice';
 import { Breadcrumbs } from '../shared/components/Breadcrumbs';
-//import { SortAndPaginationPanel } from './SortAndPagination/SortAndPagination';
+import { SortAndPaginationPanel } from './SortAndPagination/SortAndPagination';
 import { Pagination } from '../shared/components/Pagination';
 import { ProductsCategory } from '@/types/ProductsCategory';
 import { ProductsList } from './ProductsList';
 import { VirtualAssistant } from '../VirtualAssistant';
 
-import original_notFound from '../../../public/images/original/notFound/original-notFound.png';
+import original_notFound from '/images/original/notFound/original-notFound.png';
 import styles from './ProductsPage.module.scss';
 
 export const ProductsPage = () => {
@@ -66,9 +66,9 @@ export const ProductsPage = () => {
       <Breadcrumbs />
       <h1>{title}</h1>
       <p>{totalItems} models</p>
-      {/* <SortAndPaginationPanel
+      <SortAndPaginationPanel
         products={Object.values(products[productsCategory])}
-      /> */}
+      />
       <div style={{ marginTop: '25px', marginBottom: '25px' }}>
         <label>Items per page:</label>
         <select
