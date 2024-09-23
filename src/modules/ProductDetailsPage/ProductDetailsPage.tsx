@@ -3,7 +3,7 @@ import { Breadcrumbs } from '../shared/components/Breadcrumbs';
 import { About } from './About';
 import { AlsoLike } from './AlsoLike';
 //import { Gallery } from './Gallery';
-import { ProductCharacteristics } from './ProductCharacteristics';
+//import { ProductCharacteristics } from './ProductCharacteristics';
 import { useEffect, useState } from 'react';
 import { getProduct } from '@/api/products';
 import { Product } from '@/types/Product';
@@ -45,7 +45,7 @@ export const ProductDetailsPage = () => {
       <button onClick={handleBack}>Back</button>
       <h1>{product?.name}</h1>
       {/* <Gallery /> */}
-      <ProductCharacteristics />
+      {/* <ProductCharacteristics /> */}
       <About />
       <AlsoLike />
     </div>
