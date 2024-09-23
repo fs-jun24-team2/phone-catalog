@@ -1,8 +1,15 @@
 {
-  "home": "Home",
-  "phones": "Phones",
-  "tablets": "Tablets",
-  "accessories": "Accessories",
+  "header": {
+    "home": "Home",
+    "phones": "Phones",
+    "tablets": "Tablets",
+    "accessories": "Accessories"
+  },
+  "category": {
+    "phones": "Mobile phones",
+    "tablets": "Tablets",
+    "accessories": "Accessories"
+  },
   "brand_new_models": "Brand new models",
   "hot_prices": "Hot prices",
   "back_to_top": "Back to top",
@@ -19,5 +26,14 @@
   "specs_ram": "RAM",
   "product_image": "Product image",
   "home__title": "Welcome to Nice Gadgets store!",
-  "also_like": "You may also like"
+  "also_like": "You may also like",
+  "popup_subscribe": {
+    "title": "Subscribe to our Newsletter",
+    "message": "Stay updated with our latest news and offers.",
+    "emailPlaceholder": "Enter your email",
+    "submitButton": "Subscribe",
+    "emptyEmailError": "Email cannot be empty",
+    "invalidEmailError": "Please enter a valid email address",
+    "emailHint": "Example: {{example}}"
+  }
 }

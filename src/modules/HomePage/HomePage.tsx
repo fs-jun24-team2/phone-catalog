@@ -12,31 +12,39 @@ import {
   loadAllProductsAsync,
 } from '@/features/aggregateSlice';
 import { AggregateProduct } from '@/types/AggregateProduct';
+import { loadProductsAsync, selectProducts } from '@/features/productsSlice';
+import { ProductsCategory } from '@/types/ProductsCategory';
 
 export const HomePage = () => {
   const { t } = useTranslation();
   const hotPriceProducts = useAppSelector(getHotPriceProduct);
   const newBrandProduct = useAppSelector(getNewBrandProduct);
+  const products = useAppSelector(selectProducts);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(loadAllProductsAsync());
+    Object.values(ProductsCategory).forEach(category => {
+      if (!Object.keys(products[category]).length) {
+        dispatch(loadProductsAsync(category));
+      }
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <>
-      {/* </div><div className={cn('grid-container')}> */}
-      <div style={{ paddingTop: '100px' }}></div>
-      {/* hidden */}
-      <h1
-        style={{ paddingTop: '100px' }}
-        className={cn('style-h1', styles['home-page__title'])}
-      >
-        {t('home__title')}
-      </h1>
+      <div className={cn('grid-container')}>
+        <div style={{ paddingTop: '100px' }}></div>
+        {/* hidden */}
+        <h1
+          style={{ paddingTop: '100px' }}
+          className={cn('style-h1', styles['home-page__title'])}
+        >
+          {t('home__title')}
+        </h1>
 
-      <div className={styles['home-page__content-container']}>
+        {/* <div className={styles['home-page__content-container']}> */}
         {/* Banner */}
         <PictureSlider />
 

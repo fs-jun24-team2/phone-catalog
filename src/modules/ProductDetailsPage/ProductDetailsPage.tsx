@@ -5,13 +5,14 @@ import { About } from './About';
 import { TechSpecs } from './TechSpecs';
 import { AlsoLike } from './AlsoLike';
 import styles from './ProductDetailsPage.module.scss';
-//import { Gallery } from './Gallery';
+import { Gallery } from './Gallery';
 import { ProductCharacteristics } from './ProductCharacteristics';
 import { useEffect, useState } from 'react';
 import { getProduct } from '@/api/products';
 import { Product } from '@/types/Product';
 import { ProductsCategory } from '@/types/ProductsCategory';
 import { ProductNotFoundPage } from './ProductNotFoundPage';
+import { scrollToTop } from '../shared/helpers/scrollToTop';
 
 export const ProductDetailsPage = () => {
   const [product, setProduct] = useState<Product | null>(null);
@@ -36,8 +37,9 @@ export const ProductDetailsPage = () => {
         }
       })
       .catch(() => setIsError(true));
+    scrollToTop();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
+  }, [pathname, id]);
 
   if (isError) {
     return <ProductNotFoundPage />;
@@ -52,13 +54,13 @@ export const ProductDetailsPage = () => {
       <Breadcrumbs />
       <button onClick={handleBack}>Back</button>
       <h1>{product.name}</h1>
-      {/* <Gallery /> */}
+      <Gallery images={product.images} />
       <ProductCharacteristics />
       <div className={cn('grid-container', [styles.about])}>
         <About description={product.description} />
         <TechSpecs specs={product} />
       </div>
-      <AlsoLike category={category} />
+      <AlsoLike category={category} currentId={product.id} />
     </div>
   );
 };

@@ -1,15 +1,6 @@
-@import "../../../../../style.scss";
+@import "@/style.scss";
 
 .menu {
-  @media (max-width: 1200px) {
-
-    .menu {
-        &__list {
-            column-gap: toRem(32);
-        }
-    }
-
-}
 }
 
 .menu__list {
@@ -17,7 +8,7 @@
   flex-wrap: wrap;
   column-gap: toRem(48);
   align-items: center;
-  transition: all 0.3s ease-in-out;
+  transition: all $transitionDuration ease-in-out;
 }
 
 .menu__item {
@@ -44,9 +35,9 @@
   }
 }
 
-.menu__open {
-  display: block;
-}
+// .menu__open {
+//   display: block;
+// }
 
 .is_active {
   position: relative;
@@ -77,13 +68,18 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 800px) {
   .menu__list {
-    column-gap: toRem(14);
+    column-gap: toRem(12);
+  }
+  .menu__link {
+    font-size: toRem(12);
   }
 }
 
 @media (max-width: 640px) {
+
+
   .menu__list {
     display: none;
   }
@@ -91,18 +87,47 @@
   .menu__open .menu__list {
     display: flex;
     flex-direction: column;
-    position: absolute;
+    position: fixed;
+    top: toRem(48);
     left: 0;
     width: 100%;
-    background-color: $original_hover_and_bg_transperency;
-    z-index: 100;
-    top: toRem(48);
-    height: 100vh;
+    background-color: $original_hover_and_bg;
+    min-height: 100%;
+    padding-top: toRem(56);
+
+    .menu__link {
+      font-size: toRem(18);
+    }
+
   }
 
   .menu__item {
     &:not(:last-child) {
       margin-bottom: toRem(24);
+    }
+  }
+}
+
+// ==== DARK ===
+
+.dark {
+  .menu__list{
+    background-color: $dark_black;
+  }
+  .menu__link {
+    color: $dark_secondary;
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        color: $dark_white;
+      }
+    }
+  }
+
+  .is_active {
+    color: $dark_white;
+    &::after {
+      background-color: $dark_white;
     }
   }
 }

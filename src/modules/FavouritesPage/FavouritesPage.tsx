@@ -1,19 +1,22 @@
-// import styles from './FavouritesPage.module.scss';
+import cn from 'classnames';
 
+import { useAppSelector } from '@/app/hooks';
 import { Breadcrumbs } from '../shared/components/Breadcrumbs';
-import { Pagination } from '../shared/components/Pagination';
-// import { ProductsList } from '../ProductsPage/ProductsList';
+
+import { selectFavourites } from '@/features/favouritesSlice';
+import { FavouritesList } from './components/FavouritesList';
 
 export const FavouritesPage = () => {
+  const items = useAppSelector(selectFavourites);
   return (
     <>
-      <Breadcrumbs />
-      <h1>Favourites</h1>
-      <p>5 items</p>
-      {/* <ProductsList products={{}} /> */}
-
-      {/* Pagination is questionable */}
-      <Pagination />
+      <div className={cn('grid-container')}>
+        <div style={{ paddingTop: '100px' }}></div>
+        <Breadcrumbs />
+        <h1>Favourites</h1>
+        <p>{items.length} items</p>
+        <FavouritesList items={items} />
+      </div>
     </>
   );
 };

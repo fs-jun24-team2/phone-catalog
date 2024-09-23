@@ -9,9 +9,10 @@ import { PRODUCT_SLIDER_NUM } from '@/constants';
 
 type Props = {
   category: ProductsCategory;
+  currentId: string;
 };
 
-export const AlsoLike: React.FC<Props> = ({ category }) => {
+export const AlsoLike: React.FC<Props> = ({ category, currentId }) => {
   const { t } = useTranslation();
   const [products, setProducts] = useState<Product[]>([]);
 
@@ -20,11 +21,18 @@ export const AlsoLike: React.FC<Props> = ({ category }) => {
       const randomProducts = getRandomProducts(
         productsFromServer,
         PRODUCT_SLIDER_NUM,
+        currentId,
       );
       setProducts(randomProducts);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [currentId]);
 
-  return <ProductsSlider<Product> title={t('also_like')} products={products} />;
+  return (
+    <ProductsSlider<Product>
+      title={t('also_like')}
+      products={products}
+      category={category}
+    />
+  );
 };

@@ -1,4 +1,4 @@
-@import "../../../../../style.scss";
+@import "@/style.scss";
 
 .theme_language_toggle {
   display: flex;
@@ -6,20 +6,20 @@
 .theme_toggle {
   cursor: pointer;
   display: flex;
-  margin-right: toRem(10);
+  margin-right: toRem(14);
   border: 1px solid $original_primary;
   border-radius: 50%;
   overflow: hidden;
   justify-content: center;
   align-items: center;
   box-shadow: 1px 1px 5px $original_primary;
-  width: toRem(20);
-  height: toRem(20);
+  width: toRem(24);
+  height: toRem(24);
   transition: all $transitionDuration ease;
 
   .sunMoon {
-    width: toRem(12);
-    height: toRem(12);
+    width: toRem(14);
+    height: toRem(14);
   }
 
   .flags {
@@ -34,7 +34,11 @@
     }
   }
 
-  @media (max-width: 640px) {
-    display: none;
+}
+
+.dark {
+  .theme_toggle {
+    border: 1px solid $dark_secondary;
+    box-shadow: 1px 1px 5px $dark_secondary;
   }
 }

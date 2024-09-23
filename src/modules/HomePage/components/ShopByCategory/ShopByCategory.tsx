@@ -1,32 +1,20 @@
 import { useAppSelector } from '@/app/hooks';
 import styles from './ShopByCategory.module.scss';
+import { selectProducts } from '@/features/productsSlice';
+import { useCategoriesData } from '../../hooks/useCategoriesData';
+import { Link } from 'react-router-dom';
 
 export const ShopByCategory = () => {
-  const products = useAppSelector(state => state.products);
+  const products = useAppSelector(selectProducts);
   const phoneAmount = Object.keys(products.phones).length;
   const tabletsAmount = Object.values(products.tablets).length;
   const accessoriesAmount = Object.values(products.accessories).length;
 
-  const categories = [
-    {
-      img: 'img/category-phones.png',
-      title: 'Mobile phones',
-      amount: phoneAmount,
-      styleBg: 'mobiles',
-    },
-    {
-      img: 'img/category-tablets.png',
-      title: 'Tablets',
-      amount: tabletsAmount,
-      styleBg: 'tablets',
-    },
-    {
-      img: 'img/category-accessories.png',
-      title: 'Accessories',
-      amount: accessoriesAmount,
-      styleBg: 'accessories',
-    },
-  ];
+  const categories = useCategoriesData({
+    phoneAmount,
+    tabletsAmount,
+    accessoriesAmount,
+  });
 
   return (
     <>
@@ -37,8 +25,9 @@ export const ShopByCategory = () => {
       <section className={styles['category']}>
         {categories.map((category, ind) => (
           <div key={ind}>
-            <img src={category.img} className={styles['category__picture']} />
-
+            <Link to={category.path}>
+              <img src={category.img} className={styles['category__picture']} />
+            </Link>
             <div
               className={`${styles['style-h4']} ${styles['category__title']} `}
             >
