@@ -22,20 +22,23 @@ export const ShopByCategory = () => {
         Shop by category
       </h2>
 
-      <section className={styles['category']}>
+      <section className={styles['all-categories']}>
         {categories.map((category, ind) => (
-          <div key={ind}>
+          <div className={styles['category']} key={ind}>
             <Link to={category.path}>
-              <img src={category.img} className={styles['category__picture']} />
+              <img
+                src={category.img}
+                className={styles['all-categories__picture']}
+              />
+              <div
+                className={`${styles['style-h4']} ${styles['all-categories__title']} `}
+              >
+                {category.title}
+              </div>
             </Link>
-            <div
-              className={`${styles['style-h4']} ${styles['category__title']} `}
-            >
-              {category.title}
-            </div>
 
             <div
-              className={`${styles['body-text']} ${styles['category__amount']} `}
+              className={`${styles['body-text']} ${styles['all-categories__amount']} `}
             >
               {category.amount} models
             </div>
