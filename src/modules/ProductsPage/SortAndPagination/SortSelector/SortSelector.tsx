@@ -4,7 +4,7 @@ import Select, { components } from 'react-select';
 import styles from './SortSelector.module.scss';
 
 // Імпорт іконок
-import downArrow from '/public/images/original/icons/original_down.svg';
+import downArrow from '/images/original/icons/original_down.svg';
 import upArrow from '/images/original/icons/original_to-up.svg';
 
 interface SortSelectorProps {
