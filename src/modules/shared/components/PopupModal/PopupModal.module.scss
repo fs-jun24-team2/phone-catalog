@@ -1,0 +1,73 @@
+@import '@/style.scss';
+
+.popupOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $dark_hover_and_bg_popup;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.popupContent {
+  background-color: $original_hover_and_bg;
+  padding: toRem(30);
+  border-radius: toRem(12);
+  max-width: toRem(350);
+  width: 90%;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 toRem(10) toRem(25) $dark_hover_and_bg_transperency;
+}
+
+.popupMessage {
+  font-size: toRem(16);
+  color: $original_secondary;
+  margin-bottom: toRem(30);
+}
+
+.popupActions {
+  display: flex;
+  justify-content: space-between;
+  gap: toRem(15);
+}
+
+.popupButton {
+  padding: toRem(10) toRem(20);
+  background-color: $dark_hover_and_bg_transperency;
+  color: $original_white;
+  border: none;
+  border-radius: toRem(5);
+  cursor: pointer;
+  font-weight: $bold;
+  transition: background-color $transitionDuration ease;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background-color: $dark_black;
+    }
+  }
+
+
+  &.cancel {
+    background-color: $original_secondary;
+    &:hover {
+      background-color: $dark_black;
+    }
+  }
+}
+
+.closeIcon {
+  position: absolute;
+  top: toRem(15);
+  right: toRem(15);
+  font-size: toRem(24);
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: $original_primary;
+}
