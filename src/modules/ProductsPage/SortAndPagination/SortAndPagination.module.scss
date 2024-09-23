@@ -1,0 +1,40 @@
+@import "@/style.scss";
+
+.selectors {
+    margin-bottom: 24px;
+    &__sort{
+        grid-column: 1 / 3;
+
+        @media (min-width: 640px) {
+            grid-column: 1 / 5;
+        }
+        @media (min-width: 800px) {
+            grid-column: 1 / 4;
+        }
+        @media (min-width: 960px) {
+            grid-column: 1 / 4;
+        }
+        @media (min-width: 1200px) {
+            grid-column: 1 / 5;
+        }
+    }
+
+    &__pagination{
+        grid-column: 3 / 5;
+        @media (min-width: 640px) {
+        grid-column: 5 / 8;
+      }    
+        @media (min-width: 800px) {
+        grid-column: 4 / 6;
+      }
+      @media (min-width: 960px) {
+        grid-column: 4 / 6;
+    }
+        @media (min-width: 1200px) {
+        grid-column: 5 / 8;
+      }    
+    }
+
+
+
+}
