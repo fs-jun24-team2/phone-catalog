@@ -14,6 +14,7 @@ import { Product } from '@/types/Product';
 import { ProductsCategory } from '@/types/ProductsCategory';
 import { ProductNotFoundPage } from './ProductNotFoundPage';
 import { scrollToTop } from '../shared/helpers/scrollToTop';
+import { ProductId } from './ProductCharacteristics/ProductId';
 
 export const ProductDetailsPage = () => {
   const [product, setProduct] = useState<Product | null>(null);
@@ -80,6 +81,7 @@ export const ProductDetailsPage = () => {
       >
         <Gallery images={product.images} />
         <ProductCharacteristics product={product} category={category} />
+        <ProductId id={product.id} />
       </div>
 
       <div className={cn('grid-container', styles['about'])}>

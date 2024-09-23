@@ -3,10 +3,9 @@
   justify-content: center;
   grid-template-columns: repeat(4, 1fr);
   column-gap: toRem(16);
-  
+
   @media (min-width: 640px) {
     grid-template-columns: repeat(12, 1fr);
-    
   }
 
   @media (min-width: 1200px) {
@@ -25,6 +24,7 @@
     grid-column: 1 / -1;
   }
 }
+
 
 // Example
 // 

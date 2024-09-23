@@ -3,12 +3,13 @@ import styles from './ProductCard.module.scss';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Product } from '@/types/Product';
-import { Specs } from '@/types/Specs';
+
 import { ProductsCategory } from '@/types/ProductsCategory';
 import { AggregateProduct } from '@/types/AggregateProduct';
 import { formatValueWithUnit } from '@/utils/formatValueWithUnit';
 import { AddToCard } from '../AddToCard/AddToCard';
 import { AddToFavourites } from '../AddToFavourites';
+import { useSpecs } from './hooks/useSpecs';
 
 type Props<T> = {
   product: T;
@@ -43,20 +44,7 @@ export const ProductCard = <T extends Product | AggregateProduct>({
     ? product.image
     : product.images?.[0];
 
-  const specs = [
-    {
-      name: t(Specs.Screen),
-      value: screen,
-    },
-    {
-      name: t(Specs.Capacity),
-      value: capacity,
-    },
-    {
-      name: t(Specs.RAM),
-      value: ram,
-    },
-  ];
+  const specs = useSpecs({ screen, capacity, ram });
 
   const price = priceDiscount ? priceDiscount : priceRegular;
 

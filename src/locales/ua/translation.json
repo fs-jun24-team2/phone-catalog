@@ -1,8 +1,15 @@
 {
-  "home": "Головна",
-  "phones": "Телефони",
-  "tablets": "Планшети",
-  "accessories": "Аксесуари",
+  "header": {
+    "home": "Головна",
+    "phones": "Телефони",
+    "tablets": "Планшети",
+    "accessories": "Аксесуари"
+  },
+  "category": {
+    "phones": "Телефони",
+    "tablets": "Планшети",
+    "accessories": "Аксесуари"
+  },
   "brand_new_models": "Нові моделі",
   "hot_prices": "Гарячі ціни",
   "back_to_top": "Назад до верху",
@@ -30,5 +37,7 @@
     "emailHint": "Приклад: {{example}}"
   },
   "specs_resolution": "Роздільна здатність",
-  "specs_processor": "Процесор"
+  "specs_processor": "Процесор",
+  "available_colors": "Доступні кольори",
+  "select_capacity": "Виберіть ємність"
 }

@@ -7,6 +7,8 @@ import { formatValueWithUnit } from '@/utils/formatValueWithUnit';
 import { ProductsCategory } from '@/types/ProductsCategory';
 import { AddToCard } from '@/modules/shared/components/AddToCard/AddToCard';
 import { AddToFavourites } from '@/modules/shared/components/AddToFavourites';
+import { CapacityOptions } from './CapacityOptions';
+import { ColorOptions } from './СolorOptions';
 
 type Props<T> = {
   product: T;
@@ -32,6 +34,8 @@ export const ProductCharacteristics = <T extends Product | AggregateProduct>({
     processor,
     screen,
     ram,
+    colorsAvailable,
+    capacityAvailable,
   } = isAggregateProduct(product)
     ? {
         id: product.itemId,
@@ -41,6 +45,8 @@ export const ProductCharacteristics = <T extends Product | AggregateProduct>({
         ram: product.ram,
         resolution: '',
         processor: '',
+        colorsAvailable: [product.color],
+        capacityAvailable: [product.capacity],
       }
     : product;
 
@@ -67,7 +73,15 @@ export const ProductCharacteristics = <T extends Product | AggregateProduct>({
 
   return (
     <div>
-      <div className={styles['product-charact__devider']}></div>
+      <div className={styles['product-charact__options']}>
+        <ColorOptions colors={colorsAvailable} id={id} />
+
+        <div className={styles['product-charact__devider']}></div>
+
+        <CapacityOptions capacities={capacityAvailable} />
+
+        <div className={styles['product-charact__devider']}></div>
+      </div>
 
       <div className={styles['product-charact__prices-container']}>
         <p className={styles['product-charact__price-discount']}>

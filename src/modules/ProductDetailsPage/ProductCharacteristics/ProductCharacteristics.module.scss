@@ -4,15 +4,17 @@
   display: flex;
   flex-direction: column;
 
+  &__options {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(24);
+    margin-bottom: toRem(32);
+  }
+
   &__devider {
-    margin-bottom: toRem(24);
     width: 100%;
     height: toRem(1);
     background-color: $original_elements;
-
-    @media (min-width: $tablet) {
-      margin-bottom: toRem(32);
-    }
   }
 
   &__prices-container {

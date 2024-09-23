@@ -1,10 +1,6 @@
 import { AggregateProduct } from '@/types/AggregateProduct';
 import { Product } from '@/types/Product';
 
-type Props<P> = {
-  product: P;
-};
-
 type ReturnProps = {
   id: string;
   name: string;
@@ -16,9 +12,9 @@ type ReturnProps = {
   ram: string;
 };
 
-export const getProductData = <P extends Product | AggregateProduct>({
-  product,
-}: Props<P>): ReturnProps => {
+export const getProductData = <T extends Product | AggregateProduct>(
+  product: T,
+): ReturnProps => {
   const data = isAggregateProduct(product)
     ? {
         id: product.itemId,
