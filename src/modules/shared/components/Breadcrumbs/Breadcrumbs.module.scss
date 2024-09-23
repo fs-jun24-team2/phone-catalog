@@ -4,16 +4,17 @@
 .breadcrumbs{
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   color: $original_primary;
 
   font-size: toRem(12);
   font-weight: $semiBold;
 
-  &crumb{
+  &__crumb{
     display: contents;
   }
 
-  &crumbActive{
+  &__crumb-active{
     color: $original_secondary;
   }
 }
