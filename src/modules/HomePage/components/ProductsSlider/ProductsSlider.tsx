@@ -22,12 +22,14 @@ export const ProductsSlider = <T extends Product | AggregateProduct>({
   category,
 }: Props<T>) => {
   const [swiper, setSwiper] = useState<SwiperType | null>(null);
-  const [isBtnPrevDisabled, setIsBtnPrevDisabled] = useState(false);
-  const [isBtnNextDisabled, setIsBtnNextDisabled] = useState(true);
+  const [isBtnPrevDisabled, setIsBtnPrevDisabled] = useState(true);
+  const [isBtnNextDisabled, setIsBtnNextDisabled] = useState(false);
 
   const handleSlideChange = (swiperInstance: SwiperType) => {
-    setIsBtnPrevDisabled(swiperInstance.isBeginning);
-    setIsBtnNextDisabled(swiperInstance.isEnd);
+    if (swiperInstance.slides.length > 0) {
+      setIsBtnPrevDisabled(swiperInstance.isBeginning);
+      setIsBtnNextDisabled(swiperInstance.isEnd);
+    }
   };
 
   return (
