@@ -16,14 +16,17 @@
   &__content-container {
     display: flex;
     flex-direction: column;
+    margin-bottom: toRem(56);
     row-gap: toRem(56);
 
     @media (min-width: 640px) {
       row-gap: toRem(64);
+      margin-bottom: toRem(64);
     }
 
     @media (min-width: 1200px) {
       row-gap: toRem(80);
+      margin-bottom: toRem(80);
     }
   }
 }

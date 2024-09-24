@@ -1,0 +1,35 @@
+@import "../../../../style.scss";
+
+.capacity-options {
+  display: flex;
+  flex-direction: column;
+  gap: toRem(8);
+
+  &__text {
+    color: $original_secondary;
+  }
+
+  &__capacities {
+    display: flex;
+    flex-wrap: wrap;
+    gap: toRem(8);
+  }
+
+  &__capacity {
+    display: flex;
+    align-items: center;
+  
+    height: toRem(32);
+    padding: 0 toRem(8);
+    
+    white-space: nowrap;
+    border: toRem(1) solid $original_icons;
+    transition: border $transitionDuration;
+  
+    &--active {
+      border-color: $original_primary; 
+      background-color: $original_primary;
+      color: $original_white;
+    }
+  }
+}

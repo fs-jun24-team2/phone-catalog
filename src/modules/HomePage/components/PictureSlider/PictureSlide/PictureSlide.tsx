@@ -1,20 +1,22 @@
 import styles from './PictureSlide.module.scss';
 
 import 'swiper/css';
-import cn from 'classnames';
 import { Banner } from '@/types/Banner';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 type Props = {
   banner: Banner;
 };
 
 export const PictureSlide: React.FC<Props> = ({ banner }) => {
-  const { id, link, mainImage, mediaSets, alt } = banner;
-  const hasPlaceholderStyle = id % 2 === 1;
+  const { link, title, mainImage, mediaSets, alt } = banner;
 
   return (
-    <a href={link}>
+    <div className={styles['picture-slide']}>
+      <Link to={link} className={styles['picture-slide__link']}>
+        Order now!
+      </Link>
       <picture>
         {mediaSets.map(mediaSets => {
           const { media, srcSet } = mediaSets;
@@ -24,12 +26,11 @@ export const PictureSlide: React.FC<Props> = ({ banner }) => {
 
         <img
           src={mainImage}
-          className={cn(styles['picture-slide__image'], {
-            [styles['picture-slide__image-placeholder']]: hasPlaceholderStyle,
-          })}
+          className={styles['picture-slide__image']}
           alt={alt}
         />
       </picture>
-    </a>
+      <p className={styles['picture-slide__title']}>{title}</p>
+    </div>
   );
 };

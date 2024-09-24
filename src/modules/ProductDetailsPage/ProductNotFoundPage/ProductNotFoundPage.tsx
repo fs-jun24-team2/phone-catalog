@@ -1,18 +1,25 @@
-// import styles from './ProductNotFoundPage.module.scss';
-
+import styles from './ProductNotFoundPage.module.scss';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 export const ProductNotFoundPage = () => {
   const navigate = useNavigate();
-
+  const { t } = useTranslation();
   const handleBack = () => {
     navigate(-1);
   };
 
   return (
-    <div style={{ paddingTop: '100px' }}>
-      <button onClick={handleBack}>Back</button>
-      <h1>Product not found</h1>;
+    <div className={styles.not_found_product}>
+      <div className={styles.not_found_product__button_container}>
+        <h1>{t('productNotFound')}</h1>
+        <button
+          className={styles.not_found_product__button}
+          onClick={handleBack}
+        >
+          {t('back')}
+        </button>
+      </div>
     </div>
   );
 };
