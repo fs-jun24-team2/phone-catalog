@@ -12,6 +12,8 @@ import {
 } from '@/features/cartSlice';
 import { useTranslation } from 'react-i18next';
 import { PopupModal } from '../shared/components/PopupModal';
+import cn from 'classnames';
+import { selectCart } from '@/features/cartSlice';
 
 export const CartPage = () => {
   const { t } = useTranslation();
@@ -20,7 +22,10 @@ export const CartPage = () => {
   const totalProductsAmount = useAppSelector(getAmountProducts);
   const [isModalVisible, setModalVisible] = useState(false);
 
-  const isAdded = false;
+  const cart = useAppSelector(selectCart);
+  const cartEntries = Object.entries(cart);
+  const isCheckoutDisibled = cartEntries.length === 0;
+
   const buttonCheckoutText = t('checkout');
 
   const handleCheckoutOnClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -40,25 +45,33 @@ export const CartPage = () => {
   return (
     <div style={{ paddingTop: '100px' }}>
       <div className="grid-container">
-        <Breadcrumbs />
+        <div className={styles['cart-page__breadcrumbs']}>
+          <Breadcrumbs />
+        </div>
+
         <div className={styles['cart-page__title']}>{t('cartTitle')}</div>
-        <CartItems />
 
-        <div className={styles['checkout']}>
-          <div className={styles['checkout__price-and-amount']}>
-            <div className={styles['checkout__price']}>${totalPrice}</div>
-            <div className={styles['checkout__amount']}>
-              {t('totalItems', { total: totalProductsAmount })}
+        <div
+          className={cn('grid-container', styles['cart-page__main-contaner'])}
+        >
+          <CartItems />
+
+          <div className={styles['checkout']}>
+            <div className={styles['checkout__price-and-amount']}>
+              <div className={styles['checkout__price']}>${totalPrice}</div>
+              <div className={styles['checkout__amount']}>
+                {t('totalItems', { total: totalProductsAmount })}
+              </div>
             </div>
-          </div>
 
-          <div className={styles['checkout__devider']}></div>
-          <div className={styles['checkout__button-container']}>
-            <MainButton
-              isAdded={isAdded}
-              handleOnClick={handleCheckoutOnClick}
-              buttonText={buttonCheckoutText}
-            />
+            <div className={styles['checkout__devider']}></div>
+            <div className={styles['checkout__button-container']}>
+              <MainButton
+                isDisibled={isCheckoutDisibled}
+                handleOnClick={handleCheckoutOnClick}
+                buttonText={buttonCheckoutText}
+              />
+            </div>
           </div>
         </div>
       </div>
