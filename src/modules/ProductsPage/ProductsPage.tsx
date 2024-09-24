@@ -116,7 +116,7 @@ export const ProductsPage = () => {
         />
       </div>
 
-      {filteredProducts.length && (
+      {!!filteredProducts.length && (
         <div className={styles['product-page__products-list']}>
           <ProductsList
             products={paginatedProducts}
@@ -131,6 +131,7 @@ export const ProductsPage = () => {
           />
         </div>
       )}
+
       {!filteredProducts.length && !isLoading && (
         <div className={styles.notfound}>
           <img src={original_notFound} alt="Product not found" />
