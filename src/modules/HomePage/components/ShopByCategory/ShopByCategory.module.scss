@@ -46,7 +46,7 @@
   }
 }
 
-.category:hover{
+.category:hover {
   transform: $transformScale;
-  transition: transform $transitionDuration;
+  transition: transform 0.5s;
 }
