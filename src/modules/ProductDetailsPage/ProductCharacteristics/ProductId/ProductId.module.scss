@@ -1,0 +1,16 @@
+@import "../../../../style.scss";
+
+.product-id {
+  margin-left: auto;
+  
+  padding-left: toRem(10);
+  font-size: toRem(12);
+  font-weight: $bold;
+  line-height: toRem(15);
+  text-align: right;
+
+  @media (min-width: $desktop) {
+    padding-left: 0;
+    display: none;
+  }
+}

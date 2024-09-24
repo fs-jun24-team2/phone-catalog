@@ -1,10 +1,11 @@
+import styles from './ProductDetailsPage.module.scss';
+
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import cn from 'classnames';
 import { Breadcrumbs } from '../shared/components/Breadcrumbs';
 import { About } from './About';
 import { TechSpecs } from './TechSpecs';
 import { AlsoLike } from './AlsoLike';
-import styles from './ProductDetailsPage.module.scss';
 import { Gallery } from './Gallery';
 import { ProductCharacteristics } from './ProductCharacteristics';
 import { useEffect, useState } from 'react';
@@ -13,6 +14,7 @@ import { Product } from '@/types/Product';
 import { ProductsCategory } from '@/types/ProductsCategory';
 import { ProductNotFoundPage } from './ProductNotFoundPage';
 import { scrollToTop } from '../shared/helpers/scrollToTop';
+import { ProductId } from './ProductCharacteristics/ProductId';
 
 export const ProductDetailsPage = () => {
   const [product, setProduct] = useState<Product | null>(null);
@@ -50,17 +52,46 @@ export const ProductDetailsPage = () => {
   }
 
   return (
-    <div style={{ paddingTop: '100px' }}>
-      <Breadcrumbs />
-      <button onClick={handleBack}>Back</button>
-      <h1>{product.name}</h1>
-      <Gallery images={product.images} />
-      <ProductCharacteristics />
-      <div className={cn('grid-container', [styles.about])}>
+    <>
+      <div style={{ paddingTop: '100px' }}></div>
+
+      <div className={styles['breadcrumbs']}>
+        <Breadcrumbs />
+      </div>
+
+      <button
+        className={styles['product-details-page__button-back']}
+        onClick={handleBack}
+      >
+        <div className={styles['product-details-page__button-back-icon']}></div>
+        <p className="style-small-text">Back</p>
+      </button>
+
+      <h1
+        className={cn(
+          'style-h1',
+          styles['product-details-page__product-title'],
+        )}
+      >
+        {product.name}
+      </h1>
+
+      <div
+        className={cn('grid-container', styles['gallery-and-characteristics'])}
+      >
+        <Gallery images={product.images} />
+        <ProductCharacteristics product={product} category={category} />
+        <ProductId id={product.id} />
+      </div>
+
+      <div className={cn('grid-container', styles['about'])}>
         <About description={product.description} />
         <TechSpecs specs={product} />
       </div>
+
       <AlsoLike category={category} currentId={product.id} />
-    </div>
+
+      <div style={{ paddingTop: '80px' }}></div>
+    </>
   );
 };

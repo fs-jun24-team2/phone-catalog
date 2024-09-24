@@ -1,19 +1,21 @@
 @import "@/style.scss";
+
 .about {
-    grid-column: 1 / -1;
+  grid-column: 1 / -1;
 
-    &__title{
-        font-size: 22px;
-        padding-bottom: 16px;
-        font-weight: 800;
-        color: $original_primary;
-        border-bottom: 1px $original_elements solid;
-        @media (min-width: 640px) {
-            margin-bottom: 48px;
-          }
+  @media (min-width: $desktop) {
+    grid-column: 1 / 12;
+  }
+
+  &__title{
+    font-size: 22px;
+    padding-bottom: 16px;
+    font-weight: 800;
+    color: $original_primary;
+    border-bottom: 1px $original_elements solid;
+    
+    @media (min-width: $tablet) {
+      margin-bottom: toRem(48);
     }
-
-    @media (min-width: 1200px) {
-        grid-column: 1 / 12;;
-      }
+  } 
 }

@@ -42,5 +42,9 @@
   "totalItems": "Всього товарів: {{total}}",
   "checkout": "Оформити",
   "confirm": "Пiдтвердити",
-  "cancel": "Скасувати"
+  "cancel": "Скасувати",
+  "specs_resolution": "Роздільна здатність",
+  "specs_processor": "Процесор",
+  "available_colors": "Доступні кольори",
+  "select_capacity": "Виберіть ємність"
 }

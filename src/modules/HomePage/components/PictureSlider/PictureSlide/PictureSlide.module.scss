@@ -1,6 +1,8 @@
 @import "../../../../../style.scss";
 
 .picture-slide {
+  position: relative;
+
   &__image {
     background-color: $original_primary;
     height: auto; 
@@ -9,5 +11,81 @@
 
   &__image-placeholder {
     transform: scaleX(-1);
+  }
+
+  &__link {
+    display: inline-block;
+    position: absolute;
+    bottom: toRem(50);
+    left: 50%;
+    transform: translateX(-50%);
+    padding: toRem(30) toRem(60);
+    background-color: #222222;
+    text-align: center;
+    text-decoration: none;
+    border-radius: toRem(25);
+    transition: background-color $transitionDuration;
+    font-size: 22px;
+    line-height: 30px;
+    color: $original_white;
+    white-space: nowrap; 
+    border: toRem(1) solid #3f3f3f;
+    z-index: 1;
+    
+    &:hover {
+      background-color: #0056b3;
+    }
+
+    @media (min-width: $tablet) {
+      transform: none;
+      bottom: toRem(25);
+      left: toRem(25);
+      padding: toRem(20) toRem(35);
+      font-size: 16px;
+      line-height: 18px;
+    }
+
+    @media (min-width: 768px) {
+      bottom: toRem(35);
+      left: toRem(35);
+      padding: toRem(25) toRem(45);
+      font-size: 22px;
+      line-height: 24px;
+    }
+
+    @media (min-width: $desktop) {
+      bottom: toRem(50);
+      left: toRem(50);
+      padding: toRem(30) toRem(60);
+      font-size: 22px;
+      line-height: 24px;
+    }
+  }
+
+  &__title {
+    position: absolute;
+    top: toRem(10);
+    right: 50%;
+    transform: translateX(50%);
+    text-align: center;
+    text-decoration: none;
+    font-size: 22px;
+    line-height: 30px;
+    color: $original_white;
+    white-space: nowrap; 
+    z-index: 1;
+
+    @media (min-width: $tablet) {
+      top: toRem(5);
+      right: 25%;
+    }
+
+    @media (min-width: 768px) {
+      top: toRem(10);
+    }
+
+    @media (min-width: $desktop) {
+      top: toRem(20);
+    }
   }
 }

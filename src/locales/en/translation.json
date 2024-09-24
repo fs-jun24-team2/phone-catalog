@@ -42,5 +42,9 @@
   "totalItems": "Total items: {{total}}",
   "checkout": "Checkout",
   "confirm": "Confirm",
-  "cancel": "Cancel"
+  "cancel": "Cancel",
+  "specs_resolution": "Resolution",
+  "specs_processor": "Processor",
+  "available_colors": "Available colors",
+  "select_capacity": "Select capacity"
 }

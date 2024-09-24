@@ -8,14 +8,12 @@ interface PopupModalProps {
   onCancel: () => void;
 }
 
-
-
 export const PopupModal: React.FC<PopupModalProps> = ({
   message,
   onConfirm,
   onCancel,
 }) => {
-    const { t } = useTranslation();
+  const { t } = useTranslation();
   return (
     <div className={styles.popupOverlay}>
       <div className={styles.popupContent}>
@@ -25,13 +23,13 @@ export const PopupModal: React.FC<PopupModalProps> = ({
         <div className={styles.popupMessage}>{message}</div>
         <div className={styles.popupActions}>
           <button className={styles.popupButton} onClick={onConfirm}>
-          {t('confirm')}
+            {t('confirm')}
           </button>
           <button
             className={`${styles.popupButton} ${styles.cancel}`}
             onClick={onCancel}
           >
-             {t('cancel')}
+            {t('cancel')}
           </button>
         </div>
       </div>
