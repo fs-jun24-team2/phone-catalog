@@ -36,5 +36,11 @@
     "invalidEmailError": "Будь ласка, введіть правильну електронну адресу",
     "emailHint": "Приклад: {{example}}"
   },
-  "searchPlaceholder":"Щось шукаєте?"
+  "searchPlaceholder": "Щось шукаєте?",
+  "checkoutConfirmation": "Оформлення замовлення ще не реалізовано. Ви хочете очистити кошик?",
+  "cartTitle": "Кошик",
+  "totalItems": "Всього товарів: {{total}}",
+  "checkout": "Оформити",
+  "confirm": "Пiдтвердити",
+  "cancel": "Скасувати"
 }
