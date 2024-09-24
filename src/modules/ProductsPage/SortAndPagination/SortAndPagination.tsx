@@ -1,15 +1,13 @@
 import React from 'react';
 import styles from './SortAndPagination.module.scss';
-// import { Product } from '@/types/Product';
 import cn from 'classnames';
 import { SortSelector } from './SortSelector/SortSelector';
 import { SingleValue } from 'react-select';
 import { SelectedOption } from '@/types/SelectedOption';
-import { useSearchParams } from 'react-router-dom';
 import { SearchParamsType } from '@/types/SearchParamsType';
+import { useUpdateSearchParams } from '@/hooks.ts/useUpdateSearchParams';
 
 interface SortAndPaginationPanelProps {
-  // products: Product[];
   // eslint-disable-next-line no-unused-vars
   onHandleItemPerPage: (perPage: number) => void;
 }
@@ -17,29 +15,22 @@ interface SortAndPaginationPanelProps {
 export const SortAndPaginationPanel: React.FC<SortAndPaginationPanelProps> = ({
   onHandleItemPerPage,
 }) => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const updateSearchParams = useUpdateSearchParams();
   const handleSortChange = (selectedOption: SingleValue<SelectedOption>) => {
-    if (selectedOption) {
-      console.log('Sort selected:', selectedOption.value);
-      searchParams.set(SearchParamsType.sort, selectedOption.value);
-      setSearchParams(searchParams);
-    } else {
-      console.log('Sort selection cleared');
-    }
+    updateSearchParams({
+      [SearchParamsType.sort]: selectedOption ? selectedOption.value : null,
+    });
   };
 
   const handleItemsPerPageChange = (
     selectedOption: SingleValue<SelectedOption>,
   ) => {
-    if (selectedOption) {
-      let itemsPerPage = selectedOption.value;
-      console.log('Items per page selected:', selectedOption.value);
-      searchParams.set(SearchParamsType.perPage, itemsPerPage);
-      setSearchParams(searchParams);
+    updateSearchParams({
+      [SearchParamsType.perPage]: selectedOption ? selectedOption.value : null,
+    });
 
+    if (selectedOption) {
       onHandleItemPerPage(Number(selectedOption.value));
-    } else {
-      console.log('Items per page selection cleared');
     }
   };
   return (

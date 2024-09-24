@@ -1,28 +1,32 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import styles from './VirtualAssistan.module.scss';
 import original_assistant from '/images/original/icons/original_assistant.svg';
 import { useTranslation } from 'react-i18next';
+import { useUpdateSearchParams } from '@/hooks.ts/useUpdateSearchParams';
+import { SearchParamsType } from '@/types/SearchParamsType';
 
 type VirtualAssistantProps = {
   // eslint-disable-next-line no-unused-vars
   onSearch: (searchTerm: string) => void;
 };
 
-// eslint-disable-next-line no-undef
 export const VirtualAssistant: React.FC<VirtualAssistantProps> = ({
   onSearch,
 }) => {
   const { t } = useTranslation();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const updateSearchParams = useUpdateSearchParams();
 
   const toggleSearch = () => {
     setIsSearchOpen(!isSearchOpen);
   };
 
-  // eslint-disable-next-line no-undef
   const handleSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newSearchTerm = e.target.value;
     onSearch(newSearchTerm);
+    updateSearchParams({
+      [SearchParamsType.query]: newSearchTerm ? newSearchTerm : null,
+    });
   };
 
   return (

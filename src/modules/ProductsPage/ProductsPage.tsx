@@ -1,11 +1,8 @@
 import { useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '@/app/hooks';
+import { useAppSelector } from '@/app/hooks';
 import { useLocation } from 'react-router-dom';
 
-import {
-  loadProductsAsync,
-  selectProductsLoading,
-} from '@/features/productsSlice';
+import { selectProductsLoading } from '@/features/productsSlice';
 import { Breadcrumbs } from '../shared/components/Breadcrumbs';
 import { SortAndPaginationPanel } from './SortAndPagination/SortAndPagination';
 import { Pagination } from '../shared/components/Pagination';
@@ -23,7 +20,6 @@ export const ProductsPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(8);
-  const dispatch = useAppDispatch();
   const products = useAppSelector(state => state.products);
   const location = useLocation();
   const productsCategory = location.pathname.slice(1) as ProductsCategory;
@@ -43,9 +39,6 @@ export const ProductsPage = () => {
 
   useEffect(() => {
     setTitle(productsCategory);
-    if (!Object.keys(products[productsCategory]).length) {
-      dispatch(loadProductsAsync(ProductsCategory[productsCategory]));
-    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
 
@@ -72,10 +65,7 @@ export const ProductsPage = () => {
       <Breadcrumbs />
       <h1>{title}</h1>
       <p>{totalItems} models</p>
-      <SortAndPaginationPanel
-        // products={Object.values(products[productsCategory])}
-        onHandleItemPerPage={handleItemsPerPageChange}
-      />
+      <SortAndPaginationPanel onHandleItemPerPage={handleItemsPerPageChange} />
       {filteredProducts.length && (
         <>
           <ProductsList

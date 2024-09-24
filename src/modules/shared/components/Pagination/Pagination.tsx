@@ -1,3 +1,4 @@
+import React from 'react';
 import styles from './Pagination.module.scss';
 
 import original_arrow_left from '/images/original/icons/original_arrow_left.svg';
@@ -11,7 +12,6 @@ interface PaginationProps {
   onPageChange: (page: number) => void;
 }
 
-// eslint-disable-next-line no-undef
 export const Pagination: React.FC<PaginationProps> = ({
   totalItems,
   itemsPerPage,
