@@ -49,6 +49,11 @@
   "cheapest":"Cheapest",
   "alphabetically":"Alphabetically",
   "newest":"Newest",
-  "all":"All"
-  
+  "all":"All",
+  "checkoutConfirmation": "Checkout is not implemented yet. Do you want to clear the Cart?",
+  "cartTitle": "Cart",
+  "totalItems": "Total items: {{total}}",
+  "checkout": "Checkout",
+  "confirm": "Confirm",
+  "cancel": "Cancel"
 }

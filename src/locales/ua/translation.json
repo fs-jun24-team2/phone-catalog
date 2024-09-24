@@ -49,6 +49,11 @@
   "cheapest":"Найдешевші",
   "alphabetically":"Алфавітом",
   "newest":"Новизною",
-  "all":"Всі"
+  "all":"Всі",
+  "checkoutConfirmation": "Оформлення замовлення ще не реалізовано. Ви хочете очистити кошик?",
+  "cartTitle": "Кошик",
+  "totalItems": "Всього товарів: {{total}}",
+  "checkout": "Оформити",
+  "confirm": "Пiдтвердити",
+  "cancel": "Скасувати"
 }
-

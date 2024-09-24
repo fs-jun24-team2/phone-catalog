@@ -61,13 +61,14 @@ export const Header = () => {
   };
 
   const getBurgerIcon = () => {
-    return isMenuOpen
-      ? isDarkTheme
-        ? dark_burger_close
-        : original_burger_open
-      : isDarkTheme
-        ? dark_burger_open
-        : original_burger_close;
+    switch (isMenuOpen) {
+      case true:
+        return isDarkTheme ? dark_burger_close : original_burger_open;
+      case false:
+        return isDarkTheme ? dark_burger_open : original_burger_close;
+      default:
+        return original_burger_close;
+    }
   };
 
   return (
