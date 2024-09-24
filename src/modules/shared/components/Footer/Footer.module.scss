@@ -1,7 +1,7 @@
-@import '@/css/utils/vars';
-@import '@/css/utils/functions';
+@import "@/style.scss";
 
-.foo {
+
+.footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -23,6 +23,8 @@
 
     gap: toRem(32);
     padding: toRem(16) toRem(32);
+    margin-top: toRem(64);
+
   }
 
   @media (max-width: 1200px) and (min-width: 641px) {
@@ -52,6 +54,8 @@
     
     & a:hover{
       color: $original_primary;
+      transform: $transformScale;
+      transition: transform $transitionDuration;
     }
 
   }
@@ -62,28 +66,29 @@
     gap: toRem(16);
     font-weight: $semiBold;
 
-    &:hover {
-      cursor: pointer; 
-      color: $original_primary;
-  }
-
-    &__icon{
-      height: toRem(32);
-      width: toRem(32);
-      box-sizing:  border-box;
-
-      background-image: url('/images/original/footer/stroke-up.svg');
-      fill: $original_primary;
-      background-repeat: no-repeat;
-      background-position: center;
-
-
-      border: 1px solid $original_icons;
-
-      &:hover{
-        border: 1px solid $original_primary;
-
+      &:hover {
+        cursor: pointer; 
+        color: $original_primary;
+        transform: $transformScale;
+        transition: transform $transitionDuration;
       }
-    }
+
+      &__icon{
+        height: toRem(32);
+        width: toRem(32);
+        box-sizing:  border-box;
+
+        background-image: url('/images/original/footer/stroke-up.svg');
+        fill: $original_primary;
+        background-repeat: no-repeat;
+        background-position: center;
+
+
+        border: 1px solid $original_icons;
+
+        &:hover{
+          border: 1px solid $original_primary;
+        }
+      }
   }
 }

@@ -96,6 +96,9 @@ export const ProductCharacteristics = <T extends Product | AggregateProduct>({
       <div className={styles['product-charact__button-container']}>
         <AddToCard id={id} price={price} category={category} />
         <AddToFavourites
+          product={product}
+          category={category}
+          id={id}
           className={styles['product-charact__button-favourites']}
         />
       </div>

@@ -48,8 +48,8 @@
   }
 
   &__button-favourites {
-    height: toRem(48);
-    width: toRem(48);
+    height: toRem(48) !important; // change
+    width: toRem(48) !important; // change
   }
 
   &__specs-container {

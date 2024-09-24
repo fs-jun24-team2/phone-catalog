@@ -26,12 +26,12 @@ export const Gallery: React.FC<ImageGalleryProps> = ({ images }) => {
 
             return (
               <div
+                key={index}
                 className={cn(styles['gallery__miniature-container'], {
                   [styles['gallery__miniature-container--active']]: isActive,
                 })}
               >
                 <img
-                  key={index}
                   src={image}
                   alt={`Miniature ${index}`}
                   className={cn(styles['gallery__miniature'], {

@@ -7,9 +7,15 @@ import { Product } from '@/types/Product';
 import { ProductsCategory } from '@/types/ProductsCategory';
 import { AggregateProduct } from '@/types/AggregateProduct';
 import { formatValueWithUnit } from '@/utils/formatValueWithUnit';
-import { AddToCard } from '../AddToCard/AddToCard';
-import { AddToFavourites } from '../AddToFavourites';
 import { useSpecs } from './hooks/useSpecs';
+import { MainButton } from '../MainButton';
+import cn from 'classnames';
+import React, { useState } from 'react';
+import { hasCartProduct } from '@/utils/hasCartProduct';
+import { hasFavouritesProduct } from '@/utils/hasFavouritesProduct';
+import { useAppDispatch } from '@/app/hooks';
+import { toggleAddToCart } from '@/features/cartSlice';
+import { toggleFavourite } from '@/features/favouritesSlice';
 
 type Props<T> = {
   product: T;
@@ -46,7 +52,25 @@ export const ProductCard = <T extends Product | AggregateProduct>({
 
   const specs = useSpecs({ screen, capacity, ram });
 
-  const price = priceDiscount ? priceDiscount : priceRegular;
+  const [isAddedToCart, setIsAddedToCart] = useState(hasCartProduct(id));
+  const [isAddedToFavourites, setIsAddedToFavourites] = useState(
+    hasFavouritesProduct(id),
+  );
+  const dispatch = useAppDispatch();
+
+  const buttonAddText = !isAddedToCart ? t('add_to_cart') : t('added');
+
+  const handleAddOnClick = (event: React.MouseEvent<HTMLElement>) => {
+    event.preventDefault();
+    const price = priceDiscount ? priceDiscount : priceRegular;
+    dispatch(toggleAddToCart({ id, category, price }));
+    setIsAddedToCart(prev => !prev);
+  };
+
+  const handleAddFavourites = () => {
+    dispatch(toggleFavourite({ product, category }));
+    setIsAddedToFavourites(prev => !prev);
+  };
 
   return (
     <article key={id} className={styles['product-card']}>
@@ -87,8 +111,19 @@ export const ProductCard = <T extends Product | AggregateProduct>({
       </div>
 
       <div className={styles['product-card__button-container']}>
-        <AddToCard id={id} price={price} category={category} />
-        <AddToFavourites />
+        <MainButton
+          isAdded={isAddedToCart}
+          handleOnClick={handleAddOnClick}
+          buttonText={buttonAddText}
+        />
+
+        <button
+          className={cn(styles['product-card__btn-favourites'], {
+            [styles['product-card__btn-favourites--added']]:
+              isAddedToFavourites,
+          })}
+          onClick={handleAddFavourites}
+        ></button>
       </div>
     </article>
   );
