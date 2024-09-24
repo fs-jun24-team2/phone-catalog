@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 // npm install react-select
-import Select, { components } from 'react-select';
+import Select, { components, SingleValue } from 'react-select';
 import styles from './SortSelector.module.scss';
 
 // Імпорт іконок
 import downArrow from '/images/original/icons/original_down.svg';
 import upArrow from '/images/original/icons/original_to-up.svg';
+import { SelectedOption } from '@/types/SelectedOption';
 
 interface SortSelectorProps {
   label: string;
-  options: { value: string; label: string }[];
+  options: SelectedOption[];
   className?: string;
+  // eslint-disable-next-line no-unused-vars
+  onChange: (selectedOption: SingleValue<SelectedOption>) => void;
 }
 
 // Кастомний DropdownIndicator для заміни іконки
@@ -59,6 +62,7 @@ export const SortSelector: React.FC<SortSelectorProps> = ({
   label,
   options,
   className,
+  onChange,
 }) => {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
 
@@ -77,6 +81,7 @@ export const SortSelector: React.FC<SortSelectorProps> = ({
         menuIsOpen={menuIsOpen}
         onMenuOpen={handleMenuOpen}
         onMenuClose={handleMenuClose}
+        onChange={onChange}
       />
     </div>
   );

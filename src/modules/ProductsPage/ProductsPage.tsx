@@ -12,10 +12,13 @@ import { VirtualAssistant } from '../VirtualAssistant';
 
 import original_notFound from '/images/original/notFound/original-notFound.png';
 import styles from './ProductsPage.module.scss';
+import { useFilteredProducts } from '@/hooks.ts/useFilteredProduct';
+// import { SortBy } from '@/types/SortBy';
 
 export const ProductsPage = () => {
   const [title, setTitle] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
+  // const [sortField, setSortField] = useState<SortBy>(SortBy.all);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(8);
   const dispatch = useAppDispatch();
@@ -52,9 +55,7 @@ export const ProductsPage = () => {
     localStorage.setItem('currentPage', '1');
   };
 
-  const filteredProducts = productList.filter(product =>
-    product.name.toLowerCase().includes(searchTerm.toLowerCase()),
-  );
+  const filteredProducts = useFilteredProducts(productList, { searchTerm });
 
   const paginatedProducts = filteredProducts.slice(
     (currentPage - 1) * itemsPerPage,
@@ -87,6 +88,7 @@ export const ProductsPage = () => {
             products={paginatedProducts}
             category={productsCategory}
           />
+
           <Pagination
             totalItems={filteredProducts.length}
             itemsPerPage={itemsPerPage}

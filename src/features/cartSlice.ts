@@ -86,10 +86,3 @@ export const getTotalPrice = createSelector(
     return totalPrice;
   },
 );
-
-export const getAmountProducts = createSelector(
-  (state: RootState) => state.cart.items,
-  items => {
-    return Object.keys(items).length || 0;
-  },
-);

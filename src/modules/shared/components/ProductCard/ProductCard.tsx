@@ -16,7 +16,7 @@ import { MainButton } from '../MainButton';
 import { hasCartProduct } from './helpers/hasCartProduct';
 
 import { isAggregateProduct } from '../../helpers/isAggregateProduct';
-import { useSpecs } from './hooks/useSpecs';
+import { useSpecs } from '../../../../hooks.ts/useSpecs';
 import { toggleFavourite } from '@/features/favouritesSlice';
 import { hasFavouritesProduct } from './helpers/hasFavouritesProduct';
 

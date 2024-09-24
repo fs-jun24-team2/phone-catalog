@@ -49,7 +49,7 @@ const aggregateSlice = createSlice({
         ) => {
           state.isLoading = false;
           products.forEach(product => {
-            state.products[product.id] = product;
+            state.products[product.itemId] = product;
           });
         },
       )
@@ -61,7 +61,9 @@ const aggregateSlice = createSlice({
 });
 
 export default aggregateSlice.reducer;
-export const selectAggregateProducts = (state: RootState) => state.products;
+// export const selectAggregate = (state: RootState) => state.products;
+export const selectAggregateProducts = (state: RootState) =>
+  state.aggregate.products;
 
 export const getHotPriceProduct = createSelector(
   (state: RootState) => state.aggregate.products,

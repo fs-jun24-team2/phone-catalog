@@ -6,11 +6,11 @@ import { CartItems } from './components/CartItems';
 
 import styles from './CartPage.module.scss';
 import { useAppSelector } from '@/app/hooks';
-import { getAmountProducts, getTotalPrice } from '@/features/cartSlice';
+import { getCartAmount, getTotalPrice } from '@/features/cartSlice';
 
 export const CartPage = () => {
   const totalPrice = useAppSelector(getTotalPrice);
-  const totalProductsAmount = useAppSelector(getAmountProducts);
+  const totalProductsAmount = useAppSelector(getCartAmount);
 
   const isAdded = false;
   const buttonCheckoutText = 'Checkout';
