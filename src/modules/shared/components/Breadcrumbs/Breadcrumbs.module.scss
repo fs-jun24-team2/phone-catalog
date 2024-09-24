@@ -1,33 +1,41 @@
-@import '@/css/utils/vars';
-@import '@/css/utils/functions';
+@import "@/style.scss";
 
 .breadcrumbs{
+  margin-top: toRem(72);
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
   color: $original_primary;
 
   font-size: toRem(12);
   font-weight: $semiBold;
 
-  &__crumb{
-    display: contents;
+  @media (min-width: 1200px) {
+    margin-top: toRem(88);
   }
 
-  &__crumb-active{
-    color: $original_secondary;
+  &__icon-home{
+    display: block;
   }
+
+  & a {
+    transition: transform 0.5s;
+
+    &:hover{
+      transform: $transformScale;
+    }
+  }
+
 }
 
 .separator{
   display: inline-block;
-
+  
   width: toRem(16);
   height: toRem(16);
   margin: 0 toRem(13);
-
+  
   background-image: url(/images/original/breadcrumbs/left.svg);
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: center;  
+  }
 
-}

@@ -39,7 +39,7 @@ export const CartPage = () => {
   };
 
   return (
-    <div style={{ paddingTop: '100px' }}>
+    <>
       <div className="grid-container">
         <div className={styles['cart-page__breadcrumbs']}>
           <Breadcrumbs />
@@ -79,6 +79,6 @@ export const CartPage = () => {
           onCancel={handleCancel}
         />
       )}
-    </div>
+    </>
   );
 };

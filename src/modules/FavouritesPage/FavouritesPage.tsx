@@ -13,7 +13,6 @@ export const FavouritesPage = () => {
   return (
     <>
       <div className={cn('grid-container')}>
-        <div style={{ paddingTop: '100px' }}></div>
         <div className={styles['favourites-page__breadcrumbs']}>
           <Breadcrumbs />
         </div>

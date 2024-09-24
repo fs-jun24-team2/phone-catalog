@@ -53,8 +53,6 @@ export const ProductDetailsPage = () => {
 
   return (
     <>
-      <div style={{ paddingTop: '100px' }}></div>
-
       <div className={styles['breadcrumbs']}>
         <Breadcrumbs />
       </div>
