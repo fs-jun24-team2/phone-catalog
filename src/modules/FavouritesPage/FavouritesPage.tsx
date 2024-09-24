@@ -13,13 +13,12 @@ export const FavouritesPage = () => {
   return (
     <>
       <div className={cn('grid-container')}>
-        <div style={{ paddingTop: '100px' }}></div>
         <div className={styles['favourites-page__breadcrumbs']}>
           <Breadcrumbs />
         </div>
 
         <div className={styles['favourites-page__header']}>
-          <h1 className={cn('style-h1', styles['product-page__title'])}>
+          <h1 className={cn('style-h1', styles['favourites-page__title'])}>
             Favourites
           </h1>
 

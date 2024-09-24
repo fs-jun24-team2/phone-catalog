@@ -7,7 +7,7 @@ import { Product } from '@/types/Product';
 import { ProductsCategory } from '@/types/ProductsCategory';
 import { AggregateProduct } from '@/types/AggregateProduct';
 import { formatValueWithUnit } from '@/utils/formatValueWithUnit';
-import { useSpecs } from './hooks/useSpecs';
+import { useSpecs } from '@/hooks/useSpecs';
 import { MainButton } from '../MainButton';
 import cn from 'classnames';
 import React, { useState } from 'react';

@@ -10,7 +10,10 @@
   color: $original_white;
   padding: 0 toRem(6);
 
-  &:active {
+  transition: box-shadow 0.5s;
+
+
+  &:not(:disabled):active {
     color: $original_green;
     background-color: $original_white;
     border: toRem(1) solid $original_elements;
@@ -25,10 +28,11 @@
     background-color: $original_white;
     border: toRem(1) solid $original_elements;
 
+    transition: border-color 0.3s;
+
     &:hover {
       border-color: $original_secondary;
       box-shadow: none;
-      transition: border-color 0.5s;
 
     }
   

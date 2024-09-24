@@ -1,0 +1,34 @@
+@import "@/style.scss";
+
+.crumb{
+  display: contents;
+}
+
+.crumb-active{
+  color: $original_secondary;
+    
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 400px;
+  white-space: nowrap;
+
+  transition: transform 0.5s;
+
+  &:hover{
+    transform: $transformScale;
+  }
+}
+
+
+.separator{
+display: inline-block;
+
+width: toRem(16);
+height: toRem(16);
+margin: 0 toRem(13);
+
+background-image: url(/images/original/breadcrumbs/left.svg);
+background-repeat: no-repeat;
+background-position: center;
+
+}

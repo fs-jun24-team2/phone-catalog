@@ -1,27 +1,52 @@
 import React from 'react';
 import styles from './SortAndPagination.module.scss';
-import { Product } from '@/types/Product';
 import cn from 'classnames';
 import { SortSelector } from './SortSelector/SortSelector';
+import { SingleValue } from 'react-select';
+import { SelectedOption } from '@/types/SelectedOption';
+import { SearchParamsType } from '@/types/SearchParamsType';
+import { useUpdateSearchParams } from '@/hooks/useUpdateSearchParams';
 import { useTranslation } from 'react-i18next';
+import { useLocation } from 'react-router-dom';
 
 interface SortAndPaginationPanelProps {
-  products: Product[];
-  searchTerm: string;
   // eslint-disable-next-line no-unused-vars
-  setSearchTerm: (search: string) => void;
+  onHandleItemPerPage: (perPage: number) => void;
 }
 
 export const SortAndPaginationPanel: React.FC<SortAndPaginationPanelProps> = ({
-  searchTerm,
-  setSearchTerm,
+  onHandleItemPerPage,
 }) => {
   const { t } = useTranslation();
+  const updateSearchParams = useUpdateSearchParams();
+  const query = new URLSearchParams(useLocation().search);
+  const searchByName = query.get(SearchParamsType.byName);
+  const searchByNameValue = searchByName ? searchByName : '';
+
+  const handleSortChange = (selectedOption: SingleValue<SelectedOption>) => {
+    updateSearchParams({
+      [SearchParamsType.sort]: selectedOption ? selectedOption.value : null,
+    });
+  };
+
+  const handleItemsPerPageChange = (
+    selectedOption: SingleValue<SelectedOption>,
+  ) => {
+    updateSearchParams({
+      [SearchParamsType.perPage]: selectedOption ? selectedOption.value : null,
+    });
+
+    if (selectedOption) {
+      onHandleItemPerPage(Number(selectedOption.value));
+    }
+  };
 
   const handleSearchOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    event.preventDefault();
+    const newSearchParam = event.target.value ? event.target.value : null;
 
-    setSearchTerm(event.target.value);
+    updateSearchParams({
+      [SearchParamsType.byName]: newSearchParam,
+    });
   };
 
   return (
@@ -35,6 +60,7 @@ export const SortAndPaginationPanel: React.FC<SortAndPaginationPanelProps> = ({
           { value: 'age', label: t('newest') },
         ]}
         className={styles.selectors__sort}
+        onChange={handleSortChange}
       />
 
       {/* Елементи на сторінці */}
@@ -44,9 +70,10 @@ export const SortAndPaginationPanel: React.FC<SortAndPaginationPanelProps> = ({
           { value: '4', label: '4' },
           { value: '8', label: '8' },
           { value: '16', label: '16' },
-          { value: 'all', label: t('all') },
+          // { value: 'all', label: 'All' },
         ]}
         className={styles.selectors__pagination}
+        onChange={handleItemsPerPageChange}
       />
 
       <div className={styles.selectors__search}>
@@ -54,7 +81,7 @@ export const SortAndPaginationPanel: React.FC<SortAndPaginationPanelProps> = ({
 
         <input
           type="text"
-          value={searchTerm}
+          value={searchByNameValue}
           onChange={handleSearchOnChange}
           className={styles['selectors__search-input']}
         />
