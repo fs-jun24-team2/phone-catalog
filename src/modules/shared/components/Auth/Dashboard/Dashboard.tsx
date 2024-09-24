@@ -5,7 +5,7 @@ import { useAppSelector } from '@/app/hooks';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import vitalii from '/images/users/Vitalii.jpeg';
-import { useDrag, useDrop, DndProvider } from 'react-dnd';
+import { useDrag, useDrop, DndProvider, DragSourceMonitor } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
 const ITEM_TYPE = 'section';
@@ -53,8 +53,8 @@ const Dashboard = () => {
   const toggleSection = (id: string) => {
     setSections(prevSections =>
       prevSections.map(section =>
-        section.id === id ? { ...section, isOpen: !section.isOpen } : section
-      )
+        section.id === id ? { ...section, isOpen: !section.isOpen } : section,
+      ),
     );
   };
 
@@ -68,7 +68,7 @@ const Dashboard = () => {
     const [{ isDragging }, drag] = useDrag(() => ({
       type: ITEM_TYPE,
       item: { index },
-      collect: monitor => ({
+      collect: (monitor: DragSourceMonitor) => ({
         isDragging: monitor.isDragging(),
       }),
     }));
