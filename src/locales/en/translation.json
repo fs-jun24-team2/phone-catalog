@@ -59,5 +59,6 @@
   "specs_resolution": "Resolution",
   "specs_processor": "Processor",
   "available_colors": "Available colors",
-  "select_capacity": "Select capacity"
+  "select_capacity": "Select capacity",
+  "search": "Search"
 }

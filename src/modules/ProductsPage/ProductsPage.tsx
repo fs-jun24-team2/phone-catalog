@@ -87,6 +87,8 @@ export const ProductsPage = () => {
       <div className={styles['product-page__sort-panel']}>
         <SortAndPaginationPanel
           products={Object.values(products[productsCategory])}
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
         />
       </div>
 

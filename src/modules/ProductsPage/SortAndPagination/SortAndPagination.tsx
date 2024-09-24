@@ -7,12 +7,22 @@ import { useTranslation } from 'react-i18next';
 
 interface SortAndPaginationPanelProps {
   products: Product[];
+  searchTerm: string;
+  // eslint-disable-next-line no-unused-vars
+  setSearchTerm: (search: string) => void;
 }
 
-export const SortAndPaginationPanel: React.FC<
-  SortAndPaginationPanelProps
-> = () => {
+export const SortAndPaginationPanel: React.FC<SortAndPaginationPanelProps> = ({
+  searchTerm,
+  setSearchTerm,
+}) => {
   const { t } = useTranslation();
+
+  const handleSearchOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault();
+
+    setSearchTerm(event.target.value);
+  };
 
   return (
     <div className={cn('grid-container', [styles.selectors])}>
@@ -38,6 +48,17 @@ export const SortAndPaginationPanel: React.FC<
         ]}
         className={styles.selectors__pagination}
       />
+
+      <div className={styles.selectors__search}>
+        <p className={styles['selectors__search-title']}>{t('search')}:</p>
+
+        <input
+          type="text"
+          value={searchTerm}
+          onChange={handleSearchOnChange}
+          className={styles['selectors__search-input']}
+        />
+      </div>
     </div>
   );
 };
