@@ -2,7 +2,10 @@ import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import { useLocation } from 'react-router-dom';
 
-import { loadProductsAsync } from '@/features/productsSlice';
+import {
+  loadProductsAsync,
+  selectProductLoading,
+} from '@/features/productsSlice';
 import { Breadcrumbs } from '../shared/components/Breadcrumbs';
 import { SortAndPaginationPanel } from './SortAndPagination/SortAndPagination';
 import { Pagination } from '../shared/components/Pagination';
@@ -22,7 +25,7 @@ export const ProductsPage = () => {
   const products = useAppSelector(state => state.products);
   const location = useLocation();
   const productsCategory = location.pathname.slice(1) as ProductsCategory;
-
+  const isLoading = useAppSelector(selectProductLoading);
   const productList = Object.values(products[productsCategory]);
   const totalItems = productList.length;
 
@@ -86,6 +89,7 @@ export const ProductsPage = () => {
           <ProductsList
             products={paginatedProducts}
             category={productsCategory}
+            isLoading={isLoading}
           />
           <Pagination
             totalItems={filteredProducts.length}
