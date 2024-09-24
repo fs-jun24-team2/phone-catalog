@@ -13,6 +13,8 @@ import { VirtualAssistant } from '../VirtualAssistant';
 import original_notFound from '/images/original/notFound/original-notFound.png';
 import styles from './ProductsPage.module.scss';
 
+import cn from 'classnames';
+
 export const ProductsPage = () => {
   const [title, setTitle] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
@@ -63,13 +65,32 @@ export const ProductsPage = () => {
 
   return (
     <div style={{ paddingTop: '100px' }}>
-      <Breadcrumbs />
-      <h1>{title}</h1>
-      <p>{totalItems} models</p>
-      <SortAndPaginationPanel
-        products={Object.values(products[productsCategory])}
-      />
-      <div style={{ marginTop: '25px', marginBottom: '25px' }}>
+      <div className={styles['product-page__breadcrumbs']}>
+        <Breadcrumbs />
+      </div>
+
+      <div className={styles['product-page__header']}>
+        <h1 className={cn('style-h1', styles['product-page__title'])}>
+          {title}
+        </h1>
+
+        <p
+          className={cn(
+            'style-buttons-text',
+            styles['product-page__product-amount'],
+          )}
+        >
+          {totalItems} models
+        </p>
+      </div>
+
+      <div className={styles['product-page__sort-panel']}>
+        <SortAndPaginationPanel
+          products={Object.values(products[productsCategory])}
+        />
+      </div>
+
+      <div className={styles['product-page__sort-optinal']}>
         <label>Items per page:</label>
         <select
           value={itemsPerPage}
@@ -82,7 +103,7 @@ export const ProductsPage = () => {
       </div>
 
       {filteredProducts.length > 0 ? (
-        <>
+        <div className={styles['product-page__products-list']}>
           <ProductsList
             products={paginatedProducts}
             category={productsCategory}
@@ -93,7 +114,7 @@ export const ProductsPage = () => {
             currentPage={currentPage}
             onPageChange={handlePageChange}
           />
-        </>
+        </div>
       ) : (
         <div className={styles.notfound}>
           <img src={original_notFound} alt="Product not found" />
