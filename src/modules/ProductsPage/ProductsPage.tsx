@@ -64,7 +64,7 @@ export const ProductsPage = () => {
   );
 
   return (
-    <div style={{ paddingTop: '100px' }}>
+    <>
       <div className={styles['product-page__breadcrumbs']}>
         <Breadcrumbs />
       </div>
@@ -121,6 +121,6 @@ export const ProductsPage = () => {
         </div>
       )}
       <VirtualAssistant onSearch={setSearchTerm} />
-    </div>
+    </>
   );
 };
