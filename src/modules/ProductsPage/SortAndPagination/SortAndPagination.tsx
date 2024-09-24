@@ -5,7 +5,8 @@ import { SortSelector } from './SortSelector/SortSelector';
 import { SingleValue } from 'react-select';
 import { SelectedOption } from '@/types/SelectedOption';
 import { SearchParamsType } from '@/types/SearchParamsType';
-import { useUpdateSearchParams } from '@/hooks.ts/useUpdateSearchParams';
+import { useUpdateSearchParams } from '@/hooks/useUpdateSearchParams';
+import { useTranslation } from 'react-i18next';
 
 interface SortAndPaginationPanelProps {
   // eslint-disable-next-line no-unused-vars
@@ -15,6 +16,7 @@ interface SortAndPaginationPanelProps {
 export const SortAndPaginationPanel: React.FC<SortAndPaginationPanelProps> = ({
   onHandleItemPerPage,
 }) => {
+  const { t } = useTranslation();
   const updateSearchParams = useUpdateSearchParams();
   const handleSortChange = (selectedOption: SingleValue<SelectedOption>) => {
     updateSearchParams({
@@ -33,23 +35,24 @@ export const SortAndPaginationPanel: React.FC<SortAndPaginationPanelProps> = ({
       onHandleItemPerPage(Number(selectedOption.value));
     }
   };
+
   return (
     <div className={cn('grid-container', [styles.selectors])}>
-      {/*сортування */}
+      {/* Сортування */}
       <SortSelector
-        label="Sort by:"
+        label={t('sortBy')}
         options={[
-          { value: 'cheapest', label: 'Cheapest' },
-          { value: 'alphabetically', label: 'Alphabetically' },
-          { value: 'age', label: 'Newest' },
+          { value: 'cheapest', label: t('cheapest') },
+          { value: 'alphabetically', label: t('alphabetically') },
+          { value: 'age', label: t('newest') },
         ]}
         className={styles.selectors__sort}
         onChange={handleSortChange}
       />
 
-      {/*елементи на сторінці*/}
+      {/* Елементи на сторінці */}
       <SortSelector
-        label="Items per page:"
+        label={t('itemsPerPage')}
         options={[
           { value: '4', label: '4' },
           { value: '8', label: '8' },

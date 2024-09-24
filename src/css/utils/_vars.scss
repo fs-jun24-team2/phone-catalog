@@ -53,4 +53,8 @@ $touchDevice: '(hover: none) and (pointer: coarse)'; // Touch devices
 
 $transitionDuration: 0.3s;
 $transformScale: scale(1.05);
-$extraBold: 800;
+
+//========================= Screen =========================//
+
+$tablet: 640px;
+$desktop: 1200px;

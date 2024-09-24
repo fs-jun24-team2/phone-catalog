@@ -8,7 +8,7 @@ export const PopupSubscribe: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [email, setEmail] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const [isValid, setIsValid] = useState(true); // Track email validity
+  const [isValid, setIsValid] = useState(true);
 
   useEffect(() => {
     let timer: number | undefined;

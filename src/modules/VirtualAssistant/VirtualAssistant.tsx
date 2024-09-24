@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './VirtualAssistan.module.scss';
 import original_assistant from '/images/original/icons/original_assistant.svg';
 import { useTranslation } from 'react-i18next';
-import { useUpdateSearchParams } from '@/hooks.ts/useUpdateSearchParams';
+import { useUpdateSearchParams } from '@/hooks/useUpdateSearchParams';
 import { SearchParamsType } from '@/types/SearchParamsType';
 
 type VirtualAssistantProps = {

@@ -12,8 +12,10 @@ import { VirtualAssistant } from '../VirtualAssistant';
 
 import original_notFound from '/images/original/notFound/original-notFound.png';
 import styles from './ProductsPage.module.scss';
-import { useFilteredProducts } from '@/hooks.ts/useFilteredProduct';
+import { useFilteredProducts } from '@/hooks/useFilteredProduct';
 import { selectAggregateLoading } from '@/features/aggregateSlice';
+
+import cn from 'classnames';
 
 export const ProductsPage = () => {
   const [title, setTitle] = useState('');
@@ -62,12 +64,33 @@ export const ProductsPage = () => {
 
   return (
     <div style={{ paddingTop: '100px' }}>
-      <Breadcrumbs />
-      <h1>{title}</h1>
-      <p>{totalItems} models</p>
-      <SortAndPaginationPanel onHandleItemPerPage={handleItemsPerPageChange} />
+      <div className={styles['product-page__breadcrumbs']}>
+        <Breadcrumbs />
+      </div>
+
+      <div className={styles['product-page__header']}>
+        <h1 className={cn('style-h1', styles['product-page__title'])}>
+          {title}
+        </h1>
+
+        <p
+          className={cn(
+            'style-buttons-text',
+            styles['product-page__product-amount'],
+          )}
+        >
+          {totalItems} models
+        </p>
+      </div>
+
+      <div className={styles['product-page__sort-panel']}>
+        <SortAndPaginationPanel
+          onHandleItemPerPage={handleItemsPerPageChange}
+        />
+      </div>
+
       {filteredProducts.length && (
-        <>
+        <div className={styles['product-page__products-list']}>
           <ProductsList
             products={paginatedProducts}
             category={productsCategory}
@@ -79,7 +102,7 @@ export const ProductsPage = () => {
             currentPage={currentPage}
             onPageChange={handlePageChange}
           />
-        </>
+        </div>
       )}
       {!filteredProducts.length && !isLoading && (
         <div className={styles.notfound}>

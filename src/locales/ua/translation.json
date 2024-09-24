@@ -36,5 +36,29 @@
     "invalidEmailError": "Будь ласка, введіть правильну електронну адресу",
     "emailHint": "Приклад: {{example}}"
   },
-  "searchPlaceholder":"Щось шукаєте?"
+  "searchPlaceholder":"Щось шукаєте?",
+  "productNotFound":"Продукт не знайдено",
+  "back":"Повернутись",
+  "pageNotFound":"Сторінку не знайдено",
+  "pageDontExist":"Сторінка яку Ви шукаєте не існує",
+  "goToHomepage":"Повернутись на головну",
+  "about":"Детальніше",
+  "techSpecs":"Технічні характеристики",
+  "sortBy":"Сортувати за:",
+  "itemsPerPage":"Елементів на сторінці:",
+  "cheapest":"Найдешевші",
+  "alphabetically":"Алфавітом",
+  "newest":"Новизною",
+  "all":"Всі",
+  "checkoutConfirmation": "Оформлення замовлення ще не реалізовано. Ви хочете очистити кошик?",
+  "cartTitle": "Кошик",
+  "totalItems": "Всього товарів: {{total}}",
+  "checkout": "Оформити",
+  "confirm": "Пiдтвердити",
+  "cancel": "Скасувати",
+  "specs_resolution": "Роздільна здатність",
+  "specs_processor": "Процесор",
+  "available_colors": "Доступні кольори",
+  "select_capacity": "Виберіть ємність"
 }
+

@@ -19,17 +19,13 @@ export const HomePage = () => {
 
   return (
     <>
-      <div className={cn('grid-container')}>
-        <div style={{ paddingTop: '100px' }}></div>
-        {/* hidden */}
-        <h1
-          style={{ paddingTop: '100px' }}
-          className={cn('style-h1', styles['home-page__title'])}
-        >
-          {t('home__title')}
-        </h1>
+      <div style={{ paddingTop: '100px' }}></div>
+      {/* hidden */}
+      <h1 className={cn('style-h1', styles['home-page__title'])}>
+        {t('home__title')}
+      </h1>
 
-        {/* <div className={styles['home-page__content-container']}> */}
+      <div className={styles['home-page__content-container']}>
         {/* Banner */}
         <PictureSlider />
 

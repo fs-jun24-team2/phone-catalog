@@ -1,5 +1,48 @@
 @import "@/style.scss";
 
+.product-page {
+  &__breadcrumbs {
+    margin-bottom: toRem(24);
+
+    @media (min-width: 640px) {
+      margin-bottom: (40);
+    }
+  }
+  
+  &__header {
+    margin-bottom: toRem(32);
+
+    @media (min-width: 640px) {
+      margin-bottom: (40);
+    }
+  }
+  
+  &__title {
+    margin-bottom: toRem(8);
+  }
+
+  &__product-amount {
+    font-weight: $semiBold;
+    color: $original_secondary;
+  }
+
+  &__sort-label {
+    margin-bottom: toRem(24);
+  }
+
+  &__sort-optinal {
+    margin-bottom: toRem(24);
+  }
+
+  &__products-list {
+    margin-bottom: toRem(64);
+
+    @media (min-width: 1200px) {
+      margin-bottom: toRem(80);
+    }
+  }
+}
+
 .notfound {
     display: flex;
     justify-content: center;

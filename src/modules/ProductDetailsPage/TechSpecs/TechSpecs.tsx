@@ -1,12 +1,15 @@
 import { Product } from '@/types/Product';
 import React from 'react';
 import styles from './TechSpecs.module.scss';
+import { useTranslation } from 'react-i18next';
 
 interface TechSpecsProps {
   specs: Product;
 }
 
 export const TechSpecs: React.FC<TechSpecsProps> = ({ specs }) => {
+  const { t } = useTranslation();
+
   const specEntries: [string, string | string[] | undefined][] = [
     ['Screen', specs.screen],
     ['Resolution', specs.resolution],
@@ -20,7 +23,7 @@ export const TechSpecs: React.FC<TechSpecsProps> = ({ specs }) => {
 
   return (
     <div className={styles.specs}>
-      <h2 className={styles.specs__title}>Tech Specs</h2>
+      <h2 className={styles.specs__title}>{t('techSpecs')}</h2>
       <ul className={styles.specs__list}>
         {specEntries.map(
           ([label, value]) =>
