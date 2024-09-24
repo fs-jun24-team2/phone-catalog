@@ -3,16 +3,18 @@ import styles from './MainButton.module.scss';
 import cn from 'classnames';
 
 type Props = {
-  isAdded: boolean;
+  isAdded?: boolean;
   // eslint-disable-next-line no-unused-vars
   handleOnClick: (event: React.MouseEvent<HTMLElement>) => void;
   buttonText: string;
+  isDisibled?: boolean;
 };
 
 export const MainButton: React.FC<Props> = ({
-  isAdded,
+  isAdded = false,
   handleOnClick,
   buttonText,
+  isDisibled = false,
 }) => {
   return (
     <button
@@ -20,6 +22,7 @@ export const MainButton: React.FC<Props> = ({
         [styles['main-button__added']]: isAdded,
       })}
       onClick={event => handleOnClick(event)}
+      disabled={isDisibled}
     >
       {buttonText}
     </button>

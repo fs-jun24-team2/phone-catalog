@@ -4,6 +4,7 @@ export interface Banner {
   mainImage: string;
   mediaSets: MediaSet[];
   alt: string;
+  title: string;
 }
 
 export interface MediaSet {

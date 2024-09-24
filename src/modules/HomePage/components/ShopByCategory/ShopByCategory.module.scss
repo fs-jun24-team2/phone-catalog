@@ -46,7 +46,9 @@
   }
 }
 
-.category:hover{
+.category{
+  transition: transform 0.5s;
+
+  &:hover {
   transform: $transformScale;
-  transition: transform $transitionDuration;
-}
+}}

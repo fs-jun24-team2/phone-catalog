@@ -1,7 +1,7 @@
 import { useAppSelector } from '@/app/hooks';
 import styles from './ShopByCategory.module.scss';
 import { selectProducts } from '@/features/productsSlice';
-import { useCategoriesData } from '../../hooks/useCategoriesData';
+import { useCategoriesData } from '../../../../hooks/useCategoriesData';
 import { Link } from 'react-router-dom';
 
 export const ShopByCategory = () => {
@@ -17,7 +17,7 @@ export const ShopByCategory = () => {
   });
 
   return (
-    <>
+    <div>
       <h2 className={`${styles['style-h2']} ${styles['category-high-title']} `}>
         Shop by category
       </h2>
@@ -45,6 +45,6 @@ export const ShopByCategory = () => {
           </div>
         ))}
       </section>
-    </>
+    </div>
   );
 };

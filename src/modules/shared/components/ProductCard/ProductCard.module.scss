@@ -8,6 +8,9 @@
 
   border: toRem(1) solid $original_elements;
 
+  transition: border-color 0.5s;
+
+
   &__header {
     display: flex;
     flex-direction: column;
@@ -48,14 +51,14 @@
   &__price-discount {
     font-weight: $bold;
     line-height: toRem(31);
-    size: toRem(22);
+    font-size: toRem(22);
     color: $original_primary;
   }
 
   &__price-regular {
     font-weight: $medium;
     line-height: toRem(28);
-    size: toRem(22);
+    font-size: toRem(22);
     color: $original_secondary;
     text-decoration: line-through;
   }
@@ -82,15 +85,15 @@
 
   &__spec-name {
     font-weight: $semiBold;
-    line-height: toRem(15);
-    size: toRem(12);
+    font-size: toRem(12);
+    line-height: toRem(20);
     color: $original_secondary;
   }
 
   &__spec-value {
     font-weight: $semiBold;
-    size: toRem(15);
-    line-height: toRem(12);
+    font-size: toRem(12);
+    line-height: toRem(20);
     color: $original_primary;
     text-align: end;
   }
@@ -111,6 +114,9 @@
     background-position: center;
     background-size: auto;
 
+    transition: border-color 0.3s;
+
+
     &:hover {
       border-color: $original_primary;
     }
@@ -120,4 +126,9 @@
     background-image: url("/images/original/icons/original_favourites_filled.svg");
     border-color: $original_elements;
   }
+
+  &:hover {
+    border-color: $original_secondary;
+  }
+
 }

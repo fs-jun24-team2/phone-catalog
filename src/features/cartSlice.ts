@@ -52,6 +52,11 @@ const cartSlice = createSlice({
         localStorage.setItem('cart', JSON.stringify(state.items));
       }
     },
+    clearCart: state => {
+      state.items = {};
+      state.totalPrice = 0;
+      localStorage.setItem('cart', JSON.stringify(state.items));
+    },
   },
 });
 
@@ -60,7 +65,9 @@ export const {
   increaseAmount,
   decreaseAmount,
   removeFromCart,
+  clearCart,
 } = cartSlice.actions;
+
 export const selectCart = (state: RootState) => state.cart.items;
 export const selectTotalPrice = (state: RootState) => state.cart.totalPrice;
 export default cartSlice.reducer;
@@ -84,12 +91,5 @@ export const getTotalPrice = createSelector(
       totalPrice += items[id].amount * items[id].price;
     }
     return totalPrice;
-  },
-);
-
-export const getAmountProducts = createSelector(
-  (state: RootState) => state.cart.items,
-  items => {
-    return Object.keys(items).length || 0;
   },
 );

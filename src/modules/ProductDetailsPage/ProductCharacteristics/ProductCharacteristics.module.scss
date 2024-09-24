@@ -1,0 +1,82 @@
+@import "../../../style.scss";
+
+.product-charact {
+  display: flex;
+  flex-direction: column;
+
+  &__options {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(24);
+    margin-bottom: toRem(32);
+  }
+
+  &__devider {
+    width: 100%;
+    height: toRem(1);
+    background-color: $original_elements;
+  }
+
+  &__prices-container {
+    display: flex;
+    align-items: center;
+    height: fit-content;
+    margin-bottom: toRem(16);
+    gap: toRem(8);
+  }
+  
+  &__price-discount {
+    font-weight: $bold;
+    line-height: toRem(41);
+    font-size: toRem(32);
+    color: $original_primary;
+  }
+
+  &__price-regular {
+    font-weight: $medium;
+    font-size: toRem(22);
+    color: $original_secondary;
+    text-decoration: line-through;
+  }
+
+  &__button-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: toRem(32);
+    gap: toRem(8);
+    height: toRem(48);
+  }
+
+  &__button-favourites {
+    height: toRem(48) !important; // change
+    width: toRem(48) !important; // change
+  }
+
+  &__specs-container {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(8);
+  }
+
+  &__spec-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: toRem(30);
+  }
+
+  &__spec-name {
+    font-weight: $semiBold;
+    font-size: toRem(12);
+    line-height: toRem(20);
+    color: $original_secondary;
+  }
+
+  &__spec-value {
+    font-weight: $semiBold;
+    font-size: toRem(12);
+    line-height: toRem(20);
+    color: $original_primary;
+    text-align: end;
+  }
+}
