@@ -13,7 +13,7 @@
   transition: box-shadow 0.5s;
 
 
-  &:active {
+  &:not(:disabled):active {
     color: $original_green;
     background-color: $original_white;
     border: toRem(1) solid $original_elements;

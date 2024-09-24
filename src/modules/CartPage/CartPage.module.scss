@@ -1,6 +1,14 @@
 @import "../../style.scss";
 
 .cart-page{
+  &__breadcrumbs {
+    margin-bottom: toRem(24);
+
+    @media (min-width: 640px) {
+      margin-bottom: (40);
+    }
+  }
+
   &__title {
     grid-column: 1 / -1;
     margin-bottom: toRem(32);
@@ -9,6 +17,11 @@
     font-weight: $extraBold;
     line-height: toRem(56);
     color: $original_primary;
+  }
+
+  &__main-contaner {
+    row-gap: toRem(32);
+    margin-bottom: toRem(80);
   }
 
   &__products-container {
