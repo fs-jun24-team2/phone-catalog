@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '@/app/hooks';
+import { useAppSelector } from '@/app/hooks';
 import { useLocation } from 'react-router-dom';
 
-import { loadProductsAsync } from '@/features/productsSlice';
+import { selectProductsLoading } from '@/features/productsSlice';
 import { Breadcrumbs } from '../shared/components/Breadcrumbs';
 import { SortAndPaginationPanel } from './SortAndPagination/SortAndPagination';
 import { Pagination } from '../shared/components/Pagination';
@@ -12,6 +12,8 @@ import { VirtualAssistant } from '../VirtualAssistant';
 
 import original_notFound from '/images/original/notFound/original-notFound.png';
 import styles from './ProductsPage.module.scss';
+import { useFilteredProducts } from '@/hooks/useFilteredProduct';
+import { selectAggregateLoading } from '@/features/aggregateSlice';
 
 import cn from 'classnames';
 
@@ -20,10 +22,12 @@ export const ProductsPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(8);
-  const dispatch = useAppDispatch();
   const products = useAppSelector(state => state.products);
   const location = useLocation();
   const productsCategory = location.pathname.slice(1) as ProductsCategory;
+  const isProductsLoading = useAppSelector(selectProductsLoading);
+  const isAggregatesLoading = useAppSelector(selectAggregateLoading);
+  const isLoading = isProductsLoading || isAggregatesLoading;
 
   const productList = Object.values(products[productsCategory]);
   const totalItems = productList.length;
@@ -37,9 +41,6 @@ export const ProductsPage = () => {
 
   useEffect(() => {
     setTitle(productsCategory);
-    if (!Object.keys(products[productsCategory]).length) {
-      dispatch(loadProductsAsync(ProductsCategory[productsCategory]));
-    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
 
@@ -54,9 +55,7 @@ export const ProductsPage = () => {
     localStorage.setItem('currentPage', '1');
   };
 
-  const filteredProducts = productList.filter(product =>
-    product.name.toLowerCase().includes(searchTerm.toLowerCase()),
-  );
+  const filteredProducts = useFilteredProducts(productList, { searchTerm });
 
   const paginatedProducts = filteredProducts.slice(
     (currentPage - 1) * itemsPerPage,
@@ -86,28 +85,17 @@ export const ProductsPage = () => {
 
       <div className={styles['product-page__sort-panel']}>
         <SortAndPaginationPanel
-          products={Object.values(products[productsCategory])}
+          onHandleItemPerPage={handleItemsPerPageChange}
         />
       </div>
 
-      <div className={styles['product-page__sort-optinal']}>
-        <label>Items per page:</label>
-        <select
-          value={itemsPerPage}
-          onChange={e => handleItemsPerPageChange(Number(e.target.value))}
-        >
-          <option value={8}>8</option>
-          <option value={12}>12</option>
-          <option value={16}>16</option>
-        </select>
-      </div>
-
-      {filteredProducts.length > 0 ? (
+      {filteredProducts.length && (
         <div className={styles['product-page__products-list']}>
           <ProductsList
             products={paginatedProducts}
             category={productsCategory}
           />
+
           <Pagination
             totalItems={filteredProducts.length}
             itemsPerPage={itemsPerPage}
@@ -115,7 +103,8 @@ export const ProductsPage = () => {
             onPageChange={handlePageChange}
           />
         </div>
-      ) : (
+      )}
+      {!filteredProducts.length && !isLoading && (
         <div className={styles.notfound}>
           <img src={original_notFound} alt="Product not found" />
         </div>

@@ -5,11 +5,7 @@ import { CartItems } from './components/CartItems';
 
 import styles from './CartPage.module.scss';
 import { useAppSelector, useAppDispatch } from '@/app/hooks';
-import {
-  getAmountProducts,
-  getTotalPrice,
-  clearCart,
-} from '@/features/cartSlice';
+import { getCartAmount, getTotalPrice, clearCart } from '@/features/cartSlice';
 import { useTranslation } from 'react-i18next';
 import { PopupModal } from '../shared/components/PopupModal';
 
@@ -17,7 +13,7 @@ export const CartPage = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const totalPrice = useAppSelector(getTotalPrice);
-  const totalProductsAmount = useAppSelector(getAmountProducts);
+  const totalProductsAmount = useAppSelector(getCartAmount);
   const [isModalVisible, setModalVisible] = useState(false);
 
   const isAdded = false;
