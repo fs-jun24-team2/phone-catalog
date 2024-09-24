@@ -2,7 +2,10 @@ import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import { useLocation } from 'react-router-dom';
 
-import { loadProductsAsync } from '@/features/productsSlice';
+import {
+  loadProductsAsync,
+  selectProductsLoading,
+} from '@/features/productsSlice';
 import { Breadcrumbs } from '../shared/components/Breadcrumbs';
 import { SortAndPaginationPanel } from './SortAndPagination/SortAndPagination';
 import { Pagination } from '../shared/components/Pagination';
@@ -13,18 +16,20 @@ import { VirtualAssistant } from '../VirtualAssistant';
 import original_notFound from '/images/original/notFound/original-notFound.png';
 import styles from './ProductsPage.module.scss';
 import { useFilteredProducts } from '@/hooks.ts/useFilteredProduct';
-// import { SortBy } from '@/types/SortBy';
+import { selectAggregateLoading } from '@/features/aggregateSlice';
 
 export const ProductsPage = () => {
   const [title, setTitle] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
-  // const [sortField, setSortField] = useState<SortBy>(SortBy.all);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(8);
   const dispatch = useAppDispatch();
   const products = useAppSelector(state => state.products);
   const location = useLocation();
   const productsCategory = location.pathname.slice(1) as ProductsCategory;
+  const isProductsLoading = useAppSelector(selectProductsLoading);
+  const isAggregatesLoading = useAppSelector(selectAggregateLoading);
+  const isLoading = isProductsLoading || isAggregatesLoading;
 
   const productList = Object.values(products[productsCategory]);
   const totalItems = productList.length;
@@ -68,21 +73,10 @@ export const ProductsPage = () => {
       <h1>{title}</h1>
       <p>{totalItems} models</p>
       <SortAndPaginationPanel
-        products={Object.values(products[productsCategory])}
+        // products={Object.values(products[productsCategory])}
+        onHandleItemPerPage={handleItemsPerPageChange}
       />
-      <div style={{ marginTop: '25px', marginBottom: '25px' }}>
-        <label>Items per page:</label>
-        <select
-          value={itemsPerPage}
-          onChange={e => handleItemsPerPageChange(Number(e.target.value))}
-        >
-          <option value={8}>8</option>
-          <option value={12}>12</option>
-          <option value={16}>16</option>
-        </select>
-      </div>
-
-      {filteredProducts.length > 0 ? (
+      {filteredProducts.length && (
         <>
           <ProductsList
             products={paginatedProducts}
@@ -96,7 +90,8 @@ export const ProductsPage = () => {
             onPageChange={handlePageChange}
           />
         </>
-      ) : (
+      )}
+      {!filteredProducts.length && !isLoading && (
         <div className={styles.notfound}>
           <img src={original_notFound} alt="Product not found" />
         </div>

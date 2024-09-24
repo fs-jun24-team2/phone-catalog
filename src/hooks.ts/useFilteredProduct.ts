@@ -12,11 +12,13 @@ export const useFilteredProducts = (
   productList: Product[],
   { searchTerm }: Filter,
 ) => {
+  let count = 0;
   let filteredList = productList;
   const [searchParams] = useSearchParams();
   const sort = searchParams.get(SearchParamsType.sort);
 
   const aggregateProducts = useAppSelector(selectAggregateProducts);
+  console.log('aggregateProducts', aggregateProducts);
 
   filteredList = filteredList.filter(product =>
     product.name.toLowerCase().includes(searchTerm.toLowerCase()),
@@ -39,12 +41,22 @@ export const useFilteredProducts = (
 
     case SortBy.age:
       filteredList.sort((a, b) => {
-        console.log(a.id)
-        const aYear = aggregateProducts[a.id].year;
-        const bYear = aggregateProducts[b.id].year;
+        console.log('a.id', a.id);
+        const aggregateA = aggregateProducts[a.id];
+        const aggregateB = aggregateProducts[b.id];
+
+        if (!aggregateA || !aggregateB) {
+          // console.log('Missing aggregate product data for:', a.id, b.id);
+          count++;
+          return 0;
+        }
+
+        const aYear = aggregateA.year;
+        const bYear = aggregateB.year;
         return bYear - aYear;
       });
       break;
   }
+  console.log('count', count);
   return filteredList;
 };

@@ -64,6 +64,8 @@ export default aggregateSlice.reducer;
 // export const selectAggregate = (state: RootState) => state.products;
 export const selectAggregateProducts = (state: RootState) =>
   state.aggregate.products;
+export const selectAggregateLoading = (state: RootState) =>
+  state.aggregate.isLoading;
 
 export const getHotPriceProduct = createSelector(
   (state: RootState) => state.aggregate.products,

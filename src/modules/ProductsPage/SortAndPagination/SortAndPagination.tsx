@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './SortAndPagination.module.scss';
-import { Product } from '@/types/Product';
+// import { Product } from '@/types/Product';
 import cn from 'classnames';
 import { SortSelector } from './SortSelector/SortSelector';
 import { SingleValue } from 'react-select';
@@ -9,18 +9,19 @@ import { useSearchParams } from 'react-router-dom';
 import { SearchParamsType } from '@/types/SearchParamsType';
 
 interface SortAndPaginationPanelProps {
-  products: Product[];
+  // products: Product[];
+  // eslint-disable-next-line no-unused-vars
+  onHandleItemPerPage: (perPage: number) => void;
 }
 
-export const SortAndPaginationPanel: React.FC<
-  SortAndPaginationPanelProps
-> = () => {
-
+export const SortAndPaginationPanel: React.FC<SortAndPaginationPanelProps> = ({
+  onHandleItemPerPage,
+}) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const handleSortChange = (selectedOption: SingleValue<SelectedOption>) => {
     if (selectedOption) {
       console.log('Sort selected:', selectedOption.value);
-      searchParams.append(SearchParamsType.sort, selectedOption.value);
+      searchParams.set(SearchParamsType.sort, selectedOption.value);
       setSearchParams(searchParams);
     } else {
       console.log('Sort selection cleared');
@@ -31,9 +32,12 @@ export const SortAndPaginationPanel: React.FC<
     selectedOption: SingleValue<SelectedOption>,
   ) => {
     if (selectedOption) {
+      let itemsPerPage = selectedOption.value;
       console.log('Items per page selected:', selectedOption.value);
-      searchParams.append(SearchParamsType.perPage, selectedOption.value);
+      searchParams.set(SearchParamsType.perPage, itemsPerPage);
       setSearchParams(searchParams);
+
+      onHandleItemPerPage(Number(selectedOption.value));
     } else {
       console.log('Items per page selection cleared');
     }
@@ -59,7 +63,7 @@ export const SortAndPaginationPanel: React.FC<
           { value: '4', label: '4' },
           { value: '8', label: '8' },
           { value: '16', label: '16' },
-          { value: 'all', label: 'All' },
+          // { value: 'all', label: 'All' },
         ]}
         className={styles.selectors__pagination}
         onChange={handleItemsPerPageChange}
