@@ -36,7 +36,39 @@
     "invalidEmailError": "Будь ласка, введіть правильну електронну адресу",
     "emailHint": "Приклад: {{example}}"
   },
-  "searchPlaceholder":"Щось шукаєте?",
+  "searchPlaceholder": "Щось шукаєте?",
+  "auth": {
+    "login": "Увійти",
+    "signup": "Зареєструватися",
+    "forgotPassword": "Забули пароль?",
+    "email": "Електронна пошта",
+    "password": "Пароль",
+    "confirmPassword": "Підтвердьте пароль",
+    "fullName": "Повне ім'я",
+    "noAccount": "Ще не маєте облікового запису?",
+    "alreadyHaveAccount": "Вже маєте обліковий запис?",
+    "logInHere": "Увійти",
+    "signUpHere": "Зареєструватися",
+    "enterPassword": "Введіть пароль",
+    "enterEmail": "Введіть електронну пошту",
+    "enterFullName": "Введіть повне iм'я",
+    "sendResetLink":  "Вiдправити"
+  },
+  "dashboard": {
+    "header": "Панель управління",
+    "activeUsers": "Активні користувачі",
+    "productsSold": "Продані товари",
+    "pendingOrders": "Очікуючі замовлення",
+    "recentActivity": "Остання активність",
+    "userInformation": "Інформація про користувача",
+    "balance": "Баланс",
+    "yourFavourites": "Ваші улюблені товари",
+    "latestPurchases": "Останні покупки",
+    "name": "Ім'я",
+    "email": "Електронна пошта",
+    "dateOfBirth": "Дата народження",
+    "phone": "Телефон"
+  },
   "productNotFound":"Продукт не знайдено",
   "back":"Повернутись",
   "pageNotFound":"Сторінку не знайдено",
@@ -61,4 +93,3 @@
   "available_colors": "Доступні кольори",
   "select_capacity": "Виберіть ємність"
 }
-
