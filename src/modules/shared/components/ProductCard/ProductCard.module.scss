@@ -8,6 +8,9 @@
 
   border: toRem(1) solid $original_elements;
 
+  transition: border-color 0.5s;
+
+
   &__header {
     display: flex;
     flex-direction: column;
@@ -111,6 +114,9 @@
     background-position: center;
     background-size: auto;
 
+    transition: border-color 0.3s;
+
+
     &:hover {
       border-color: $original_primary;
     }
@@ -123,7 +129,6 @@
 
   &:hover {
     border-color: $original_secondary;
-    transition: border-color 0.5s;
   }
 
 }
