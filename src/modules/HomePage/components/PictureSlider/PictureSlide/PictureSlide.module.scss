@@ -19,7 +19,7 @@
     bottom: toRem(50);
     left: 50%;
     transform: translateX(-50%);
-    padding: toRem(30) toRem(60);
+    padding: toRem(20) toRem(40);
     background-color: #222222;
     text-align: center;
     text-decoration: none;
@@ -36,7 +36,7 @@
       background-color: #0056b3;
     }
 
-    @media (min-width: $tablet) {
+    @media (min-width: 640px) {
       transform: none;
       bottom: toRem(25);
       left: toRem(25);
@@ -53,7 +53,7 @@
       line-height: 24px;
     }
 
-    @media (min-width: $desktop) {
+    @media (min-width: 1200px) {
       bottom: toRem(50);
       left: toRem(50);
       padding: toRem(30) toRem(60);
@@ -75,7 +75,7 @@
     white-space: nowrap; 
     z-index: 1;
 
-    @media (min-width: $tablet) {
+    @media (min-width: 640px) {
       top: toRem(5);
       right: 25%;
     }
@@ -84,7 +84,7 @@
       top: toRem(10);
     }
 
-    @media (min-width: $desktop) {
+    @media (min-width: 1200px) {
       top: toRem(20);
     }
   }

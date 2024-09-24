@@ -17,7 +17,7 @@ export const ShopByCategory = () => {
   });
 
   return (
-    <>
+    <div>
       <h2 className={`${styles['style-h2']} ${styles['category-high-title']} `}>
         Shop by category
       </h2>
@@ -45,6 +45,6 @@ export const ShopByCategory = () => {
           </div>
         ))}
       </section>
-    </>
+    </div>
   );
 };
