@@ -1,0 +1,20 @@
+@import "../../../../style.scss";
+
+.btn-favourites {
+  height: toRem(40);
+  width: toRem(40);
+  border: toRem(1) solid $original_icons;
+  background-image: url("/images/original/icons/original_favorites.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: auto;
+
+  &:hover {
+    border-color: $original_primary;
+  }
+
+  &--added {
+    background-image: url("/images/original/icons/original_favourites_filled.svg");
+    border-color: $original_elements;
+  }
+}

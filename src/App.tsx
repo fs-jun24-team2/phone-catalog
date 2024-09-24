@@ -18,11 +18,10 @@ function App() {
       <PopupSubscribe />
       <Header />
       <main className="main">
-        <div className="main__container">
+        <div className="main__container grid-container">
           <Outlet />
         </div>
       </main>
-
       <Footer />
     </div>
   );

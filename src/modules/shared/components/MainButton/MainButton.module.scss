@@ -8,6 +8,7 @@
   font-weight: $bold;
   line-height: toRem(21);
   color: $original_white;
+  padding: 0 toRem(6);
 
   &:active {
     color: $original_green;
