@@ -19,5 +19,10 @@
     @media (min-width: 1200px) {
       grid-column: span 6;
     }
+
+    &:hover {
+      transform: $transformScale;
+      transition: transform 0.5s;
+    }
   }
 }
