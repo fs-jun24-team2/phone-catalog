@@ -1,4 +1,4 @@
-@import '@/style.scss';
+@import "@/style.scss";
 
 .dashboard-container {
   padding: toRem(80) toRem(20) toRem(20) toRem(20);
@@ -67,7 +67,9 @@
   max-height: 0;
   opacity: 0;
   overflow: hidden;
-  transition: max-height 0.4s ease, opacity 0.4s ease;
+  transition:
+    max-height 0.4s ease,
+    opacity 0.4s ease;
 }
 
 .section-content.open {
@@ -138,4 +140,31 @@
 .purchase-item-name {
   text-align: right;
   color: $original_primary;
+}
+
+.dark_theme {
+
+  .user-info-section,
+  .balance-section,
+  .section {
+    background-color: $dark_hover_and_bg_transperency;
+    border: 1px solid $original_hover_and_bg_transperency;
+    color: $original_icons;
+  }
+
+  .balance-amount {
+    color: $original_icons;
+  }
+
+  .purchase-item {
+    background-color: $dark_icons;
+  }
+
+  .purchase-price {
+    color: $original_hover_and_bg_transperency;
+  }
+
+  .purchase-item-name {
+    color: $original_hover_and_bg_transperency;
+  }
 }

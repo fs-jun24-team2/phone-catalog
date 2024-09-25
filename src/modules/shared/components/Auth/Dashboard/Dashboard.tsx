@@ -2,7 +2,7 @@ import { FavouritesList } from '@/modules/FavouritesPage/components/FavouritesLi
 import styles from './Dashboard.module.scss';
 import { selectFavourites } from '@/features/favouritesSlice';
 import { useAppSelector } from '@/app/hooks';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import vitalii from '/images/users/Vitalii.jpeg';
 import { useDrag, useDrop, DndProvider, DragSourceMonitor } from 'react-dnd';
@@ -42,6 +42,22 @@ const Dashboard = () => {
     { id: 'favourites', component: 'Favourites', isOpen: true },
     { id: 'purchases', component: 'Purchases', isOpen: true },
   ]);
+
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
+
+  useEffect(() => {
+    const checkTheme = () => {
+      const isDark = document.body.classList.contains('dark_theme');
+      setIsDarkTheme(isDark);
+    };
+
+    checkTheme();
+
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.body, { attributes: true });
+
+    return () => observer.disconnect();
+  }, []);
 
   const moveSection = (dragIndex: number, hoverIndex: number) => {
     const updatedSections = [...sections];
@@ -84,10 +100,14 @@ const Dashboard = () => {
     });
 
     const renderComponent = () => {
+      const sectionClassName = `${styles['section']} ${
+        isDarkTheme ? styles['dark_theme'] : ''
+      }`;
+
       switch (section.component) {
         case 'UserInfo':
           return (
-            <div className={styles['user-info-section']}>
+            <div className={`${styles['user-info-section']} ${sectionClassName}`}>
               <div
                 className={styles['section-header']}
                 onClick={() => toggleSection(section.id)}
@@ -95,7 +115,9 @@ const Dashboard = () => {
                 {t('dashboard.userInformation')}
               </div>
               <div
-                className={`${styles['section-content']} ${section.isOpen ? styles['open'] : ''}`}
+                className={`${styles['section-content']} ${
+                  section.isOpen ? styles['open'] : ''
+                }`}
               >
                 {section.isOpen && (
                   <div className={styles['user-info']}>
@@ -110,16 +132,13 @@ const Dashboard = () => {
                         <strong>{t('dashboard.name')}:</strong> {userInfo.name}
                       </p>
                       <p>
-                        <strong>{t('dashboard.email')}:</strong>{' '}
-                        {userInfo.email}
+                        <strong>{t('dashboard.email')}:</strong> {userInfo.email}
                       </p>
                       <p>
-                        <strong>{t('dashboard.dateOfBirth')}:</strong>{' '}
-                        {userInfo.dateOfBirth}
+                        <strong>{t('dashboard.dateOfBirth')}:</strong> {userInfo.dateOfBirth}
                       </p>
                       <p>
-                        <strong>{t('dashboard.phone')}:</strong>{' '}
-                        {userInfo.phone}
+                        <strong>{t('dashboard.phone')}:</strong> {userInfo.phone}
                       </p>
                     </div>
                   </div>
@@ -129,7 +148,7 @@ const Dashboard = () => {
           );
         case 'Balance':
           return (
-            <div className={styles['balance-section']}>
+            <div className={`${styles['balance-section']} ${sectionClassName}`}>
               <div
                 className={styles['section-header']}
                 onClick={() => toggleSection(section.id)}
@@ -137,7 +156,9 @@ const Dashboard = () => {
                 {t('dashboard.balance')}
               </div>
               <div
-                className={`${styles['section-content']} ${section.isOpen ? styles['open'] : ''}`}
+                className={`${styles['section-content']} ${
+                  section.isOpen ? styles['open'] : ''
+                }`}
               >
                 {section.isOpen && (
                   <div className={styles['balance-amount']}>{balance}</div>
@@ -147,7 +168,7 @@ const Dashboard = () => {
           );
         case 'Favourites':
           return (
-            <div className={styles['section']}>
+            <div className={sectionClassName}>
               <div
                 className={styles['section-header']}
                 onClick={() => toggleSection(section.id)}
@@ -155,7 +176,9 @@ const Dashboard = () => {
                 {t('dashboard.yourFavourites')}
               </div>
               <div
-                className={`${styles['section-content']} ${section.isOpen ? styles['open'] : ''}`}
+                className={`${styles['section-content']} ${
+                  section.isOpen ? styles['open'] : ''
+                }`}
               >
                 {section.isOpen && <FavouritesList items={items} />}
               </div>
@@ -163,7 +186,7 @@ const Dashboard = () => {
           );
         case 'Purchases':
           return (
-            <div className={styles['section']}>
+            <div className={sectionClassName}>
               <div
                 className={styles['section-header']}
                 onClick={() => toggleSection(section.id)}
@@ -171,7 +194,9 @@ const Dashboard = () => {
                 {t('dashboard.latestPurchases')}
               </div>
               <div
-                className={`${styles['section-content']} ${section.isOpen ? styles['open'] : ''}`}
+                className={`${styles['section-content']} ${
+                  section.isOpen ? styles['open'] : ''
+                }`}
               >
                 {section.isOpen && (
                   <div className={styles['purchases-list']}>
@@ -201,7 +226,7 @@ const Dashboard = () => {
     return (
       <div
         ref={node => drag(drop(node))}
-        style={{ opacity: isDragging ? 0.5 : 1 }}
+        className={`${styles['draggable-section']} ${isDragging ? styles['dragging'] : ''}`}
       >
         {renderComponent()}
       </div>
@@ -210,7 +235,11 @@ const Dashboard = () => {
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div className={styles['dashboard-container']}>
+      <div
+        className={`${styles['dashboard-container']} ${
+          isDarkTheme ? styles['dark_theme'] : ''
+        }`}
+      >
         {sections.map((section, index) => (
           <DraggableSection key={section.id} section={section} index={index} />
         ))}
