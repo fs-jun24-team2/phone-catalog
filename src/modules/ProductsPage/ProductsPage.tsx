@@ -52,7 +52,8 @@ export const ProductsPage = () => {
 
   useEffect(() => {
     setTitle(productsCategory);
-  }, [location, productsCategory]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -154,7 +155,6 @@ export const ProductsPage = () => {
             // </div>
           )}
         </>
-
       )}
 
       {!isLoading && <VirtualAssistant onSearch={setSearchTerm} />}
