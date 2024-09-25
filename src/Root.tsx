@@ -11,6 +11,7 @@ import Login from './modules/shared/components/Auth/Login/Login.tsx';
 import Register from './modules/shared/components/Auth/Register/Register.tsx';
 import ForgotPassword from './modules/shared/components/Auth/ForgotPassword/ForgotPassword.tsx';
 import Dashboard from './modules/shared/components/Auth/Dashboard/Dashboard.tsx';
+import Contacts from './modules/shared/components/Footer/Contacts/Contacts.tsx';
 
 export const Root = () => (
   <HashRouter>
@@ -44,6 +45,7 @@ export const Root = () => (
         {/* Other routes */}
         <Route path={Path.cart} element={<CartPage />} />
         <Route path={Path.favourites} element={<FavouritesPage />} />
+        <Route path="/contacts" Component={Contacts} />
       </Route>
 
       {/* Catch all NotFoundPage */}

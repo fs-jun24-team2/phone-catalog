@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import styles from './Footer.module.scss';
 import footer_logo from '/images/original/footer/logo.svg';
 import { scrollToTop } from '../../helpers/scrollToTop';
+import { Link } from 'react-router-dom';
 
 export const Footer = () => {
   const { t } = useTranslation();
@@ -11,7 +12,7 @@ export const Footer = () => {
       label: 'Github',
     },
     {
-      href: 'https://github.com/fs-jun24-team2/phone-catalog',
+      href: '/contacts',
       label: t('contacts'),
     },
     {
@@ -26,14 +27,16 @@ export const Footer = () => {
         <img src={footer_logo} alt="Logo" />
         <div className={styles['footer__link']}>
           {links.map((link, index) => (
-            <a
+            <Link
               key={index}
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
+              to={link.href}
+              target={link.href.startsWith('http') ? '_blank' : undefined}
+              rel={
+                link.href.startsWith('http') ? 'noopener noreferrer' : undefined
+              }
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </div>
         <div className={styles['footer__go-back-btn']} onClick={scrollToTop}>

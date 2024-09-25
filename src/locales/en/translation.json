@@ -92,5 +92,10 @@
   "specs_processor": "Processor",
   "available_colors": "Available colors",
   "select_capacity": "Select capacity",
-  "search": "Search"
+  "search": "Search",
+  "contact_us": "Contact Us",
+  "email": "Email",
+  "phone": "Phone",
+  "address": "Address",
+  "our_location": "Our Location"
 }

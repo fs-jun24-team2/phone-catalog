@@ -92,5 +92,10 @@
   "specs_processor": "Процесор",
   "available_colors": "Доступні кольори",
   "select_capacity": "Виберіть ємність",
-  "search": "Пошук"
+  "search": "Пошук",
+  "contact_us": "Зв'яжіться з нами",
+  "email": "Електронна пошта",
+  "phone": "Телефон",
+  "address": "Адреса",
+  "our_location": "Наше місцезнаходження"
 }
