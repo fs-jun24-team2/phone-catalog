@@ -9,6 +9,10 @@ import { AddToCard } from '@/modules/shared/components/AddToCard/AddToCard';
 import { AddToFavourites } from '@/modules/shared/components/AddToFavourites';
 import { CapacityOptions } from './CapacityOptions';
 import { ColorOptions } from './СolorOptions';
+import { isAggregateProduct } from '@/modules/shared/helpers/isAggregateProduct';
+import { useAppSelector } from '@/app/hooks';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 type Props<T> = {
   product: T;
@@ -20,12 +24,6 @@ export const ProductCharacteristics = <T extends Product | AggregateProduct>({
   category,
 }: Props<T>) => {
   const { t } = useTranslation();
-  const isAggregateProduct = (
-    product: Product | AggregateProduct,
-  ): product is AggregateProduct => {
-    return 'itemId' in product && typeof product.itemId === 'string';
-  };
-
   const {
     id,
     priceRegular,
@@ -50,6 +48,8 @@ export const ProductCharacteristics = <T extends Product | AggregateProduct>({
       }
     : product;
 
+  const products = useAppSelector(state => state.products[category]);
+
   const specs = [
     {
       name: t(Specs.Screen),
@@ -68,17 +68,40 @@ export const ProductCharacteristics = <T extends Product | AggregateProduct>({
       value: ram,
     },
   ];
-
+  const [color, setColor] = useState(product.color);
+  const [capacity, setCapacity] = useState(product.capacity);
   const price = priceDiscount ? priceDiscount : priceRegular;
+  const nameSpaceId = products[id].namespaceId;
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (color !== product.color || capacity !== product.capacity) {
+      const formatColor = color.split(' ').join('-');
+      const currentCapacity = capacity.toLowerCase();
+      const newPath = nameSpaceId + '-' + currentCapacity + '-' + formatColor;
+      navigate(`/${category}/${newPath}`, { replace: true });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [capacity, color]);
 
   return (
     <div>
       <div className={styles['product-charact__options']}>
-        <ColorOptions colors={colorsAvailable} id={id} />
+        <ColorOptions
+          colors={colorsAvailable}
+          onSetColor={setColor}
+          currentColor={color}
+          id={id}
+        />
 
         <div className={styles['product-charact__devider']}></div>
 
-        <CapacityOptions capacities={capacityAvailable} />
+        <CapacityOptions
+          capacities={capacityAvailable}
+          category={category}
+          onSetCapacity={setCapacity}
+          currentCapacity={capacity}
+        />
 
         <div className={styles['product-charact__devider']}></div>
       </div>

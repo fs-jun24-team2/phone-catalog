@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // npm install react-select
 import Select, { components, SingleValue } from 'react-select';
 import styles from './SortSelector.module.scss';
@@ -7,6 +7,7 @@ import styles from './SortSelector.module.scss';
 import downArrow from '/images/original/icons/original_down.svg';
 import upArrow from '/images/original/icons/original_to-up.svg';
 import { SelectedOption } from '@/types/SelectedOption';
+import { useTranslation } from 'react-i18next';
 
 interface SortSelectorProps {
   label: string;
@@ -67,24 +68,44 @@ export const SortSelector: React.FC<SortSelectorProps> = ({
   className,
   onChange,
 }) => {
+  const { t } = useTranslation();
   const [menuIsOpen, setMenuIsOpen] = useState(false);
+  const defaultValue = options[2];
+  const [value, setValue] = useState(defaultValue);
 
   const handleMenuOpen = () => setMenuIsOpen(true);
   const handleMenuClose = () => setMenuIsOpen(false);
+
+  const handleOnChange = (option: SingleValue<SelectedOption>) => {
+    if (option) {
+      setValue(option);
+    }
+
+    onChange(option);
+  };
+
+  useEffect(() => {
+    setValue(prev => {
+      const newValue = options.find(option => option.value === prev.value);
+
+      return newValue ? newValue : prev;
+    });
+  }, [options, t]);
 
   return (
     <div className={className}>
       <p className={styles.selectors__type}>{label}</p>
       <Select
         options={options}
-        defaultValue={options[2]}
+        defaultValue={defaultValue}
+        value={value}
         styles={customStyles}
         components={{ DropdownIndicator }}
         isSearchable={false}
         menuIsOpen={menuIsOpen}
         onMenuOpen={handleMenuOpen}
         onMenuClose={handleMenuClose}
-        onChange={onChange}
+        onChange={handleOnChange}
       />
     </div>
   );

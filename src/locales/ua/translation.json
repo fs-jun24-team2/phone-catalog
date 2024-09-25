@@ -82,7 +82,7 @@
   "alphabetically":"Алфавітом",
   "newest":"Новизною",
   "all":"Всі",
-  "checkoutConfirmation": "Оформлення замовлення ще не реалізовано. Ви хочете очистити кошик?",
+  "checkoutConfirmation": "Ви впевнені, що хочете оформити замовлення?",
   "cartTitle": "Кошик",
   "totalItems": "Всього товарів: {{total}}",
   "checkout": "Оформити",
@@ -117,5 +117,11 @@
   "company_rights_terms_changes": "Зміни умов",
   "company_rights_account_termination": "Закриття облікових записів",
   "liability_limitations": "Обмеження відповідальності",
-  "liability_text": "Ми не несемо відповідальності за будь-які втрати..."
+  "liability_text": "Ми не несемо відповідальності за будь-які втрати...",
+  "shop_by_category": "Купуйте за категоріями",
+  "models": "моделі",
+  "specs_built_in_memory": "Вбудована пам'ять",
+  "specs_camera": "Камера",
+  "specs_zoom": "Оптичний зум",
+  "specs_cell": "Мережева технологія"
 }

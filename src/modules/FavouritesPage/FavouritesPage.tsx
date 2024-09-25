@@ -7,9 +7,12 @@ import { selectFavourites } from '@/features/favouritesSlice';
 import { FavouritesList } from './components/FavouritesList';
 
 import styles from './FavouritesPage.module.scss';
+import { useTranslation } from 'react-i18next';
 
 export const FavouritesPage = () => {
+  const { t } = useTranslation();
   const items = useAppSelector(selectFavourites);
+  const isEmpty = items.length === 0;
   return (
     <>
       <div className={cn('grid-container')}>
@@ -19,7 +22,7 @@ export const FavouritesPage = () => {
 
         <div className={styles['favourites-page__header']}>
           <h1 className={cn('style-h1', styles['favourites-page__title'])}>
-            Favourites
+            {t('favourites')}
           </h1>
 
           <p
@@ -28,11 +31,15 @@ export const FavouritesPage = () => {
               styles['favourites-page__product-amount'],
             )}
           >
-            {items.length} items
+            {items.length} {t('models')}
           </p>
         </div>
 
-        <div className={styles['favourites-page__products-list']}>
+        <div
+          className={cn(styles['favourites-page__products-list'], {
+            [styles['favourites-page--empty']]: isEmpty,
+          })}
+        >
           <FavouritesList items={items} />
         </div>
       </div>

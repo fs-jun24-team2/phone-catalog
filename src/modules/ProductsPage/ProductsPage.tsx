@@ -22,8 +22,12 @@ import { selectAggregateLoading } from '@/features/aggregateSlice';
 
 import cn from 'classnames';
 import { SearchParamsType } from '@/types/SearchParamsType';
+import { useTranslation } from 'react-i18next';
+import { getProductPageTitle } from './helpers/getProductPageTitle';
+import { scrollToTop } from '../shared/helpers/scrollToTop';
 
 export const ProductsPage = () => {
+  const { t } = useTranslation();
   const [title, setTitle] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -50,13 +54,17 @@ export const ProductsPage = () => {
   }, []);
 
   useEffect(() => {
-    setTitle(productsCategory);
-  }, [location, productsCategory]);
+    const newTitle = getProductPageTitle(productsCategory);
+
+    setTitle(t(newTitle));
+    scrollToTop();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location, t]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsDelayedLoading(false);
-    }, 800); // Delay to show skeleton
+    }, 700);
 
     return () => clearTimeout(timer);
   }, []);
@@ -111,7 +119,7 @@ export const ProductsPage = () => {
                 styles['product-page__product-amount'],
               )}
             >
-              {totalItems} models
+              {totalItems} {t('models')}
             </p>
           </>
         )}
