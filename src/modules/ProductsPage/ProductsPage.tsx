@@ -62,7 +62,7 @@ export const ProductsPage = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsDelayedLoading(false);
-    }, 800); // Delay to show skeleton
+    }, 700);
 
     return () => clearTimeout(timer);
   }, []);

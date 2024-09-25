@@ -12,7 +12,7 @@ import { useTranslation } from 'react-i18next';
 export const FavouritesPage = () => {
   const { t } = useTranslation();
   const items = useAppSelector(selectFavourites);
-
+  const isEmpty = items.length === 0;
   return (
     <>
       <div className={cn('grid-container')}>
@@ -35,7 +35,11 @@ export const FavouritesPage = () => {
           </p>
         </div>
 
-        <div className={styles['favourites-page__products-list']}>
+        <div
+          className={cn(styles['favourites-page__products-list'], {
+            [styles['favourites-page--empty']]: isEmpty,
+          })}
+        >
           <FavouritesList items={items} />
         </div>
       </div>
