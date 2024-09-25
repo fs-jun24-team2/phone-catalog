@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import styles from './Footer.module.scss';
 import footer_logo from '/images/original/footer/logo.svg';
 import { scrollToTop } from '../../helpers/scrollToTop';
-import { Link } from 'react-router-dom';
 
 export const Footer = () => {
   const { t } = useTranslation();
