@@ -39,3 +39,32 @@
     padding: toRem(8) toRem(12);
   }
 }
+
+.dark_theme {
+  
+    button {
+      background-color: $dark_hover_and_bg_transperency;
+      color: $original_white;
+      border: 1px solid $dark_elements;
+      transition: border $transitionDuration ease;
+  
+      @media (hover: hover) and (pointer: fine) {
+          &:hover {
+              border: toRem(1) solid $original_primary;
+          }
+        }
+  
+      &:disabled {
+        background-color: $dark_elements;
+        cursor: not-allowed;
+        border: none;
+      }
+  
+      &.activePage {
+        background-color: $dark_accent;
+        font-weight: bold;
+        color: $original_white;
+      }
+    }
+  
+}
