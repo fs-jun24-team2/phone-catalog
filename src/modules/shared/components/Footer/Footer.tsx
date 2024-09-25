@@ -4,6 +4,7 @@ import footer_logo from '/images/original/footer/logo.svg';
 import footer_dark_logo from '/images/original/footer/logoblack.svg';
 import { scrollToTop } from '../../helpers/scrollToTop';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export const Footer = () => {
   const { t } = useTranslation();
@@ -45,14 +46,16 @@ export const Footer = () => {
         <img src={isDarkTheme ? footer_dark_logo : footer_logo} alt="Logo" />
         <div className={styles['footer__link']}>
           {links.map((link, index) => (
-            <a
+            <Link
               key={index}
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
+              to={link.href}
+              target={link.href.startsWith('http') ? '_blank' : undefined}
+              rel={
+                link.href.startsWith('http') ? 'noopener noreferrer' : undefined
+              }
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </div>
         <div className={styles['footer__go-back-btn']} onClick={scrollToTop}>
