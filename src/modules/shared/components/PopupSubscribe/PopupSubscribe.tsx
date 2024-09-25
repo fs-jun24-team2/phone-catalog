@@ -26,7 +26,9 @@ export const PopupSubscribe: React.FC = () => {
 
   const handleClose = () => {
     setIsVisible(false);
+
     document.body.style.overflow = '';
+    localStorage.setItem('subscribedEmail', 'not_subscribe');
   };
 
   const validateEmail = (email: string) => {
@@ -63,9 +65,14 @@ export const PopupSubscribe: React.FC = () => {
   if (!isVisible) {
     return null;
   }
+  const handleOverlayClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (event.target === event.currentTarget) {
+      handleClose();
+    }
+  };
 
   return (
-    <div className={styles.popupOverlay}>
+    <div className={styles.popupOverlay} onClick={handleOverlayClick}>
       <div className={styles.popupContent}>
         <button className={styles.closeButton} onClick={handleClose}>
           &times;
