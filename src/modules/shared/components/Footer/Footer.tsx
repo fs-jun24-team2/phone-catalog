@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import styles from './Footer.module.scss';
 import footer_logo from '/images/original/footer/logo.svg';
-import footer_dark_logo from '/images/original/footer/logo-black.svg';
+import footer_dark_logo from '/images/original/footer/logoblack.svg';
 import { scrollToTop } from '../../helpers/scrollToTop';
 import { useEffect, useState } from 'react';
 
