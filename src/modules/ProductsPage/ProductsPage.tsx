@@ -52,6 +52,7 @@ export const ProductsPage = () => {
     const newSearchTerm = searchQuery ? searchQuery : '';
 
     setSearchTerm(newSearchTerm);
+    setCurrentPage(1);
   }, [searchQuery]);
 
   const handlePageChange = (page: number) => {
