@@ -17,8 +17,11 @@ import { selectAggregateLoading } from '@/features/aggregateSlice';
 
 import cn from 'classnames';
 import { SearchParamsType } from '@/types/SearchParamsType';
+import { useTranslation } from 'react-i18next';
+import { getProductPageTitle } from './helpers/getProductPageTitle';
 
 export const ProductsPage = () => {
+  const { t } = useTranslation();
   const [title, setTitle] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -44,9 +47,11 @@ export const ProductsPage = () => {
   }, []);
 
   useEffect(() => {
-    setTitle(productsCategory);
+    const newTitle = getProductPageTitle(productsCategory);
+
+    setTitle(t(newTitle));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location]);
+  }, [location, t]);
 
   useEffect(() => {
     const newSearchTerm = searchQuery ? searchQuery : '';
@@ -90,7 +95,7 @@ export const ProductsPage = () => {
             styles['product-page__product-amount'],
           )}
         >
-          {totalItems} models
+          {totalItems} {t('models')}
         </p>
       </div>
 
