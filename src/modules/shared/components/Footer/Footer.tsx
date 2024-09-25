@@ -1,4 +1,6 @@
+// Footer.tsx
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import styles from './Footer.module.scss';
 import footer_logo from '/images/original/footer/logo.svg';
 import { scrollToTop } from '../../helpers/scrollToTop';
@@ -16,7 +18,7 @@ export const Footer = () => {
       label: t('contacts'),
     },
     {
-      href: 'https://github.com/fs-jun24-team2/phone-catalog',
+      href: '/rights',
       label: t('rights'),
     },
   ];
