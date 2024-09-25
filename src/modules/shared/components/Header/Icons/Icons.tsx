@@ -5,6 +5,7 @@ import original_favorites from '/images/original/icons/original_favorites.svg';
 import original_cart from '/images/original/icons/original_cart.svg';
 import dark_favorites from '/images/dark/icons/dark_favorites.svg';
 import dark_cart from '/images/dark/icons/dark_cart.svg';
+
 import { Path } from '@/types/Path';
 import { ThemeLanguageToggle } from '../ThemeLanguageToggle';
 import { useNavigate } from 'react-router-dom';

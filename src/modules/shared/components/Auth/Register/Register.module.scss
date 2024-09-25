@@ -1,0 +1,110 @@
+@import "@/style.scss";
+
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.auth-card {
+  background-color: $original_hover_and_bg;
+  padding: toRem(30);
+  border-radius: toRem(10);
+  width: toRem(400);
+  max-width: 100%;
+  text-align: center;
+  box-shadow: 0 toRem(4) toRem(8) rgba(0, 0, 0, 0.1);
+
+  h2 {
+    font-size: toRem(24);
+    font-weight: $bold;
+    margin-bottom: toRem(20);
+  }
+}
+
+.form-group {
+  margin-bottom: toRem(20);
+  text-align: left;
+
+  label {
+    display: block;
+    font-size: toRem(14);
+    margin-bottom: toRem(5);
+    color: $original_secondary;
+  }
+
+  input {
+    width: 100%;
+    padding: toRem(10);
+    border: toRem(1) solid $original_primary;
+    border-radius: toRem(5);
+    background-color: $original_white;
+    font-size: toRem(16);
+    color: $original_primary;
+
+    &::placeholder {
+      color: $original_secondary;
+    }
+
+    &:focus {
+      border-color: $original_secondary;
+      outline: none;
+    }
+  }
+}
+
+.auth-btn {
+  padding: toRem(12) toRem(20);
+  background-color: $original_primary;
+  color: $original_white;
+  border: none;
+  border-radius: toRem(5);
+  cursor: pointer;
+  font-size: toRem(16);
+  font-weight: $bold;
+  width: 100%;
+  margin-top: toRem(10);
+  transition: background-color $transitionDuration ease;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background-color: $dark_hover_and_bg_transperency;
+    }
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+.auth-link {
+  display: block;
+  margin-top: toRem(10);
+  font-size: toRem(14);
+  color: $original_primary;
+  text-decoration: none;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.form-footer {
+  margin-top: toRem(20);
+  font-size: toRem(14);
+  color: $original_secondary;
+
+  a {
+    color: $original_primary;
+    text-decoration: none;
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
