@@ -65,8 +65,10 @@
     &:hover{
       background-color: $dark_elements;
       border-color: $dark_secondary;
-
     }
 
+    &:active{
+      background-color: $dark_icons;
+    }
   }
 }

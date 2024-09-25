@@ -7,7 +7,7 @@ import 'swiper/css';
 import 'swiper/css/effect-fade';
 import 'swiper/css/pagination';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import cn from 'classnames';
 import { getBanners } from '@/utils/getBanners';
 import { PaginationOptions } from '../../../../../node_modules/swiper/types/modules/pagination';
@@ -22,6 +22,21 @@ export const PictureSlider: React.FC = () => {
       return `<span class="${className} ${styles['picture-slider__swiper-pagination']}"></span>`;
     },
   };
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
+
+  useEffect(() => {
+    const checkTheme = () => {
+      const isDark = document.body.classList.contains('dark_theme');
+      setIsDarkTheme(isDark);
+    };
+
+    checkTheme();
+
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.body, { attributes: true });
+
+    return () => observer.disconnect();
+  });
 
   return (
     <section className={cn('grid-container', styles['picture-slider'])}>
@@ -29,6 +44,9 @@ export const PictureSlider: React.FC = () => {
         className={cn(
           styles['picture-slider__button'],
           styles['picture-slider__button-prev'],
+          {
+            [styles['picture-slider__button-dark']]: isDarkTheme,
+          },
         )}
         onClick={() => {
           swiper?.slidePrev();
@@ -66,6 +84,9 @@ export const PictureSlider: React.FC = () => {
         className={cn(
           styles['picture-slider__button'],
           styles['picture-slider__button-next'],
+          {
+            [styles['picture-slider__button-dark']]: isDarkTheme,
+          },
         )}
         onClick={() => {
           swiper?.slideNext();
