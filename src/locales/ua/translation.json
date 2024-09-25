@@ -82,7 +82,7 @@
   "alphabetically":"Алфавітом",
   "newest":"Новизною",
   "all":"Всі",
-  "checkoutConfirmation": "Оформлення замовлення ще не реалізовано. Ви хочете очистити кошик?",
+  "checkoutConfirmation": "Ви впевнені, що хочете оформити замовлення?",
   "cartTitle": "Кошик",
   "totalItems": "Всього товарів: {{total}}",
   "checkout": "Оформити",

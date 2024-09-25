@@ -1,6 +1,9 @@
 import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../app/store';
 import { CartItemType } from '@/types/CartItems';
+import { WritableDraft } from 'immer';
+import { getFormattedDate } from '@/modules/shared/helpers/getFormattedDate';
+import { getPurchaseHistory } from '@/modules/shared/helpers/getPurchaseHistory';
 
 type CartSlice = {
   items: Record<string, CartItemType>;
@@ -12,6 +15,26 @@ const items = JSON.parse(localStorage.getItem('cart') || '{}');
 const initialState: CartSlice = {
   items,
   totalPrice: 0,
+};
+
+const addItemsToPurchaseHistory = (state: WritableDraft<CartSlice>) => {
+  const purchaseHistory = getPurchaseHistory();
+  const formattedDate = getFormattedDate();
+
+  const newPurchaseHistory = Object.keys(state.items).map(key => {
+    const price = `$${state.items[key].price * state.items[key].amount}`;
+
+    return {
+      item: key,
+      price: price,
+      date: formattedDate,
+    };
+  });
+
+  localStorage.setItem(
+    'purchaseHistory',
+    JSON.stringify([...purchaseHistory, ...newPurchaseHistory]),
+  );
 };
 
 const cartSlice = createSlice({
@@ -53,6 +76,8 @@ const cartSlice = createSlice({
       }
     },
     clearCart: state => {
+      addItemsToPurchaseHistory(state);
+
       state.items = {};
       state.totalPrice = 0;
       localStorage.setItem('cart', JSON.stringify(state.items));

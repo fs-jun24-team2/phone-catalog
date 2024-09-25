@@ -24,6 +24,7 @@ import cn from 'classnames';
 import { SearchParamsType } from '@/types/SearchParamsType';
 import { useTranslation } from 'react-i18next';
 import { getProductPageTitle } from './helpers/getProductPageTitle';
+import { scrollToTop } from '../shared/helpers/scrollToTop';
 
 export const ProductsPage = () => {
   const { t } = useTranslation();
@@ -56,6 +57,7 @@ export const ProductsPage = () => {
     const newTitle = getProductPageTitle(productsCategory);
 
     setTitle(t(newTitle));
+    scrollToTop();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location, t]);
 

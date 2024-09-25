@@ -82,7 +82,7 @@
   "alphabetically":"Alphabetically",
   "newest":"Newest",
   "all":"All",
-  "checkoutConfirmation": "Checkout is not implemented yet. Do you want to clear the Cart?",
+  "checkoutConfirmation": "Are you sure you want to place an order?",
   "cartTitle": "Cart",
   "totalItems": "Total items: {{total}}",
   "checkout": "Checkout",
