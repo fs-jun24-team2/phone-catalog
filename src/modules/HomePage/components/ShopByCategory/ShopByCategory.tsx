@@ -3,8 +3,10 @@ import styles from './ShopByCategory.module.scss';
 import { selectProducts } from '@/features/productsSlice';
 import { useCategoriesData } from '../../../../hooks/useCategoriesData';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export const ShopByCategory = () => {
+  const { t } = useTranslation();
   const products = useAppSelector(selectProducts);
   const phoneAmount = Object.keys(products.phones).length;
   const tabletsAmount = Object.values(products.tablets).length;
@@ -19,7 +21,7 @@ export const ShopByCategory = () => {
   return (
     <div>
       <h2 className={`${styles['style-h2']} ${styles['category-high-title']} `}>
-        Shop by category
+        {t('shop_by_category')}
       </h2>
 
       <section className={styles['all-categories']}>
@@ -40,7 +42,7 @@ export const ShopByCategory = () => {
             <div
               className={`${styles['body-text']} ${styles['all-categories__amount']} `}
             >
-              {category.amount} models
+              {category.amount} {t('models')}
             </div>
           </div>
         ))}

@@ -5,7 +5,6 @@ import { useLocation } from 'react-router-dom';
 import { BreadcrumbsSkeleton } from '../shared/components/Skeletons/BreadcrumbsSkeleton';
 import { TitleSkeleton } from '../shared/components/Skeletons/TitleSkeleton';
 import { SortPanelSkeleton } from '../shared/components/Skeletons/SortPanelSkeleton';
-// import { ProductCardSkeleton } from '../shared/components/Skeletons/ProductCardSkeleton';
 import { PaginationSkeleton } from '../shared/components/Skeletons/PaginationSkeleton';
 
 import { selectProductsLoading } from '@/features/productsSlice';
@@ -16,15 +15,18 @@ import { ProductsCategory } from '@/types/ProductsCategory';
 import { ProductsList } from './ProductsList';
 import { VirtualAssistant } from '../VirtualAssistant';
 
-// import original_notFound from '/images/original/notFound/original-notFound.png';
+import original_notFound from '/images/original/notFound/original-notFound.png';
 import styles from './ProductsPage.module.scss';
 import { useFilteredProducts } from '@/hooks/useFilteredProduct';
 import { selectAggregateLoading } from '@/features/aggregateSlice';
 
 import cn from 'classnames';
 import { SearchParamsType } from '@/types/SearchParamsType';
+import { useTranslation } from 'react-i18next';
+import { getProductPageTitle } from './helpers/getProductPageTitle';
 
 export const ProductsPage = () => {
+  const { t } = useTranslation();
   const [title, setTitle] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -40,7 +42,7 @@ export const ProductsPage = () => {
   const productList = Object.values(products[productsCategory]);
   const totalItems = productList.length;
 
-  const query = new URLSearchParams(useLocation().search);
+  const query = new URLSearchParams(location.search);
   const searchQuery = query.get(SearchParamsType.query);
 
   useEffect(() => {
@@ -51,21 +53,22 @@ export const ProductsPage = () => {
   }, []);
 
   useEffect(() => {
-    setTitle(productsCategory);
+    const newTitle = getProductPageTitle(productsCategory);
+
+    setTitle(t(newTitle));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location]);
+  }, [location, t]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsDelayedLoading(false);
-    }, 500); //            це затримка щоб було видно скелет
-
+    }, 500);
+    
     return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
     const newSearchTerm = searchQuery ? searchQuery : '';
-
     setSearchTerm(newSearchTerm);
     setCurrentPage(1);
   }, [searchQuery]);
@@ -87,6 +90,8 @@ export const ProductsPage = () => {
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage,
   );
+
+  const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
 
   return (
     <>
@@ -112,7 +117,7 @@ export const ProductsPage = () => {
                 styles['product-page__product-amount'],
               )}
             >
-              {totalItems} models
+              {totalItems} {t('models')}
             </p>
           </>
         )}
@@ -124,40 +129,41 @@ export const ProductsPage = () => {
         ) : (
           <SortAndPaginationPanel
             onHandleItemPerPage={handleItemsPerPageChange}
+            totalItems={totalItems}
           />
         )}
       </div>
-      <div className={styles['product-page__products-list']}>
-        <ProductsList
-          products={paginatedProducts}
-          category={productsCategory}
-          isLoading={isLoading}
-        />
-      </div>
 
-      {isDelayedLoading || isLoading ? (
-        <PaginationSkeleton />
-      ) : (
-        <>
-          {filteredProducts.length ? (
-            <div className={styles['product-page__products-list']}>
-              <Pagination
-                totalItems={filteredProducts.length}
-                itemsPerPage={itemsPerPage}
-                currentPage={currentPage}
-                onPageChange={handlePageChange}
-              />
-            </div>
-          ) : (
-            isLoading && null
-            // <div className={styles.notfound}>
-            //   <img src={original_notFound} alt="Product not found" />
-            // </div>
+      {!!filteredProducts.length && (
+        <div className={styles['product-page__products-list']}>
+          <ProductsList
+            products={paginatedProducts}
+            category={productsCategory}
+            isLoading={isLoading}
+          />
+
+          {totalPages > 1 && (
+            <Pagination
+              totalItems={filteredProducts.length}
+              itemsPerPage={itemsPerPage}
+              currentPage={currentPage}
+              onPageChange={handlePageChange}
+            />
           )}
-        </>
+        </div>
       )}
 
-      {!isLoading && <VirtualAssistant onSearch={setSearchTerm} />}
+      {!filteredProducts.length && !isLoading && (
+        <div className={styles.notfound}>
+          <img src={original_notFound} alt="Product not found" />
+        </div>
+      )}
+
+      {!filteredProducts.length && isDelayedLoading ? (
+        <PaginationSkeleton />
+      ) : (
+        !isLoading && <VirtualAssistant onSearch={setSearchTerm} />
+      )}
     </>
   );
 };

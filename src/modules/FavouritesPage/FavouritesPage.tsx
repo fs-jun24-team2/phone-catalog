@@ -7,9 +7,12 @@ import { selectFavourites } from '@/features/favouritesSlice';
 import { FavouritesList } from './components/FavouritesList';
 
 import styles from './FavouritesPage.module.scss';
+import { useTranslation } from 'react-i18next';
 
 export const FavouritesPage = () => {
+  const { t } = useTranslation();
   const items = useAppSelector(selectFavourites);
+
   const isEmpty = items.length === 0;
 
   return (
@@ -40,6 +43,7 @@ export const FavouritesPage = () => {
         )}
       >
         <FavouritesList items={items} />
+
       </div>
     </div>
   );

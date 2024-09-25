@@ -23,7 +23,7 @@ export const Header = () => {
 
   const setTheme = (darkMode: boolean) => {
     setIsDarkTheme(darkMode);
-    document.body.classList.toggle(styles.dark_theme, darkMode);
+    document.body.classList.toggle('dark_theme', darkMode);
     localStorage.setItem('theme', darkMode ? 'dark' : 'light');
   };
 
