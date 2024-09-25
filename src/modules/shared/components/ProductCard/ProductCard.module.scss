@@ -130,5 +130,49 @@
   &:hover {
     border-color: $original_secondary;
   }
+}
 
+.product-card-dark{
+  border: none;
+  background-color: $dark_surface_1; 
+
+  .product-card__title{
+    color: $dark_white;
+  }
+
+  .product-card__price-discount{
+    color: $dark_white;
+  }
+
+  .product-card__price-regular{
+    color: $dark_secondary;
+  }
+
+  .product-card__devider{
+    background-color: $dark_elements;
+  }
+
+  .product-card__spec-name{
+    color: $dark_secondary;
+  }
+
+  .product-card__spec-value{
+    color: $dark_white;
+  }
+
+  .product-card__btn-favourites{
+    border-color: $dark_surface_1;
+    background-color: $dark_surface_2;
+    background-image: url("/images/original/icons/original_favorites_black.svg");
+
+    &:hover {
+      background-color: $dark_icons;
+    }
+  }
+
+  .product-card__btn-favourites--added{
+    background-image: url("/images/original/icons/original_favourites_filled.svg");
+    border-color: $dark_elements;
+    background-color: $dark_surface_1;
+  }
 }
