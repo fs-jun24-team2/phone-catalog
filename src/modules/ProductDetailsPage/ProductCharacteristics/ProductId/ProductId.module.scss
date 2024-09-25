@@ -8,6 +8,10 @@
   font-weight: $bold;
   line-height: toRem(15);
   text-align: right;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: toRem(100);
 
   @media (min-width: $desktop) {
     padding-left: 0;

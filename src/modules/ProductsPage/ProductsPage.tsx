@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '@/app/hooks';
+import { useAppSelector } from '@/app/hooks';
 import { useLocation } from 'react-router-dom';
 
-import {
-  loadProductsAsync,
-  selectProductLoading,
-} from '@/features/productsSlice';
+import { BreadcrumbsSkeleton } from '../shared/components/Skeletons/BreadcrumbsSkeleton';
+import { TitleSkeleton } from '../shared/components/Skeletons/TitleSkeleton';
+import { SortPanelSkeleton } from '../shared/components/Skeletons/SortPanelSkeleton';
+// import { ProductCardSkeleton } from '../shared/components/Skeletons/ProductCardSkeleton';
+import { PaginationSkeleton } from '../shared/components/Skeletons/PaginationSkeleton';
+
+import { selectProductsLoading } from '@/features/productsSlice';
 import { Breadcrumbs } from '../shared/components/Breadcrumbs';
 import { SortAndPaginationPanel } from './SortAndPagination/SortAndPagination';
 import { Pagination } from '../shared/components/Pagination';
@@ -13,19 +16,26 @@ import { ProductsCategory } from '@/types/ProductsCategory';
 import { ProductsList } from './ProductsList';
 import { VirtualAssistant } from '../VirtualAssistant';
 
-import original_notFound from '/images/original/notFound/original-notFound.png';
+// import original_notFound from '/images/original/notFound/original-notFound.png';
 import styles from './ProductsPage.module.scss';
+import { useFilteredProducts } from '@/hooks/useFilteredProduct';
+import { selectAggregateLoading } from '@/features/aggregateSlice';
+
+import cn from 'classnames';
 
 export const ProductsPage = () => {
   const [title, setTitle] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(8);
-  const dispatch = useAppDispatch();
+  const [isDelayedLoading, setIsDelayedLoading] = useState(true);
   const products = useAppSelector(state => state.products);
   const location = useLocation();
   const productsCategory = location.pathname.slice(1) as ProductsCategory;
-  const isLoading = useAppSelector(selectProductLoading);
+  const isProductsLoading = useAppSelector(selectProductsLoading);
+  const isAggregatesLoading = useAppSelector(selectAggregateLoading);
+  const isLoading = isProductsLoading || isAggregatesLoading;
+
   const productList = Object.values(products[productsCategory]);
   const totalItems = productList.length;
 
@@ -38,11 +48,15 @@ export const ProductsPage = () => {
 
   useEffect(() => {
     setTitle(productsCategory);
-    if (!Object.keys(products[productsCategory]).length) {
-      dispatch(loadProductsAsync(ProductsCategory[productsCategory]));
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location]);
+  }, [location, productsCategory]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsDelayedLoading(false);
+    }, 800); //            це затримка щоб було видно скелет
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -55,9 +69,7 @@ export const ProductsPage = () => {
     localStorage.setItem('currentPage', '1');
   };
 
-  const filteredProducts = productList.filter(product =>
-    product.name.toLowerCase().includes(searchTerm.toLowerCase()),
-  );
+  const filteredProducts = useFilteredProducts(productList, { searchTerm });
 
   const paginatedProducts = filteredProducts.slice(
     (currentPage - 1) * itemsPerPage,
@@ -65,45 +77,74 @@ export const ProductsPage = () => {
   );
 
   return (
-    <div style={{ paddingTop: '100px' }}>
-      <Breadcrumbs />
-      <h1>{title}</h1>
-      <p>{totalItems} models</p>
-      <SortAndPaginationPanel
-        products={Object.values(products[productsCategory])}
-      />
-      <div style={{ marginTop: '25px', marginBottom: '25px' }}>
-        <label>Items per page:</label>
-        <select
-          value={itemsPerPage}
-          onChange={e => handleItemsPerPageChange(Number(e.target.value))}
-        >
-          <option value={8}>8</option>
-          <option value={12}>12</option>
-          <option value={16}>16</option>
-        </select>
+    <>
+      <div className={styles['product-page__breadcrumbs']}>
+        {isDelayedLoading || isLoading ? (
+          <BreadcrumbsSkeleton />
+        ) : (
+          <Breadcrumbs />
+        )}
       </div>
 
-      {filteredProducts.length > 0 ? (
-        <>
-          <ProductsList
-            products={paginatedProducts}
-            category={productsCategory}
-            isLoading={isLoading}
+      <div className={styles['product-page__header']}>
+        {isDelayedLoading || isLoading ? (
+          <TitleSkeleton />
+        ) : (
+          <>
+            <h1 className={cn('style-h1', styles['product-page__title'])}>
+              {title}
+            </h1>
+            <p
+              className={cn(
+                'style-buttons-text',
+                styles['product-page__product-amount'],
+              )}
+            >
+              {totalItems} models
+            </p>
+          </>
+        )}
+      </div>
+
+      <div className={styles['product-page__sort-panel']}>
+        {isDelayedLoading || isLoading ? (
+          <SortPanelSkeleton />
+        ) : (
+          <SortAndPaginationPanel
+            onHandleItemPerPage={handleItemsPerPageChange}
           />
-          <Pagination
-            totalItems={filteredProducts.length}
-            itemsPerPage={itemsPerPage}
-            currentPage={currentPage}
-            onPageChange={handlePageChange}
-          />
-        </>
+        )}
+      </div>
+      <div className={styles['product-page__products-list']}>
+        <ProductsList
+          products={paginatedProducts}
+          category={productsCategory}
+          isLoading={isLoading}
+        />
+      </div>
+      {isDelayedLoading || isLoading ? (
+        <PaginationSkeleton />
       ) : (
-        <div className={styles.notfound}>
-          <img src={original_notFound} alt="Product not found" />
-        </div>
+        <>
+          {filteredProducts.length ? (
+            <div className={styles['product-page__products-list']}>
+              <Pagination
+                totalItems={filteredProducts.length}
+                itemsPerPage={itemsPerPage}
+                currentPage={currentPage}
+                onPageChange={handlePageChange}
+              />
+            </div>
+          ) : (
+            isLoading && null
+            // <div className={styles.notfound}>
+            //   <img src={original_notFound} alt="Product not found" />
+            // </div>
+          )}
+        </>
       )}
-      <VirtualAssistant onSearch={setSearchTerm} />
-    </div>
+
+      {!isLoading && <VirtualAssistant onSearch={setSearchTerm} />}
+    </>
   );
 };

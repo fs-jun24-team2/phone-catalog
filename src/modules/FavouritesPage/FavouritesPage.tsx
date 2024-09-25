@@ -6,16 +6,35 @@ import { Breadcrumbs } from '../shared/components/Breadcrumbs';
 import { selectFavourites } from '@/features/favouritesSlice';
 import { FavouritesList } from './components/FavouritesList';
 
+import styles from './FavouritesPage.module.scss';
+
 export const FavouritesPage = () => {
   const items = useAppSelector(selectFavourites);
   return (
     <>
       <div className={cn('grid-container')}>
-        <div style={{ paddingTop: '100px' }}></div>
-        <Breadcrumbs />
-        <h1>Favourites</h1>
-        <p>{items.length} items</p>
-        <FavouritesList items={items} />
+        <div className={styles['favourites-page__breadcrumbs']}>
+          <Breadcrumbs />
+        </div>
+
+        <div className={styles['favourites-page__header']}>
+          <h1 className={cn('style-h1', styles['favourites-page__title'])}>
+            Favourites
+          </h1>
+
+          <p
+            className={cn(
+              'style-buttons-text',
+              styles['favourites-page__product-amount'],
+            )}
+          >
+            {items.length} items
+          </p>
+        </div>
+
+        <div className={styles['favourites-page__products-list']}>
+          <FavouritesList items={items} />
+        </div>
       </div>
     </>
   );

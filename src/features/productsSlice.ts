@@ -66,7 +66,7 @@ export default productsSlice.reducer;
 export const selectProducts = (state: RootState) => state.products;
 export const selectPhones = (state: RootState) => state.products.phones;
 export const selectTablets = (state: RootState) => state.products.tablets;
-export const selectProductLoading = (state: RootState) =>
+export const selectProductsLoading = (state: RootState) =>
   state.products.isLoading;
 export const selectAccessories = (state: RootState) =>
   state.products.accessories;

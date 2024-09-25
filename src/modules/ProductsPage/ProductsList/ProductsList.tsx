@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import cn from 'classnames';
 
 import styles from './ProductsList.module.scss';
@@ -19,11 +19,19 @@ export const ProductsList: React.FC<Props> = ({
   category,
   isLoading,
 }) => {
-  //
-  // console.log(isLoading);
+  const [isDelayedLoading, setIsDelayedLoading] = useState(true); // Додаємо стан для затримки
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsDelayedLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className={cn('grid-container', [styles['products-list']])}>
-      {isLoading
+      {isLoading || isDelayedLoading
         ? Array(8)
             .fill(null)
             .map((_, index) => (
