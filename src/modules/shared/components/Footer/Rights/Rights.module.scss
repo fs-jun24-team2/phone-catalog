@@ -1,4 +1,4 @@
-@import '@/style.scss';
+@import "@/style.scss";
 
 // Rights.module.scss
 .rights-container {
@@ -7,7 +7,7 @@
 
   h1 {
     font-size: toRem(32);
-    color:$original_primary;
+    color: $original_primary;
     text-align: center;
     margin-bottom: toRem(20);
     font-weight: $bold;
@@ -48,4 +48,25 @@
   }
 }
 
-  
+.dark_theme {
+  background-color: $dark_black;
+  h1 {
+    color: $original_hover_and_bg_transperency;
+  }
+
+  section {
+    h2 {
+      color: $original_hover_and_bg_transperency;
+    }
+
+    ul {
+      li {
+        color: $original_hover_and_bg_transperency;
+      }
+    }
+
+    p {
+      color: $original_secondary;
+    }
+  }
+}
