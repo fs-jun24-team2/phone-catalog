@@ -1,4 +1,4 @@
-@import '@/style.scss';
+@import "@/style.scss";
 
 .contacts-container {
   padding: toRem(80) toRem(20) toRem(20) toRem(20);
@@ -37,7 +37,6 @@
   display: flex;
   flex-direction: column;
   gap: toRem(5);
-  
 
   h2 {
     font-size: toRem(24);
@@ -64,7 +63,35 @@ iframe {
     gap: toRem(30);
   }
 
-  .contacts, .map {
+  .contacts,
+  .map {
     padding: toRem(30) toRem(20);
+  }
+}
+
+.dark_theme {
+  .contacts {
+    background-color: $dark_hover_and_bg_transperency;
+    border: 1px solid $original_secondary;
+
+    h2 {
+      color: $original_hover_and_bg_transperency;
+    }
+
+    p {
+      color: $original_secondary;
+    }
+  }
+
+  .map {
+    background-color: $dark_hover_and_bg_transperency;
+    border: 1px solid $original_secondary;
+
+    h2 {
+      color: $original_hover_and_bg_transperency;
+    }
+    iframe {
+      filter: brightness(0.5) contrast(1.2);
+    }
   }
 }
