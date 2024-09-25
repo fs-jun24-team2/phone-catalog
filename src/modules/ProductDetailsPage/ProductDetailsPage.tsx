@@ -90,10 +90,7 @@ export const ProductDetailsPage = () => {
       </button>
 
       <h1
-        className={cn(
-          'style-h1',
-          styles['product-details-page__product-title'],
-        )}
+        className={`${'style-h2'} ${styles['product-details-page__product-title']} ${isDarkTheme ? styles['product-details-page__product-title-dark'] : ''}`}
       >
         {product.name}
       </h1>

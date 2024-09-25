@@ -73,6 +73,7 @@ export const ProductCharacteristics = <T extends Product | AggregateProduct>({
   const price = priceDiscount ? priceDiscount : priceRegular;
   const nameSpaceId = products[id].namespaceId;
   const navigate = useNavigate();
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
 
   useEffect(() => {
     if (color !== product.color || capacity !== product.capacity) {
@@ -84,8 +85,24 @@ export const ProductCharacteristics = <T extends Product | AggregateProduct>({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [capacity, color]);
 
+  useEffect(() => {
+    const checkTheme = () => {
+      const isDark = document.body.classList.contains('dark_theme');
+      setIsDarkTheme(isDark);
+    };
+
+    checkTheme();
+
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.body, { attributes: true });
+
+    return () => observer.disconnect();
+  });
+
   return (
-    <div>
+    <div
+      className={`${styles['']} ${isDarkTheme ? styles['product-charact-dark'] : ''}`}
+    >
       <div className={styles['product-charact__options']}>
         <ColorOptions
           colors={colorsAvailable}
