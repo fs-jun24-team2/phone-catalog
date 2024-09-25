@@ -107,7 +107,9 @@ const Dashboard = () => {
       switch (section.component) {
         case 'UserInfo':
           return (
-            <div className={`${styles['user-info-section']} ${sectionClassName}`}>
+            <div
+              className={`${styles['user-info-section']} ${sectionClassName}`}
+            >
               <div
                 className={styles['section-header']}
                 onClick={() => toggleSection(section.id)}
@@ -132,13 +134,16 @@ const Dashboard = () => {
                         <strong>{t('dashboard.name')}:</strong> {userInfo.name}
                       </p>
                       <p>
-                        <strong>{t('dashboard.email')}:</strong> {userInfo.email}
+                        <strong>{t('dashboard.email')}:</strong>{' '}
+                        {userInfo.email}
                       </p>
                       <p>
-                        <strong>{t('dashboard.dateOfBirth')}:</strong> {userInfo.dateOfBirth}
+                        <strong>{t('dashboard.dateOfBirth')}:</strong>{' '}
+                        {userInfo.dateOfBirth}
                       </p>
                       <p>
-                        <strong>{t('dashboard.phone')}:</strong> {userInfo.phone}
+                        <strong>{t('dashboard.phone')}:</strong>{' '}
+                        {userInfo.phone}
                       </p>
                     </div>
                   </div>
