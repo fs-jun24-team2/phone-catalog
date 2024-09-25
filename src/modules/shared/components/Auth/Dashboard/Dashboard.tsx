@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import vitalii from '/images/users/Vitalii.jpeg';
 import { useDrag, useDrop, DndProvider, DragSourceMonitor } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import { getPurchaseHistory } from '@/modules/shared/helpers/getPurchaseHistory';
 
 const ITEM_TYPE = 'section';
 
@@ -30,11 +31,7 @@ const Dashboard = () => {
 
   const balance = '$350.00';
 
-  const purchases = [
-    { date: '2023-09-01', price: '$120.00', item: 'Laptop' },
-    { date: '2023-08-15', price: '$50.00', item: 'Headphones' },
-    { date: '2023-08-05', price: '$20.00', item: 'Mouse' },
-  ];
+  const purchases = getPurchaseHistory();
 
   const [sections, setSections] = useState<Section[]>([
     { id: 'userInfo', component: 'UserInfo', isOpen: true },
