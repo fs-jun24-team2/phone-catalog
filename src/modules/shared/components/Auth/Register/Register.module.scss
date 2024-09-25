@@ -135,7 +135,7 @@
       color: $original_primary;
 
       &::placeholder {
-        color: $original_hover_and_bg_transperency;
+        color: $original_primary;
       }
 
       &:focus {
