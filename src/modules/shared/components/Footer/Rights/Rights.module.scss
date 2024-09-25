@@ -1,0 +1,51 @@
+@import '@/style.scss';
+
+// Rights.module.scss
+.rights-container {
+  padding: toRem(80) toRem(20) toRem(20) toRem(20);
+  background-color: $original_hover_and_bg;
+
+  h1 {
+    font-size: toRem(32);
+    color:$original_primary;
+    text-align: center;
+    margin-bottom: toRem(20);
+    font-weight: $bold;
+  }
+
+  section {
+    margin-bottom: toRem(20);
+
+    h2 {
+      font-size: toRem(24);
+      color: $original_primary;
+      margin-bottom: toRem(15);
+      font-weight: $bold;
+    }
+
+    ul {
+      padding-left: toRem(20);
+
+      li {
+        font-size: toRem(16);
+        color: $original_primary;
+        margin-bottom: toRem(10);
+        line-height: 1.5;
+        font-weight: $bold;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    p {
+      font-size: toRem(16);
+      color: $dark_hover_and_bg_popup;
+      line-height: 1.6;
+      margin-bottom: toRem(15);
+    }
+  }
+}
+
+  
