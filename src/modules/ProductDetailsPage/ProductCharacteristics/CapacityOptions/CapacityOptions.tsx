@@ -1,20 +1,28 @@
 import styles from './CapacityOptions.module.scss';
 
-import { useState } from 'react';
 import cn from 'classnames';
 import { formatValueWithUnit } from '@/utils/formatValueWithUnit';
 import { useTranslation } from 'react-i18next';
+import { ProductsCategory } from '@/types/ProductsCategory';
 
 type Props = {
   capacities: string[];
+  category: ProductsCategory;
+  // eslint-disable-next-line no-unused-vars
+  onSetCapacity: (capacity: string) => void;
+  currentCapacity: string;
 };
 
-export const CapacityOptions = ({ capacities }: Props) => {
+export const CapacityOptions = ({
+  capacities,
+  category,
+  onSetCapacity,
+  currentCapacity,
+}: Props) => {
   const { t } = useTranslation();
-  const [selectedCapacity, setSelectedCapacity] = useState(capacities.at(0));
 
   const handleCapacityClick = (capacity: string) => {
-    setSelectedCapacity(capacity);
+    onSetCapacity(capacity);
   };
 
   return (
@@ -25,7 +33,12 @@ export const CapacityOptions = ({ capacities }: Props) => {
 
       <div className={styles['capacity-options__capacities']}>
         {capacities.map((capacity, index) => {
-          const isActive = selectedCapacity === capacity;
+          const formatCurrentCapacity =
+            category === ProductsCategory.accessories
+              ? currentCapacity
+              : currentCapacity.toUpperCase();
+
+          const isActive = formatCurrentCapacity === capacity;
           const text = formatValueWithUnit(capacity);
 
           return (

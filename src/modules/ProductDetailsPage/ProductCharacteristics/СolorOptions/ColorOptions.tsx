@@ -1,21 +1,26 @@
 import styles from './ColorOptions.module.scss';
 
-import { useState } from 'react';
 import cn from 'classnames';
 import { useTranslation } from 'react-i18next';
 import { ProductId } from '../ProductId';
 
 type Props = {
   colors: string[];
+  // eslint-disable-next-line no-unused-vars
+  onSetColor: (color: string) => void;
+  currentColor: string;
   id?: string;
 };
 
-export const ColorOptions = ({ colors, id }: Props) => {
+export const ColorOptions = ({
+  colors,
+  onSetColor,
+  currentColor,
+  id,
+}: Props) => {
   const { t } = useTranslation();
-  const [selectedColor, setSelectedColor] = useState(colors.at(0));
-
   const handleColorClick = (color: string) => {
-    setSelectedColor(color);
+    onSetColor(color);
   };
 
   return (
@@ -30,7 +35,7 @@ export const ColorOptions = ({ colors, id }: Props) => {
 
       <div className={styles['color-options__colors']}>
         {colors.map((color, index) => {
-          const isActive = selectedColor === color;
+          const isActive = currentColor === color;
           const style = { backgroundColor: color };
 
           return (
