@@ -127,11 +127,8 @@
     }
 
     input {
-
       border: toRem(1) solid $original_primary;
-      border-radius: toRem(5);
       background-color: $original_icons;
-      font-size: toRem(16);
       color: $original_primary;
 
       &::placeholder {
@@ -140,22 +137,13 @@
 
       &:focus {
         border-color: $original_secondary;
-        outline: none;
       }
     }
   }
 
   .auth-btn {
-    padding: toRem(12) toRem(20);
     background-color: $original_primary;
     color: $original_white;
-    border: none;
-    border-radius: toRem(5);
-    cursor: pointer;
-    font-size: toRem(16);
-    font-weight: $bold;
-    width: 100%;
-    margin-top: toRem(10);
     transition: all $transitionDuration ease;
 
     @media (hover: hover) and (pointer: fine) {
@@ -163,16 +151,9 @@
         border: 1px solid $original_hover_and_bg_transperency;
       }
     }
-
-    &:active {
-      transform: scale(0.98);
-    }
   }
 
   .auth-link {
-    display: block;
-    margin-top: toRem(10);
-    font-size: toRem(14);
     color: $original_primary;
     text-decoration: none;
 
@@ -184,8 +165,6 @@
   }
 
   .form-footer {
-    margin-top: toRem(20);
-    font-size: toRem(14);
     color: $original_secondary;
 
     a {
