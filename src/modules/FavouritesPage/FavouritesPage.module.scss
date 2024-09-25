@@ -1,6 +1,19 @@
 @import "@/style.scss";
 
 .favourites-page {
+
+  position: relative;
+
+  &--empty {
+    background-image: url('/img/cart-is-empty.png');
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    min-height: 50vh;
+    position: relative;
+    z-index: -1;
+    pointer-events: none;
+  }
   &__breadcrumbs {
     margin-bottom: toRem(24);
 
