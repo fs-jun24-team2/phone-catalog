@@ -40,7 +40,7 @@
 
     cursor: pointer;
     border: 1px solid $original_elements;
-    transition: border $transitionDuration;
+    transition: border 0.5s;
 
     &:hover {
       border-color: $original_primary;
@@ -48,6 +48,18 @@
     
     &--active {
       border-color: $original_primary;
+    }
+  }
+
+  .gallery__miniature-container-dark{
+    border-color: $dark_surface_2;
+
+    &:hover {
+      border-color: $dark_icons;
+    }
+
+    &.gallery__miniature-container--active {
+      border-color: $dark_secondary;
     }
   }
 
