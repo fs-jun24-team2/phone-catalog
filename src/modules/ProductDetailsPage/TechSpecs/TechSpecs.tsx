@@ -11,14 +11,14 @@ export const TechSpecs: React.FC<TechSpecsProps> = ({ specs }) => {
   const { t } = useTranslation();
 
   const specEntries: [string, string | string[] | undefined][] = [
-    ['Screen', specs.screen],
-    ['Resolution', specs.resolution],
-    ['Processor', specs.processor],
-    ['RAM', specs.ram],
-    ['Built in memory', specs.capacity],
-    ['Camera', specs.camera],
-    ['Zoom', specs.zoom],
-    ['Cell', specs.cell?.join(', ')],
+    [t('specs_screen'), specs.screen],
+    [t('specs_resolution'), specs.resolution],
+    [t('specs_processor'), specs.processor],
+    [t('specs_ram'), specs.ram],
+    [t('specs_built_in_memory'), specs.capacity],
+    [t('specs_camera'), specs.camera],
+    [t('specs_zoom'), specs.zoom],
+    [t('specs_cell'), specs.cell?.join(', ')]
   ];
 
   return (

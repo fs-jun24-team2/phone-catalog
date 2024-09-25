@@ -114,5 +114,9 @@
   "liability_text": "We are not responsible for any losses...",
   "search": "Search",
   "shop_by_category": "Shop by category",
-  "models": "models"
+  "models": "models",
+  "specs_built_in_memory": "Built in memory",
+  "specs_camera": "Camera",
+  "specs_zoom": "Zoom",
+  "specs_cell": "Cell"
 }
