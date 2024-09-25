@@ -22,13 +22,13 @@
 .btn-favourites-dark{
   border-color: $dark_surface_1;
   background-color: $dark_surface_2;
-  background-image: url("/public/images/original/icons/original_favorites.svg");
+  background-image: url("/public/images/original/icons/original_favorites_black.svg");
 
   &:hover {
     background-color: $dark_icons;
   }
 
-  &--added{
+  &.btn-favourites--added{
     background-image: url("/images/original/icons/original_favourites_filled.svg");
     border-color: $dark_elements;
     background-color: $dark_surface_1;

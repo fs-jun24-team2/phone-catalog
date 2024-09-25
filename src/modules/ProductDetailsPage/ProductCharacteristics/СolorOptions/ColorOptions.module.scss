@@ -31,8 +31,29 @@
 
     box-shadow: inset 0 0 0 toRem(2) $original_white;
 
+    &:hover{
+      border-color: $original_secondary;
+    }
+
     &--active {
       border-color: $original_primary;
     }
+  }
+}
+
+.color-options-dark{
+  .color-options__title{
+    color: $dark_secondary;
+  }
+
+  .color-options__color{
+    border-color: $dark_surface_2;
+
+    &:hover{
+      border-color: $dark_icons;
+    }
+  }
+  .color-options__color--active{
+    border-color: $dark_secondary;
   }
 }
