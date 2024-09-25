@@ -33,3 +33,22 @@
     }
   }
 }
+
+.capacity-options-dark{
+  .capacity-options__title{
+    color: $dark_secondary;
+  }
+
+  .capacity-options__capacity{
+    color: $dark_white;
+    border-color: $dark_surface_2;
+
+    &:hover{
+      border-color: $dark_white;
+    }
+  }
+  .capacity-options__capacity--active{
+    background-color: $dark_white;
+    color: $dark_surface_1;
+  }
+}
