@@ -1,6 +1,6 @@
-@import "../../style.scss";
+@import '../../style.scss';
 
-.cart-page{
+.cart-page {
   &--empty {
     background-image: url('/img/cart-is-empty.png');
     background-size: contain;
@@ -8,7 +8,7 @@
     background-repeat: no-repeat;
     min-height: 50vh;
     position: relative;
-    z-index: -1; 
+    z-index: -1;
     pointer-events: none;
   }
   &__breadcrumbs {
@@ -88,7 +88,7 @@
 
   padding: toRem(16);
   gap: toRem(16);
-  
+
   border: toRem(1) solid $original_elements;
 
   @media (min-width: 640px) {
@@ -118,7 +118,7 @@
   &__button-delete {
     height: toRem(16);
     width: toRem(16);
-    background-image: url("/images/original/icons/original_close.svg");
+    background-image: url('/images/original/icons/original_close.svg');
     background-repeat: no-repeat;
     background-position: center;
 
@@ -141,7 +141,7 @@
   }
 
   &__photo {
-    max-height: 100%; 
+    max-height: 100%;
     width: auto;
   }
 
@@ -171,11 +171,11 @@
   }
 
   &__counter-button-minus {
-    background-image: url("/images/original/icons/original_minus.svg");
+    background-image: url('/images/original/icons/original_minus.svg');
   }
 
   &__counter-button-plus {
-    background-image: url("/images/original/icons/original_plus.svg");
+    background-image: url('/images/original/icons/original_plus.svg');
   }
 
   &__counter-number {
@@ -197,7 +197,7 @@
 }
 
 @media (min-width: 1200px) {
-  .cart-page{
+  .cart-page {
     &__products-container {
       grid-column: 1 / 16;
     }
@@ -205,5 +205,70 @@
 
   .checkout {
     grid-column: 17 / -1;
+  }
+}
+
+.dark_theme {
+  .cart-page {
+    &--empty {
+      opacity: 0.6;
+    }
+
+    &__empty {
+      color: $dark_white;
+    }
+
+    &__title {
+      color: $dark_white;
+    }
+  }
+
+  .product {
+    background-color: $dark_surface_1;
+    border: toRem(1) solid $dark_surface_1;
+    color: $dark_white;
+  
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        border-color: $dark_secondary;
+      }
+    }
+  
+    &__counter-button {
+      border: toRem(1) solid $dark_surface_1;
+    }
+
+    &__button-delete {
+      background-image: url('/images/dark/icons/dark_close.svg');
+    }
+
+    &__counter-button-plus {
+      background-image: url('/images/dark/icons/dark_plus.svg');
+    }
+
+    &__counter-button-minus {
+      background-image: url('/images/dark/icons/dark_minus.svg');
+      border: toRem(1) solid $dark_elements
+    }
+
+    &__name {
+      color: $dark_white;
+    }
+  }
+
+  .checkout { 
+    border: toRem(1) solid $dark_elements;
+    
+    &__devider {    
+      background-color: $dark_elements;
+    }
+
+    &__price { 
+      color: $dark_white;
+    }
+
+    &__amount {
+      color: $dark_secondary;
+    }
   }
 }

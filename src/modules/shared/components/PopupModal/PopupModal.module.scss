@@ -71,3 +71,30 @@
   border: none;
   color: $original_primary;
 }
+
+.dark_theme {
+  .popupContent {
+    background: $dark_surface_2;
+    box-shadow: none;
+  
+  }
+
+  .popupButton {
+    background: $dark_accent;
+
+    &.cancel {
+      background-color: $original_secondary;
+      &:hover {
+        background-color: $dark_black;
+      }
+    }
+  }
+
+  .closeIcon {
+    color: $dark_secondary;
+  }
+
+  .popupMessage {
+    color: $dark_white;
+  }
+}

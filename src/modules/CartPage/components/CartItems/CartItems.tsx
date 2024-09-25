@@ -10,7 +10,7 @@ export const CartItems = () => {
   if (!cartEntries.length) {
     return (
       <div className={styles['cart-page__products-container']}>
-        <div>Your cart is empty</div>
+        <div className={styles['cart-page__empty']}>Your cart is empty</div>
       </div>
     );
   }

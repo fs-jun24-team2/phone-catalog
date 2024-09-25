@@ -6,12 +6,14 @@ interface PopupModalProps {
   message: string;
   onConfirm: () => void;
   onCancel: () => void;
+  isDarkTheme: boolean;
 }
 
 export const PopupModal: React.FC<PopupModalProps> = ({
   message,
   onConfirm,
   onCancel,
+  isDarkTheme,
 }) => {
   const { t } = useTranslation();
 
@@ -30,7 +32,10 @@ export const PopupModal: React.FC<PopupModalProps> = ({
   };
 
   return (
-    <div className={styles.popupOverlay} onClick={handleOverlayClick}>
+    <div
+      className={`${styles.popupOverlay} ${isDarkTheme ? styles.dark_theme : ''}`}
+      onClick={handleOverlayClick}
+    >
       <div className={styles.popupContent}>
         <button className={styles.closeIcon} onClick={onCancel}>
           &times;
