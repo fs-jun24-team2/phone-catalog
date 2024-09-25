@@ -24,7 +24,7 @@ export const ProductsList: React.FC<Props> = ({
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsDelayedLoading(false);
-    }, 1000);
+    }, 700);
 
     return () => clearTimeout(timer);
   }, []);

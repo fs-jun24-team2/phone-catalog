@@ -1,6 +1,16 @@
 @import "../../style.scss";
 
 .cart-page{
+  &--empty {
+    background-image: url('/img/cart-is-empty.png');
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    min-height: 50vh;
+    position: relative;
+    z-index: -1; /* Цей z-index повинен залишати картинку позаду всіх інших елементів */
+    pointer-events: none;
+  }
   &__breadcrumbs {
     margin-bottom: toRem(24);
 
@@ -22,6 +32,8 @@
   &__main-contaner {
     row-gap: toRem(32);
     margin-bottom: toRem(80);
+    position: relative;
+    z-index: 1; 
   }
 
   &__products-container {
@@ -32,6 +44,8 @@
 }
 
 .checkout {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   grid-column: 1 / -1;
@@ -41,6 +55,7 @@
   border: toRem(1) solid $original_elements;
   padding: toRem(24);
   gap: toRem(16);
+  
 
   @media (min-width: 1200px) {
     gap: toRem(24);
@@ -196,4 +211,7 @@
   .checkout {
     grid-column: 17 / -1;
   }
+
+  
 }
+

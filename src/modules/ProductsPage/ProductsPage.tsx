@@ -58,7 +58,7 @@ export const ProductsPage = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsDelayedLoading(false);
-    }, 800); //            це затримка щоб було видно скелет
+    }, 500); //            це затримка щоб було видно скелет
 
     return () => clearTimeout(timer);
   }, []);

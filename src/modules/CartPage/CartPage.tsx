@@ -48,7 +48,9 @@ export const CartPage = () => {
         <div className={styles['cart-page__title']}>{t('cartTitle')}</div>
 
         <div
-          className={cn('grid-container', styles['cart-page__main-contaner'])}
+          className={cn('grid-container', styles['cart-page__main-contaner'], {
+            [styles['cart-page--empty']]: isCheckoutDisibled,
+          })}
         >
           <CartItems />
 
