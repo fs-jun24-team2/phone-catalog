@@ -9,20 +9,18 @@
   line-height: toRem(21);
   color: $original_white;
   padding: 0 toRem(6);
-
   transition: box-shadow 0.5s;
-
 
   &:not(:disabled):active {
     color: $original_green;
     background-color: $original_white;
     border: toRem(1) solid $original_elements;
   }
-  
+
   &:hover {
     box-shadow: 0px 0px 15px -1px rgba(0,0,0,0.49);
   }
-  
+
   &:disabled {
     background-color: $original_secondary;
   }
@@ -35,7 +33,6 @@
     color: $original_green;
     background-color: $original_white;
     border: toRem(1) solid $original_elements;
-
     transition: border-color 0.3s;
 
     &:hover {
@@ -45,7 +42,7 @@
   }
 }
 
-.main-button-dark{
+.main-button-dark {
   background-color: $dark_accent;
   color: $dark_white;
 
@@ -56,16 +53,24 @@
   &:disabled {
     background-color: $dark_surface_2;
   }
-}
 
-.main-button__added{
-  background-color: $dark_surface_2;
-  border-color: $dark_surface_2;
-
-  &:hover {
-    border-color: $dark_secondary;
+  &:not(:disabled):active {
+    color: $dark_white;
     background-color: $dark_surface_2;
+  }
 
+  // Стилі для темної теми і кнопки "додано"
+  &.main-button__added {
+    background-color: $dark_surface_2;
+    border-color: $dark_surface_2;
+
+    &:active {
+      background-color: $dark_surface_2;
+    }
+
+    &:hover {
+      border-color: $dark_secondary;
+      background-color: $dark_surface_2;
+    }
   }
 }
-
