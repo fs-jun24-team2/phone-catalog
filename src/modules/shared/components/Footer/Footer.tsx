@@ -14,11 +14,11 @@ export const Footer = () => {
       label: 'Github',
     },
     {
-      href: 'https://github.com/fs-jun24-team2/phone-catalog',
+      href: '/contacts',
       label: t('contacts'),
     },
     {
-      href: 'https://github.com/fs-jun24-team2/phone-catalog',
+      href: '/rights',
       label: t('rights'),
     },
   ];
