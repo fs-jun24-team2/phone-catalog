@@ -41,11 +41,11 @@
     grid-column: 1 / 4;
 
     @media (min-width: 640px) {
-      grid-column: 8 / 11;
+      grid-column: 8 / 13;
     }    
     
     @media (min-width: 800px) {
-      grid-column: 7 / 10;
+      grid-column: 7 / 11;
     }
 
     @media (min-width: 960px) {
@@ -53,7 +53,7 @@
     }
 
     @media (min-width: 1200px) {
-      grid-column: 8 / 11;
+      grid-column: 8 / 13;
     }    
   }
 
@@ -68,11 +68,12 @@
     min-height: toRem(38);
     padding: 0 toRem(10);
     background-color: #FAFBFC;
-    color: #89939A;
+    color: $original_secondary;
     border: toRem(1) solid #B4BDC3;
     cursor: pointer;
     outline: none;
     transition: border-color 0.5s ease;
+    width: 100%;
 
   
     &:hover {
@@ -99,7 +100,7 @@
       &:hover {
         border-color: #75767F;
       }
-  
+  // 
       &:focus {
         border: toRem(1) solid #905BFF;
         border-style: inset;
