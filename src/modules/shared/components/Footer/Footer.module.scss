@@ -17,6 +17,9 @@
   font-weight: $bold;
   text-align: center;
 
+  border-top: toRem(1) solid $original_icons;
+
+
   @media (max-width: 640px) {
     display: flex;
     flex-direction: column;
@@ -93,4 +96,37 @@
         }
       }
   }
+}
+
+.footer-dark {
+  border-top: toRem(1) solid $dark_elements;
+
+  .footer__link {
+    color: $dark_white;
+
+    & a:hover{
+      color: $dark_accent;
+      transition: color $transitionDuration;
+    }
+
+  }
+
+  .footer__go-back-btn{
+    color: $dark_secondary;
+
+    &:hover{
+      color: $dark_icons;
+    }
+  }
+
+  .footer__go-back-btn__icon{
+    background-image: url('/public/images/original/footer/stroke-up-black.svg');
+    background-color: $dark_surface_2;
+    border: none;
+    
+    &:hover{
+      background-color: $dark_icons;
+    }
+  }
+
 }
