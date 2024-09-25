@@ -10,7 +10,7 @@ import { formatValueWithUnit } from '@/utils/formatValueWithUnit';
 import { useSpecs } from '@/hooks/useSpecs';
 import { MainButton } from '../MainButton';
 import cn from 'classnames';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { hasCartProduct } from '@/utils/hasCartProduct';
 import { hasFavouritesProduct } from '@/utils/hasFavouritesProduct';
 import { useAppDispatch } from '@/app/hooks';
@@ -72,8 +72,27 @@ export const ProductCard = <T extends Product | AggregateProduct>({
     setIsAddedToFavourites(prev => !prev);
   };
 
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
+
+  useEffect(() => {
+    const checkTheme = () => {
+      const isDark = document.body.classList.contains('dark_theme');
+      setIsDarkTheme(isDark);
+    };
+
+    checkTheme();
+
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.body, { attributes: true });
+
+    return () => observer.disconnect();
+  });
+
   return (
-    <article key={id} className={styles['product-card']}>
+    <article
+      key={id}
+      className={`${styles['product-card']} ${isDarkTheme ? styles['product-card-dark'] : ''}`}
+    >
       <div className={styles['product-card__header']}>
         <Link
           to={`/${category}/${id}`}

@@ -1,12 +1,30 @@
+import { useEffect, useState } from 'react';
 import styles from './Contacts.module.scss';
 import { useTranslation } from 'react-i18next';
 
 export const Contacts = () => {
   const { t } = useTranslation();
 
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
+
+  useEffect(() => {
+    const checkTheme = () => {
+      const isDark = document.body.classList.contains('dark_theme');
+      setIsDarkTheme(isDark);
+    };
+
+    checkTheme();
+
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.body, { attributes: true });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className={styles['contacts-container']}>
-      {/* Contact Information Section */}
+    <div
+      className={`${styles['contacts-container']} ${isDarkTheme ? styles.dark_theme : ''}`}
+    >
       <div className={styles.contacts}>
         <h2>{t('contact_us')}</h2>
         <p>{t('email')}: support@mate.com</p>
@@ -14,7 +32,6 @@ export const Contacts = () => {
         <p>{t('address')}: Bohdana Khmel'nyts'koho, 51a, Kyiv, 02000</p>
       </div>
 
-      {/* Google Maps Section */}
       <div className={styles.map}>
         <h2>{t('our_location')}</h2>
         <iframe

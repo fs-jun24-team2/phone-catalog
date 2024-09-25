@@ -1,12 +1,30 @@
-// Rights.tsx
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from './Rights.module.scss';
 
 export const Rights = () => {
   const { t } = useTranslation();
 
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
+
+  useEffect(() => {
+    const checkTheme = () => {
+      const isDark = document.body.classList.contains('dark_theme');
+      setIsDarkTheme(isDark);
+    };
+
+    checkTheme();
+
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.body, { attributes: true });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className={styles['rights-container']}>
+    <div
+      className={`${styles['rights-container']} ${isDarkTheme ? styles.dark_theme : ''}`}
+    >
       <h1>{t('rights_title')}</h1>
       <section>
         <h2>{t('user_rights')}</h2>
@@ -173,3 +191,5 @@ export const Rights = () => {
     </div>
   );
 };
+
+export default Rights;
