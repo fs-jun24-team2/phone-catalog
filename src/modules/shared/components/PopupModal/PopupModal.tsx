@@ -14,7 +14,7 @@ export const PopupModal: React.FC<PopupModalProps> = ({
   onCancel,
 }) => {
   const { t } = useTranslation();
-  
+
   useEffect(() => {
     document.body.style.overflow = 'hidden';
 
@@ -22,7 +22,6 @@ export const PopupModal: React.FC<PopupModalProps> = ({
       document.body.style.overflow = '';
     };
   }, []);
-
 
   const handleOverlayClick = (event: React.MouseEvent<HTMLDivElement>) => {
     if (event.target === event.currentTarget) {
