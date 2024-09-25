@@ -18,7 +18,7 @@ export const TechSpecs: React.FC<TechSpecsProps> = ({ specs }) => {
     [t('specs_built_in_memory'), specs.capacity],
     [t('specs_camera'), specs.camera],
     [t('specs_zoom'), specs.zoom],
-    [t('specs_cell'), specs.cell?.join(', ')]
+    [t('specs_cell'), specs.cell?.join(', ')],
   ];
 
   return (

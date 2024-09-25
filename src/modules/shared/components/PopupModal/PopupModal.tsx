@@ -14,8 +14,13 @@ export const PopupModal: React.FC<PopupModalProps> = ({
   onCancel,
 }) => {
   const { t } = useTranslation();
+  const handleOverlayClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (event.target === event.currentTarget) {
+      onCancel();
+    }
+  };
   return (
-    <div className={styles.popupOverlay}>
+    <div className={styles.popupOverlay} onClick={handleOverlayClick}>
       <div className={styles.popupContent}>
         <button className={styles.closeIcon} onClick={onCancel}>
           &times;

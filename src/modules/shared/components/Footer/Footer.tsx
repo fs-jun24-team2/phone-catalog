@@ -13,7 +13,7 @@ export const Footer = () => {
       label: 'Github',
     },
     {
-      href: 'https://github.com/fs-jun24-team2/phone-catalog',
+      href: '/contacts',
       label: t('contacts'),
     },
     {
@@ -27,22 +27,18 @@ export const Footer = () => {
       <div className={styles['footer']}>
         <img src={footer_logo} alt="Logo" />
         <div className={styles['footer__link']}>
-          {links.map((link, index) =>
-            link.href.startsWith('http') ? (
-              <a
-                key={index}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {link.label}
-              </a>
-            ) : (
-              <Link key={index} to={link.href}>
-                {link.label}
-              </Link>
-            ),
-          )}
+          {links.map((link, index) => (
+            <Link
+              key={index}
+              to={link.href}
+              target={link.href.startsWith('http') ? '_blank' : undefined}
+              rel={
+                link.href.startsWith('http') ? 'noopener noreferrer' : undefined
+              }
+            >
+              {link.label}
+            </Link>
+          ))}
         </div>
         <div className={styles['footer__go-back-btn']} onClick={scrollToTop}>
           <div>{t('back_to_top')}</div>
