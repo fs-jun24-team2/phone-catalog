@@ -30,16 +30,11 @@ export const ProductsPage = () => {
   const isAggregatesLoading = useAppSelector(selectAggregateLoading);
   const isLoading = isProductsLoading || isAggregatesLoading;
 
-  const [productList, setProductList] = useState(
-    Object.values(products[productsCategory]),
-  );
-  //const productList = Object.values(products[productsCategory]);
+  const productList = Object.values(products[productsCategory]);
   const totalItems = productList.length;
 
   const query = new URLSearchParams(useLocation().search);
-  const searchByName = query.get(SearchParamsType.byName);
-  const [searchFilteredProducts, setSearchFilteredProducts] =
-    useState(productList);
+  const searchQuery = query.get(SearchParamsType.query);
 
   useEffect(() => {
     const savedPage = localStorage.getItem('currentPage');
@@ -54,20 +49,10 @@ export const ProductsPage = () => {
   }, [location]);
 
   useEffect(() => {
-    setProductList(Object.values(products[productsCategory]));
-  }, [products, productsCategory]);
+    const newSearchTerm = searchQuery ? searchQuery : '';
 
-  useEffect(() => {
-    const newProducts = productList.filter(product => {
-      const searchBy = searchByName
-        ? searchByName.trim().toLocaleLowerCase()
-        : '';
-
-      return product.name.toLocaleLowerCase().includes(searchBy);
-    });
-
-    setSearchFilteredProducts(newProducts);
-  }, [productList, searchByName]);
+    setSearchTerm(newSearchTerm);
+  }, [searchQuery]);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -80,9 +65,7 @@ export const ProductsPage = () => {
     localStorage.setItem('currentPage', '1');
   };
 
-  const filteredProducts = useFilteredProducts(searchFilteredProducts, {
-    searchTerm,
-  });
+  const filteredProducts = useFilteredProducts(productList, { searchTerm });
 
   const paginatedProducts = filteredProducts.slice(
     (currentPage - 1) * itemsPerPage,

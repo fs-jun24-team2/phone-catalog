@@ -20,8 +20,8 @@ export const SortAndPaginationPanel: React.FC<SortAndPaginationPanelProps> = ({
   const { t } = useTranslation();
   const updateSearchParams = useUpdateSearchParams();
   const query = new URLSearchParams(useLocation().search);
-  const searchByName = query.get(SearchParamsType.byName);
-  const searchByNameValue = searchByName ? searchByName : '';
+  const searchQuery = query.get(SearchParamsType.query);
+  const searchQueryValue = searchQuery ? searchQuery : '';
 
   const handleSortChange = (selectedOption: SingleValue<SelectedOption>) => {
     updateSearchParams({
@@ -45,7 +45,7 @@ export const SortAndPaginationPanel: React.FC<SortAndPaginationPanelProps> = ({
     const newSearchParam = event.target.value ? event.target.value : null;
 
     updateSearchParams({
-      [SearchParamsType.byName]: newSearchParam,
+      [SearchParamsType.query]: newSearchParam,
     });
   };
 
@@ -81,7 +81,7 @@ export const SortAndPaginationPanel: React.FC<SortAndPaginationPanelProps> = ({
 
         <input
           type="text"
-          value={searchByNameValue}
+          value={searchQueryValue}
           onChange={handleSearchOnChange}
           className={styles['selectors__search-input']}
         />

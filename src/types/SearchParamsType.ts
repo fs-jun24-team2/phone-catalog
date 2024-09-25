@@ -4,5 +4,4 @@ export enum SearchParamsType {
   page = 'page',
   query = 'query',
   perPage = 'perPage',
-  byName = 'byName',
 }
