@@ -92,6 +92,12 @@
   "specs_processor": "Processor",
   "available_colors": "Available colors",
   "select_capacity": "Select capacity",
+  "search": "Search",
+  "contact_us": "Contact Us",
+  "email": "Email",
+  "phone": "Phone",
+  "address": "Address",
+  "our_location": "Our Location",
   "rights_title": "User Rights and Responsibilities",
   "user_rights": "User Rights",
   "rights_access_information": "Access to information",
@@ -111,6 +117,5 @@
   "company_rights_terms_changes": "Changes to terms",
   "company_rights_account_termination": "Account termination",
   "liability_limitations": "Limitations of Liability",
-  "liability_text": "We are not responsible for any losses...",
-  "search": "Search"
+  "liability_text": "We are not responsible for any losses..."
 }
