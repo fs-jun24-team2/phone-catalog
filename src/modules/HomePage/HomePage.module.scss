@@ -2,6 +2,7 @@
 
 .home-page {
   &__title {
+    margin-top: toRem(72);
     margin-bottom: toRem(24);
 
     @media (min-width: 640px) {
@@ -9,6 +10,7 @@
     }
 
     @media (min-width: 1200px) {
+      margin-top: toRem(88);
       margin-bottom: toRem(56);
     }
   }

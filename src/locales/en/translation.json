@@ -117,5 +117,11 @@
   "company_rights_terms_changes": "Changes to terms",
   "company_rights_account_termination": "Account termination",
   "liability_limitations": "Limitations of Liability",
-  "liability_text": "We are not responsible for any losses..."
+  "liability_text": "We are not responsible for any losses...",
+  "shop_by_category": "Shop by category",
+  "models": "models",
+  "specs_built_in_memory": "Built in memory",
+  "specs_camera": "Camera",
+  "specs_zoom": "Zoom",
+  "specs_cell": "Cell"
 }
