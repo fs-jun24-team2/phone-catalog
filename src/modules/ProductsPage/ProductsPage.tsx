@@ -22,6 +22,7 @@ import { useFilteredProducts } from '@/hooks/useFilteredProduct';
 import { selectAggregateLoading } from '@/features/aggregateSlice';
 
 import cn from 'classnames';
+import { SearchParamsType } from '@/types/SearchParamsType';
 
 export const ProductsPage = () => {
   const [title, setTitle] = useState('');
@@ -38,6 +39,9 @@ export const ProductsPage = () => {
 
   const productList = Object.values(products[productsCategory]);
   const totalItems = productList.length;
+
+  const query = new URLSearchParams(useLocation().search);
+  const searchQuery = query.get(SearchParamsType.query);
 
   useEffect(() => {
     const savedPage = localStorage.getItem('currentPage');
@@ -57,6 +61,13 @@ export const ProductsPage = () => {
 
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    const newSearchTerm = searchQuery ? searchQuery : '';
+
+    setSearchTerm(newSearchTerm);
+    setCurrentPage(1);
+  }, [searchQuery]);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -122,6 +133,7 @@ export const ProductsPage = () => {
           isLoading={isLoading}
         />
       </div>
+
       {isDelayedLoading || isLoading ? (
         <PaginationSkeleton />
       ) : (
@@ -142,6 +154,7 @@ export const ProductsPage = () => {
             // </div>
           )}
         </>
+
       )}
 
       {!isLoading && <VirtualAssistant onSearch={setSearchTerm} />}
