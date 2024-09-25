@@ -7,6 +7,7 @@ import { SelectedOption } from '@/types/SelectedOption';
 import { SearchParamsType } from '@/types/SearchParamsType';
 import { useUpdateSearchParams } from '@/hooks/useUpdateSearchParams';
 import { useTranslation } from 'react-i18next';
+import { useLocation } from 'react-router-dom';
 
 interface SortAndPaginationPanelProps {
   // eslint-disable-next-line no-unused-vars
@@ -18,6 +19,10 @@ export const SortAndPaginationPanel: React.FC<SortAndPaginationPanelProps> = ({
 }) => {
   const { t } = useTranslation();
   const updateSearchParams = useUpdateSearchParams();
+  const query = new URLSearchParams(useLocation().search);
+  const searchQuery = query.get(SearchParamsType.query);
+  const searchQueryValue = searchQuery ? searchQuery : '';
+
   const handleSortChange = (selectedOption: SingleValue<SelectedOption>) => {
     updateSearchParams({
       [SearchParamsType.sort]: selectedOption ? selectedOption.value : null,
@@ -34,6 +39,14 @@ export const SortAndPaginationPanel: React.FC<SortAndPaginationPanelProps> = ({
     if (selectedOption) {
       onHandleItemPerPage(Number(selectedOption.value));
     }
+  };
+
+  const handleSearchOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newSearchParam = event.target.value ? event.target.value : null;
+
+    updateSearchParams({
+      [SearchParamsType.query]: newSearchParam,
+    });
   };
 
   return (
@@ -62,6 +75,17 @@ export const SortAndPaginationPanel: React.FC<SortAndPaginationPanelProps> = ({
         className={styles.selectors__pagination}
         onChange={handleItemsPerPageChange}
       />
+
+      <div className={styles.selectors__search}>
+        <p className={styles['selectors__search-title']}>{t('search')}:</p>
+
+        <input
+          type="text"
+          value={searchQueryValue}
+          onChange={handleSearchOnChange}
+          className={styles['selectors__search-input']}
+        />
+      </div>
     </div>
   );
 };

@@ -16,6 +16,7 @@ import { useFilteredProducts } from '@/hooks/useFilteredProduct';
 import { selectAggregateLoading } from '@/features/aggregateSlice';
 
 import cn from 'classnames';
+import { SearchParamsType } from '@/types/SearchParamsType';
 
 export const ProductsPage = () => {
   const [title, setTitle] = useState('');
@@ -32,6 +33,9 @@ export const ProductsPage = () => {
   const productList = Object.values(products[productsCategory]);
   const totalItems = productList.length;
 
+  const query = new URLSearchParams(useLocation().search);
+  const searchQuery = query.get(SearchParamsType.query);
+
   useEffect(() => {
     const savedPage = localStorage.getItem('currentPage');
     if (savedPage) {
@@ -43,6 +47,13 @@ export const ProductsPage = () => {
     setTitle(productsCategory);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
+
+  useEffect(() => {
+    const newSearchTerm = searchQuery ? searchQuery : '';
+
+    setSearchTerm(newSearchTerm);
+    setCurrentPage(1);
+  }, [searchQuery]);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -89,7 +100,7 @@ export const ProductsPage = () => {
         />
       </div>
 
-      {filteredProducts.length && (
+      {!!filteredProducts.length && (
         <div className={styles['product-page__products-list']}>
           <ProductsList
             products={paginatedProducts}
@@ -104,6 +115,7 @@ export const ProductsPage = () => {
           />
         </div>
       )}
+
       {!filteredProducts.length && !isLoading && (
         <div className={styles.notfound}>
           <img src={original_notFound} alt="Product not found" />
