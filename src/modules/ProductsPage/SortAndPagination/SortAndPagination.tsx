@@ -12,10 +12,12 @@ import { useLocation } from 'react-router-dom';
 interface SortAndPaginationPanelProps {
   // eslint-disable-next-line no-unused-vars
   onHandleItemPerPage: (perPage: number) => void;
+  totalItems: number;
 }
 
 export const SortAndPaginationPanel: React.FC<SortAndPaginationPanelProps> = ({
   onHandleItemPerPage,
+  totalItems,
 }) => {
   const { t } = useTranslation();
   const updateSearchParams = useUpdateSearchParams();
@@ -32,13 +34,16 @@ export const SortAndPaginationPanel: React.FC<SortAndPaginationPanelProps> = ({
   const handleItemsPerPageChange = (
     selectedOption: SingleValue<SelectedOption>,
   ) => {
+    const perPage =
+      selectedOption && selectedOption.value === 'all'
+        ? totalItems
+        : Number(selectedOption?.value || 0);
+
     updateSearchParams({
       [SearchParamsType.perPage]: selectedOption ? selectedOption.value : null,
     });
 
-    if (selectedOption) {
-      onHandleItemPerPage(Number(selectedOption.value));
-    }
+    onHandleItemPerPage(perPage);
   };
 
   const handleSearchOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,7 +56,6 @@ export const SortAndPaginationPanel: React.FC<SortAndPaginationPanelProps> = ({
 
   return (
     <div className={cn('grid-container', [styles.selectors])}>
-      {/* Сортування */}
       <SortSelector
         label={t('sortBy')}
         options={[
@@ -63,14 +67,13 @@ export const SortAndPaginationPanel: React.FC<SortAndPaginationPanelProps> = ({
         onChange={handleSortChange}
       />
 
-      {/* Елементи на сторінці */}
       <SortSelector
         label={t('itemsPerPage')}
         options={[
           { value: '4', label: '4' },
           { value: '8', label: '8' },
           { value: '16', label: '16' },
-          // { value: 'all', label: 'All' },
+          { value: 'all', label: 'All' },
         ]}
         className={styles.selectors__pagination}
         onChange={handleItemsPerPageChange}
@@ -89,3 +92,5 @@ export const SortAndPaginationPanel: React.FC<SortAndPaginationPanelProps> = ({
     </div>
   );
 };
+
+export default SortAndPaginationPanel;

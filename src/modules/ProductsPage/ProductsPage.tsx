@@ -45,8 +45,7 @@ export const ProductsPage = () => {
 
   useEffect(() => {
     setTitle(productsCategory);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location]);
+  }, [location, productsCategory]);
 
   useEffect(() => {
     const newSearchTerm = searchQuery ? searchQuery : '';
@@ -73,6 +72,8 @@ export const ProductsPage = () => {
     currentPage * itemsPerPage,
   );
 
+  const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+
   return (
     <>
       <div className={styles['product-page__breadcrumbs']}>
@@ -97,6 +98,7 @@ export const ProductsPage = () => {
       <div className={styles['product-page__sort-panel']}>
         <SortAndPaginationPanel
           onHandleItemPerPage={handleItemsPerPageChange}
+          totalItems={totalItems}
         />
       </div>
 
@@ -107,12 +109,14 @@ export const ProductsPage = () => {
             category={productsCategory}
           />
 
-          <Pagination
-            totalItems={filteredProducts.length}
-            itemsPerPage={itemsPerPage}
-            currentPage={currentPage}
-            onPageChange={handlePageChange}
-          />
+          {totalPages > 1 && (
+            <Pagination
+              totalItems={filteredProducts.length}
+              itemsPerPage={itemsPerPage}
+              currentPage={currentPage}
+              onPageChange={handlePageChange}
+            />
+          )}
         </div>
       )}
 

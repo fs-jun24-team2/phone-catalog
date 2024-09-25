@@ -15,13 +15,18 @@ export const PopupSubscribe: React.FC = () => {
     if (!localStorage.getItem('subscribedEmail')) {
       timer = window.setTimeout(() => {
         setIsVisible(true);
+        document.body.style.overflow = 'hidden';
       }, SUBSCRIBE_DELAY);
     }
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      document.body.style.overflow = '';
+    };
   }, []);
 
   const handleClose = () => {
     setIsVisible(false);
+    document.body.style.overflow = '';
   };
 
   const validateEmail = (email: string) => {
@@ -46,6 +51,7 @@ export const PopupSubscribe: React.FC = () => {
 
     localStorage.setItem('subscribedEmail', email);
     setIsVisible(false);
+    document.body.style.overflow = '';
   };
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -86,3 +92,5 @@ export const PopupSubscribe: React.FC = () => {
     </div>
   );
 };
+
+export default PopupSubscribe;
