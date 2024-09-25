@@ -1,0 +1,70 @@
+@import '@/style.scss';
+
+.contacts-container {
+  padding: toRem(80) toRem(20) toRem(20) toRem(20);
+  display: flex;
+  flex-direction: column;
+  gap: toRem(15);
+}
+
+.contacts {
+  background-color: $original_hover_and_bg;
+  padding: toRem(20) toRem(10);
+  box-shadow: 0 toRem(4) toRem(8) rgba(0, 0, 0, 0.1);
+  border-radius: toRem(15);
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    font-size: toRem(24);
+    color: $original_primary;
+    margin-bottom: toRem(5);
+    font-weight: $bold;
+  }
+
+  p {
+    font-size: toRem(16);
+    color: $original_secondary;
+    margin: toRem(2) 0;
+  }
+}
+
+.map {
+  background-color: $original_hover_and_bg;
+  padding: toRem(10) toRem(10);
+  box-shadow: 0 toRem(4) toRem(8) rgba(0, 0, 0, 0.1);
+  border-radius: toRem(15);
+  display: flex;
+  flex-direction: column;
+  gap: toRem(5);
+  
+
+  h2 {
+    font-size: toRem(24);
+    color: $original_primary;
+    margin-bottom: toRem(5);
+    font-weight: $bold;
+  }
+}
+
+iframe {
+  width: 100%;
+  height: toRem(400);
+  border: 0;
+  border-radius: toRem(10);
+
+  @media (min-width: 768px) {
+    height: toRem(450);
+  }
+}
+
+@media (min-width: 641px) {
+  .contacts-container {
+    padding: toRem(80) toRem(40);
+    gap: toRem(30);
+  }
+
+  .contacts, .map {
+    padding: toRem(30) toRem(20);
+  }
+}

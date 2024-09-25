@@ -15,8 +15,10 @@ import { ProductsCategory } from '@/types/ProductsCategory';
 import { ProductNotFoundPage } from './ProductNotFoundPage';
 import { scrollToTop } from '../shared/helpers/scrollToTop';
 import { ProductId } from './ProductCharacteristics/ProductId';
+import { useTranslation } from 'react-i18next';
 
 export const ProductDetailsPage = () => {
+  const { t } = useTranslation();
   const [product, setProduct] = useState<Product | null>(null);
   const [isError, setIsError] = useState(false);
   const { pathname } = useLocation();
@@ -62,7 +64,7 @@ export const ProductDetailsPage = () => {
         onClick={handleBack}
       >
         <div className={styles['product-details-page__button-back-icon']}></div>
-        <p className="style-small-text">Back</p>
+        <p className="style-small-text">{t('back')}</p>
       </button>
 
       <h1

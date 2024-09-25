@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './PopupModal.module.scss';
 import { useTranslation } from 'react-i18next';
 
@@ -14,8 +14,23 @@ export const PopupModal: React.FC<PopupModalProps> = ({
   onCancel,
 }) => {
   const { t } = useTranslation();
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, []);
+
+  const handleOverlayClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (event.target === event.currentTarget) {
+      onCancel();
+    }
+  };
+
   return (
-    <div className={styles.popupOverlay}>
+    <div className={styles.popupOverlay} onClick={handleOverlayClick}>
       <div className={styles.popupContent}>
         <button className={styles.closeIcon} onClick={onCancel}>
           &times;
@@ -36,3 +51,5 @@ export const PopupModal: React.FC<PopupModalProps> = ({
     </div>
   );
 };
+
+export default PopupModal;
