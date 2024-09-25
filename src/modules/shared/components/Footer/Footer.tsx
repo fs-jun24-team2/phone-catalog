@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import styles from './Footer.module.scss';
 import footer_logo from '/images/original/footer/logo.svg';
-import footer_logo_dark from '/images/original/footer/logo-black.svg';
+import footer_dark_logo from '/images/original/footer/logo-black.svg';
 import { scrollToTop } from '../../helpers/scrollToTop';
 import { useEffect, useState } from 'react';
 
@@ -42,7 +42,7 @@ export const Footer = () => {
       <div
         className={`${styles['footer']} ${isDarkTheme ? styles['footer-dark'] : ''}`}
       >
-        <img src={isDarkTheme ? footer_logo_dark : footer_logo} alt="Logo" />
+        <img src={isDarkTheme ? footer_dark_logo : footer_logo} alt="Logo" />
         <div className={styles['footer__link']}>
           {links.map((link, index) => (
             <a
