@@ -26,6 +26,7 @@
   &:disabled {
     background-color: $original_secondary;
   }
+
   &:disabled:hover {
     box-shadow: none;
   }
@@ -40,9 +41,31 @@
     &:hover {
       border-color: $original_secondary;
       box-shadow: none;
-
     }
-  
+  }
+}
+
+.main-button-dark{
+  background-color: $dark_accent;
+  color: $dark_white;
+
+  &:hover {
+    background-color: #A378FF;
+  }
+
+  &:disabled {
+    background-color: $dark_surface_2;
+  }
+}
+
+.main-button__added{
+  background-color: $dark_surface_2;
+  border-color: $dark_surface_2;
+
+  &:hover {
+    border-color: $dark_secondary;
+    background-color: $dark_surface_2;
+
   }
 }
 
