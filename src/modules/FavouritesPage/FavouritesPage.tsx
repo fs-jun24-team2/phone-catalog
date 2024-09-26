@@ -8,11 +8,27 @@ import { FavouritesList } from './components/FavouritesList';
 
 import styles from './FavouritesPage.module.scss';
 import { useTranslation } from 'react-i18next';
+import { useEffect, useState } from 'react';
 
 export const FavouritesPage = () => {
   const { t } = useTranslation();
   const items = useAppSelector(selectFavourites);
   const isEmpty = items.length === 0;
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
+
+  useEffect(() => {
+    const checkTheme = () => {
+      const isDark = document.body.classList.contains('dark_theme');
+      setIsDarkTheme(isDark);
+    };
+
+    checkTheme();
+
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.body, { attributes: true });
+
+    return () => observer.disconnect();
+  });
   return (
     <>
       <div className={cn('grid-container')}>
@@ -20,7 +36,9 @@ export const FavouritesPage = () => {
           <Breadcrumbs />
         </div>
 
-        <div className={styles['favourites-page__header']}>
+        <div
+          className={`${styles['favourites-page__header']} ${isDarkTheme ? styles['favourites-page__header-dark'] : ''}`}
+        >
           <h1 className={cn('style-h1', styles['favourites-page__title'])}>
             {t('favourites')}
           </h1>

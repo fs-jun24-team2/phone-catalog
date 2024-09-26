@@ -52,3 +52,17 @@
   &:hover {
   transform: $transformScale;
 }}
+
+.category-dark{
+  .category-high-title{
+    color: $dark_white;
+  }
+
+  .all-categories__title{
+    color: $dark_white;
+  }
+  
+  .all-categories__amount{
+    color: $dark_secondary;
+  }
+}

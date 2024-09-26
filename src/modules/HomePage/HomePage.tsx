@@ -11,16 +11,36 @@ import {
   getNewBrandProduct,
 } from '@/features/aggregateSlice';
 import { AggregateProduct } from '@/types/AggregateProduct';
+import { useEffect, useState } from 'react';
 
 export const HomePage = () => {
   const { t } = useTranslation();
   const hotPriceProducts = useAppSelector(getHotPriceProduct);
   const newBrandProduct = useAppSelector(getNewBrandProduct);
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
+
+  useEffect(() => {
+    const checkTheme = () => {
+      const isDark = document.body.classList.contains('dark_theme');
+      setIsDarkTheme(isDark);
+    };
+
+    checkTheme();
+
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.body, { attributes: true });
+
+    return () => observer.disconnect();
+  });
 
   return (
     <>
       {/* hidden */}
-      <h1 className={cn('style-h1', styles['home-page__title'])}>
+      <h1
+        className={cn('style-h1', styles['home-page__title'], {
+          [styles['home-page__title-dark']]: isDarkTheme,
+        })}
+      >
         {t('home__title')}
       </h1>
 
