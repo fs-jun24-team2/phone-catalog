@@ -8,6 +8,7 @@ interface ImageGalleryProps {
 
 export const Gallery: React.FC<ImageGalleryProps> = ({ images }) => {
   const [selectedImage, setSelectedImage] = useState(images.at(0));
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
 
   useEffect(() => {
     setSelectedImage(images.at(0));
@@ -16,6 +17,20 @@ export const Gallery: React.FC<ImageGalleryProps> = ({ images }) => {
   const handleImageClick = (image: string) => {
     setSelectedImage(image);
   };
+
+  useEffect(() => {
+    const checkTheme = () => {
+      const isDark = document.body.classList.contains('dark_theme');
+      setIsDarkTheme(isDark);
+    };
+
+    checkTheme();
+
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.body, { attributes: true });
+
+    return () => observer.disconnect();
+  });
 
   return (
     <div>
@@ -29,6 +44,7 @@ export const Gallery: React.FC<ImageGalleryProps> = ({ images }) => {
                 key={index}
                 className={cn(styles['gallery__miniature-container'], {
                   [styles['gallery__miniature-container--active']]: isActive,
+                  [styles['gallery__miniature-container-dark']]: isDarkTheme,
                 })}
               >
                 <img

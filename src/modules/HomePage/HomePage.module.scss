@@ -2,7 +2,7 @@
 
 .home-page {
   &__title {
-    margin-top: toRem(72);
+    margin-top: toRem(80);
     margin-bottom: toRem(24);
 
     @media (min-width: 640px) {
@@ -10,7 +10,7 @@
     }
 
     @media (min-width: 1200px) {
-      margin-top: toRem(88);
+      margin-top: toRem(120);
       margin-bottom: toRem(56);
     }
   }
@@ -31,4 +31,7 @@
       margin-bottom: toRem(80);
     }
   }
+}
+.home-page__title-dark{
+  color: $dark_white
 }

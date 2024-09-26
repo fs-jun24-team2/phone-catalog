@@ -2,7 +2,7 @@ import styles from './ProductsSlider.module.scss';
 import 'swiper/css';
 
 import { ProductCard } from '@/modules/shared/components/ProductCard';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Swiper as SwiperType } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import cn from 'classnames';
@@ -32,9 +32,27 @@ export const ProductsSlider = <T extends Product | AggregateProduct>({
     }
   };
 
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
+
+  useEffect(() => {
+    const checkTheme = () => {
+      const isDark = document.body.classList.contains('dark_theme');
+      setIsDarkTheme(isDark);
+    };
+
+    checkTheme();
+
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.body, { attributes: true });
+
+    return () => observer.disconnect();
+  });
+
   return (
     <section>
-      <div className={styles['products-slider-header']}>
+      <div
+        className={`${styles['products-slider-header']} ${isDarkTheme ? styles['products-slider-header-dark'] : ''}`}
+      >
         <div className={styles['products-slider-header__title']}>{title}</div>
 
         <div className={styles['products-slider-header__buttons-container']}>

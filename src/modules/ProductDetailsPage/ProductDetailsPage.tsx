@@ -45,6 +45,22 @@ export const ProductDetailsPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname, id]);
 
+  const [isDarkTheme, setIsDarkTheme] = useState<boolean>(false);
+
+  useEffect(() => {
+    const checkTheme = () => {
+      const isDark = document.body.classList.contains('dark_theme');
+      setIsDarkTheme(isDark);
+    };
+
+    checkTheme();
+
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.body, { attributes: true });
+
+    return () => observer.disconnect();
+  }, []);
+
   if (isError) {
     return <ProductNotFoundPage />;
   }
@@ -63,15 +79,18 @@ export const ProductDetailsPage = () => {
         className={styles['product-details-page__button-back']}
         onClick={handleBack}
       >
-        <div className={styles['product-details-page__button-back-icon']}></div>
-        <p className="style-small-text">{t('back')}</p>
+        <div
+          className={`${styles['product-details-page__button-back-icon']} ${isDarkTheme ? styles['product-details-page__button-back-icon-dark'] : ''}`}
+        ></div>
+        <p
+          className={`${styles['style-small-text']} ${isDarkTheme ? styles['style-small-text-dark'] : ''}`}
+        >
+          {t('back')}
+        </p>
       </button>
 
       <h1
-        className={cn(
-          'style-h1',
-          styles['product-details-page__product-title'],
-        )}
+        className={`${'style-h2'} ${styles['product-details-page__product-title']} ${isDarkTheme ? styles['product-details-page__product-title-dark'] : ''}`}
       >
         {product.name}
       </h1>

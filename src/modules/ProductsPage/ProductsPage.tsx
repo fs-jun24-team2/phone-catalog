@@ -95,6 +95,22 @@ export const ProductsPage = () => {
 
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
 
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
+
+  useEffect(() => {
+    const checkTheme = () => {
+      const isDark = document.body.classList.contains('dark_theme');
+      setIsDarkTheme(isDark);
+    };
+
+    checkTheme();
+
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.body, { attributes: true });
+
+    return () => observer.disconnect();
+  });
+
   return (
     <>
       <div className={styles['product-page__breadcrumbs']}>
@@ -110,7 +126,11 @@ export const ProductsPage = () => {
           <TitleSkeleton />
         ) : (
           <>
-            <h1 className={cn('style-h1', styles['product-page__title'])}>
+            <h1
+              className={cn('style-h1', styles['product-page__title'], {
+                [styles['product-page__title-dark']]: isDarkTheme,
+              })}
+            >
               {title}
             </h1>
             <p

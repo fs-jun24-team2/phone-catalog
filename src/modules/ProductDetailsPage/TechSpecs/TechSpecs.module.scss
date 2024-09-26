@@ -33,3 +33,22 @@
         grid-column: 14 / 24;;
       }
 }
+
+.specs-dark{
+  .specs__title{
+    color: $dark_white;
+    border-color: $dark_elements;
+  }
+
+  .specs__element{
+    border-color: $dark_elements;
+  }
+
+  .specs__key{
+    color: $dark_secondary;
+  }
+  
+  .specs__value{
+    color: $dark_white;
+  }
+}

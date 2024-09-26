@@ -80,3 +80,23 @@
     text-align: end;
   }
 }
+
+.product-charact-dark{
+  .product-charact__devider{
+    background-color: $dark_elements;
+  }
+
+  .product-charact__price-discount{ 
+    color: $dark_white;
+  }
+
+  .product-charact__price-regular{
+    color: $dark_secondary;
+  }
+  .product-charact__spec-name{
+    color: $dark_secondary;
+  }
+  .product-charact__spec-value{
+    color: $dark_white;
+  }
+}

@@ -4,6 +4,7 @@ import { selectProducts } from '@/features/productsSlice';
 import { useCategoriesData } from '../../../../hooks/useCategoriesData';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useEffect, useState } from 'react';
 
 export const ShopByCategory = () => {
   const { t } = useTranslation();
@@ -18,8 +19,26 @@ export const ShopByCategory = () => {
     accessoriesAmount,
   });
 
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
+
+  useEffect(() => {
+    const checkTheme = () => {
+      const isDark = document.body.classList.contains('dark_theme');
+      setIsDarkTheme(isDark);
+    };
+
+    checkTheme();
+
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.body, { attributes: true });
+
+    return () => observer.disconnect();
+  });
+
   return (
-    <div>
+    <div
+      className={`${styles['']} ${isDarkTheme ? styles['category-dark'] : ''}`}
+    >
       <h2 className={`${styles['style-h2']} ${styles['category-high-title']} `}>
         {t('shop_by_category')}
       </h2>

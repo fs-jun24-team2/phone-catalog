@@ -52,3 +52,23 @@
     background-image: url("/images/original/icons/original_more.svg");
   }
 }
+
+.products-slider-header-dark{
+  .products-slider-header__title{
+    color: $dark_white;
+  }
+
+  .products-slider-header__button{
+    background-color: $dark_surface_2;
+    border-color: $dark_icons;
+
+    &:hover{
+      background-color: $dark_elements;
+      border-color: $dark_secondary;
+    }
+
+    &:active{
+      background-color: $dark_icons;
+    }
+  }
+}

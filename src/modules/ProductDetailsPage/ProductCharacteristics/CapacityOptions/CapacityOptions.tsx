@@ -4,6 +4,7 @@ import cn from 'classnames';
 import { formatValueWithUnit } from '@/utils/formatValueWithUnit';
 import { useTranslation } from 'react-i18next';
 import { ProductsCategory } from '@/types/ProductsCategory';
+import { useEffect, useState } from 'react';
 
 type Props = {
   capacities: string[];
@@ -25,8 +26,26 @@ export const CapacityOptions = ({
     onSetCapacity(capacity);
   };
 
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
+
+  useEffect(() => {
+    const checkTheme = () => {
+      const isDark = document.body.classList.contains('dark_theme');
+      setIsDarkTheme(isDark);
+    };
+
+    checkTheme();
+
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.body, { attributes: true });
+
+    return () => observer.disconnect();
+  });
+
   return (
-    <div className={styles['capacity-options']}>
+    <div
+      className={`${styles['capacity-options']} ${isDarkTheme ? styles['capacity-options-dark'] : ''}`}
+    >
       <div className={cn('style-small-text', styles['capacity-options__text'])}>
         {t('select_capacity')}
       </div>

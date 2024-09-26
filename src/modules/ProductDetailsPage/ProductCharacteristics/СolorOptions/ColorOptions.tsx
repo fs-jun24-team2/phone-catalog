@@ -3,6 +3,7 @@ import styles from './ColorOptions.module.scss';
 import cn from 'classnames';
 import { useTranslation } from 'react-i18next';
 import { ProductId } from '../ProductId';
+import { useEffect, useState } from 'react';
 
 type Props = {
   colors: string[];
@@ -22,9 +23,25 @@ export const ColorOptions = ({
   const handleColorClick = (color: string) => {
     onSetColor(color);
   };
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
 
+  useEffect(() => {
+    const checkTheme = () => {
+      const isDark = document.body.classList.contains('dark_theme');
+      setIsDarkTheme(isDark);
+    };
+
+    checkTheme();
+
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.body, { attributes: true });
+
+    return () => observer.disconnect();
+  });
   return (
-    <div className={styles['color-options']}>
+    <div
+      className={`${styles['color-options']} ${isDarkTheme ? styles['color-options-dark'] : ''}`}
+    >
       <div className={styles['color-options__header']}>
         <div className={cn('style-small-text', styles['color-options__title'])}>
           {t('available_colors')}
