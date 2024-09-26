@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Breadcrumbs } from '../shared/components/Breadcrumbs';
 import { MainButton } from '../shared/components/MainButton';
 import { CartItems } from './components/CartItems';
@@ -14,9 +14,23 @@ import { selectCart } from '@/features/cartSlice';
 export const CartPage = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
   const totalPrice = useAppSelector(getTotalPrice);
   const totalProductsAmount = useAppSelector(getCartAmount);
   const [isModalVisible, setModalVisible] = useState(false);
+  useEffect(() => {
+    const checkTheme = () => {
+      const isDark = document.body.classList.contains('dark_theme');
+      setIsDarkTheme(isDark);
+    };
+
+    checkTheme();
+
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.body, { attributes: true });
+
+    return () => observer.disconnect();
+  }, []);
 
   const cart = useAppSelector(selectCart);
   const cartEntries = Object.entries(cart);
@@ -40,7 +54,7 @@ export const CartPage = () => {
 
   return (
     <>
-      <div className="grid-container">
+      <div className={`grid-container ${isDarkTheme ? styles.dark_theme : ''}`}>
         <div className={styles['cart-page__breadcrumbs']}>
           <Breadcrumbs />
         </div>
@@ -53,24 +67,25 @@ export const CartPage = () => {
           })}
         >
           <CartItems />
+          {!!totalPrice && (
+            <div className={styles['checkout']}>
+              <div className={styles['checkout__price-and-amount']}>
+                <div className={styles['checkout__price']}>${totalPrice}</div>
+                <div className={styles['checkout__amount']}>
+                  {t('totalItems', { total: totalProductsAmount })}
+                </div>
+              </div>
 
-          <div className={styles['checkout']}>
-            <div className={styles['checkout__price-and-amount']}>
-              <div className={styles['checkout__price']}>${totalPrice}</div>
-              <div className={styles['checkout__amount']}>
-                {t('totalItems', { total: totalProductsAmount })}
+              <div className={styles['checkout__devider']}></div>
+              <div className={styles['checkout__button-container']}>
+                <MainButton
+                  isDisibled={isCheckoutDisibled}
+                  handleOnClick={handleCheckoutOnClick}
+                  buttonText={buttonCheckoutText}
+                />
               </div>
             </div>
-
-            <div className={styles['checkout__devider']}></div>
-            <div className={styles['checkout__button-container']}>
-              <MainButton
-                isDisibled={isCheckoutDisibled}
-                handleOnClick={handleCheckoutOnClick}
-                buttonText={buttonCheckoutText}
-              />
-            </div>
-          </div>
+          )}
         </div>
       </div>
 
@@ -79,6 +94,7 @@ export const CartPage = () => {
           message={t('checkoutConfirmation')}
           onConfirm={handleConfirm}
           onCancel={handleCancel}
+          isDarkTheme={isDarkTheme}
         />
       )}
     </>
