@@ -2,6 +2,7 @@
 
 .cart-page{
   &--empty {
+    opacity: 0.7;
     background-image: url('/img/cart-is-empty.png');
     background-size: contain;
     background-position: center center;

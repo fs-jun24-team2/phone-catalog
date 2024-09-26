@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './SortAndPagination.module.scss';
 import cn from 'classnames';
 import { SortSelector } from './SortSelector/SortSelector';
@@ -24,6 +24,22 @@ export const SortAndPaginationPanel: React.FC<SortAndPaginationPanelProps> = ({
   const query = new URLSearchParams(useLocation().search);
   const searchQuery = query.get(SearchParamsType.query);
   const searchQueryValue = searchQuery ? searchQuery : '';
+
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
+
+  useEffect(() => {
+    const checkTheme = () => {
+      const isDark = document.body.classList.contains('dark_theme');
+      setIsDarkTheme(isDark);
+    };
+
+    checkTheme();
+
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.body, { attributes: true });
+
+    return () => observer.disconnect();
+  }, []);
 
   const handleSortChange = (selectedOption: SingleValue<SelectedOption>) => {
     updateSearchParams({
@@ -86,7 +102,10 @@ export const SortAndPaginationPanel: React.FC<SortAndPaginationPanelProps> = ({
           type="text"
           value={searchQueryValue}
           onChange={handleSearchOnChange}
-          className={styles['selectors__search-input']}
+          placeholder={t('searchPlaceholder')}
+          className={cn(styles['selectors__search-input'], {
+            [styles.dark]: isDarkTheme,
+          })}
         />
       </div>
     </div>
